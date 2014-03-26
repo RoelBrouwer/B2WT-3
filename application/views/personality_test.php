@@ -11,7 +11,7 @@
 	<?php foreach ($questions as $q):?>
 		<h4><?php echo $q['question'];?></h4>
 		<?php foreach ($q['answers'] as $answer):?>
-			<input type="radio" name="<?php echo $q['tag'];?>" value="<?php echo $answer['value'];?>" /> <?php echo $answer['text'];?><br />
+			<input type="radio" name="<?php echo $q['tag'];?>" value="<?php echo $answer['value'];?>" /><?php echo $answer['text'];?><br />
 		<?php endforeach;?>
 	<?php endforeach;?>
 	<input type="submit" value="Submit">
