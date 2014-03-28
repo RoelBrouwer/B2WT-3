@@ -6,6 +6,7 @@
 </head>
 <body>
 <div id="container">
+	<!-- Color: #F46867 -->
 	<h1>De vragen</h1>
 	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
 	<?php foreach ($questions as $q):?>
