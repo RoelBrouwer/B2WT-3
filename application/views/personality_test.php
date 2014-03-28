@@ -9,9 +9,9 @@
 	<h1>De vragen</h1>
 	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
 	<?php foreach ($questions as $q):?>
-		<h4><?php echo $q['question'];?></h4>
+		<h4><?php echo $q['text'];?></h4>
 		<?php foreach ($q['answers'] as $answer):?>
-			<input type="radio" name="<?php echo $q['tag'];?>" value="<?php echo $answer['value'];?>" /><?php echo $answer['text'];?><br />
+			<input type="radio" name="<?php echo $q['tag'];?>" value="<?php echo $answer['answer_tag'];?>" /><?php echo $answer['text'];?><br />
 		<?php endforeach;?>
 	<?php endforeach;?>
 	<input type="submit" value="Submit">

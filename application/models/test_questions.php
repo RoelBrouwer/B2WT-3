@@ -8,8 +8,15 @@ class Test_questions extends CI_Model {
     
     function get_questions()
     {
-        $query = $this->db->get('questions', 10);
-        return $query->result();
+        $query = $this->db->get('questions');
+		$quest = $query->result_array();
+		foreach ($quest as &$q):
+			//get answers
+			$this->db->where('question_tag', $q['tag']);
+			$qa = $this->db->get('answers');
+			$q['answers'] = $qa->result_array();
+		endforeach;
+        return $quest;
     }
 
 }
