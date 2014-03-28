@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '';
 $db['default']['username'] = '';
 $db['default']['password'] = '';
-$db['default']['database'] = 'sqlite:db/database.sqlite';
+$db['default']['database'] = 'sqlite:db/database.db';
 $db['default']['dbdriver'] = 'pdo';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
