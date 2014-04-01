@@ -18,6 +18,5 @@ class Test_questions extends CI_Model {
 		endforeach;
         return $quest;
     }
-
 }
 ?>

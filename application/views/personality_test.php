@@ -7,8 +7,9 @@
 <body>
 <div id="container">
 	<!-- Color: #F46867 -->
+	<?php if (isset($debuginfo)) { echo $debuginfo; } ?>
 	<h1>De vragen</h1>
-	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+	<form action="test/retrieve_answers" method="POST">
 	<?php foreach ($questions as $q):?>
 		<h4><?php echo $q['text'];?></h4>
 		<?php foreach ($q['answers'] as $answer):?>
