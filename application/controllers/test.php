@@ -17,7 +17,12 @@ class Test extends CI_Controller {
 	
 	function retrieve_answers()
 	{
-		$data['debuginfo'] = $this->input->post();
+		$form_in = $this->input->post();
+		$type_occ = array_count_values($form_in);
+		//Percentage van al die dingen berekenen, bijv:
+		$extravert = 50 + (10 * $type_occ['E']) - (10 * $type_occ['I']);
+		$introvert = 100 - $extravert;
+		$data['debuginfo'] = 'Extravert: ' . $extravert . ', Introvert: ' . $introvert;
 		$this->load->view('personality_test', $data);
 	}
 }
