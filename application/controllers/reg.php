@@ -6,5 +6,10 @@ class Reg extends CI_Controller {
 		
 		$this->load->view('registration_form', NULL);
 	}
+	
+	function submit_form()
+	{
+		
+	}
 }
 ?>
