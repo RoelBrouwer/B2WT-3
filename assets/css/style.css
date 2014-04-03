@@ -1,0 +1,74 @@
+body{
+	margin: auto;
+	font-family: 'Source Sans Pro', sans-serif;
+	background-color: rgb(247,247,247);
+	font-size: 17px;
+}
+
+.container{
+	width: 960px;
+	margin: auto;
+	padding-top: 70px;
+}
+#siteheader{
+	height: 70px;
+	line-height: 70px;
+	width: 100%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.02);
+	background-color: #E85554;
+	position: fixed;
+	z-index: 2;
+}
+#homeheader{
+	background-image: url('../images/EttVenter_33.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 800px;
+	width: 100%;
+}
+.navbar{
+	width: 960px;
+	margin: auto;
+	text-align: center;
+	color: rgb(230,230,230);
+}
+	.navbar ul{
+		float: right;
+	}
+	.navbar a{
+		padding: 15px 15px;
+		letter-spacing: 1px;
+		color: rgb(230,230,230);
+	}
+	.navbar a:hover{
+		color: #E85554;
+	}
+	.navbar > ul > li{
+		display: inline;
+		font-weight: 400;
+		font-size: 17px;
+		float: left;
+	}
+		.navbar ul ul { 
+			border-radius: 0px;
+			position: absolute; 
+			top: 100%;
+			display: none;
+			visibility: hidden;
+		}	
+		.navbar ul li:hover > ul {
+			display: block;
+			visibility: visible;
+		}
+		.navbar ul ul li {
+			float: none; 
+			border-top: 1px solid rgb(50,50,50);
+			position: relative;
+			text-align: left;
+			background-color: rgb(70,70,70);
+		}
+		.navbar ul ul li:first-child{
+			border-top: 2px solid #E34C26;
+		}
