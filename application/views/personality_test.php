@@ -15,7 +15,7 @@
 	foreach ($questions as $q):?>
 		<h4><?php echo $q['text'];?></h4>
 		<?php foreach ($q['answers'] as $answer):
-			echo form_radio(array('name' => $q['tag'], 'value' => $answer['answer_tag']));
+			echo form_radio(array('name' => $q['tag'], 'value' => $answer['answer_tag'], 'checked' => set_radio($q['tag'], $answer['answer_tag'])));
 			echo $answer['text'];?><br />
 		<?php endforeach;
 	endforeach;
