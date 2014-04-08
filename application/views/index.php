@@ -4,7 +4,8 @@
    	</header>
 
    	<div class="wrapper">
-   		<div id="homeheader">	
+   		<div id="homeheader">
+   		<h1>DataDate</h1>	
    		</div>
 	   	<div class="container">
 		    <h2>Waarom DataDate?</h2>
@@ -14,7 +15,7 @@
 		</div>
 	</div>
     <footer>
-    	<div id="sitefooter"></div>
+    	<div id="sitefooter"><?php echo $footer ?></div>
     </footer>
 </body>
 </html>
