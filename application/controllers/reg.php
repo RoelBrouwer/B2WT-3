@@ -23,9 +23,11 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('date_validation','Voer een geldige %s in.');
 		$this->form_validation->set_message('valid_email','Het ingevoerde e-mailadres is niet geldig.');
 		$this->form_validation->set_message('less_than','De %s moet lager zijn dan 120.');
+		$this->form_validation->set_message('check_ages','De gewenste maximumleeftijd moet groter zijn dan de gewenste minimumleeftijd.');
+		$this->form_validation->set_message('matches','De twee ingevoerde wachtwoorden zijn niet gelijk.');
 		
 		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|matches[password_check]|md5');
+		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim|required');
 		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
@@ -36,7 +38,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
 		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');
-		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]');
+		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]|callback_check_ages['.$this->input->post('min_age').']');
 	}
 	
 	public function index()
@@ -47,6 +49,7 @@ class Reg extends CI_Controller {
 		}
 		else
 		{
+			//Verwerk de input.
 		}
 	}
 	
@@ -58,6 +61,12 @@ class Reg extends CI_Controller {
 			return false;
 	}
 	
+	function check_ages($max, $min)
+	{
+		return ($max > $min);
+	}
+	
+	//Currently useless..
 	function do_upload()
 	{
 		if ( ! $this->upload->do_upload())
