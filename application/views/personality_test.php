@@ -13,10 +13,10 @@
 	<h1>De vragen</h1>
 	<?php echo form_open('test');
 	foreach ($questions as $q):?>
-		<h4><?php echo $q['text'];?></h4>
+		<h4><?php echo $q['question_text'];?></h4>
 		<?php foreach ($q['answers'] as $answer):
-			echo form_radio(array('name' => $q['tag'], 'value' => $answer['answer_tag'], 'checked' => set_radio($q['tag'], $answer['answer_tag'])));
-			echo $answer['text'];?><br />
+			echo form_radio(array('name' => $q['question_tag'], 'value' => $answer['answer_tag'], 'checked' => set_radio($q['question_tag'], $answer['answer_tag'])));
+			echo $answer['answer_text'];?><br />
 		<?php endforeach;
 	endforeach;
 	echo form_submit('test', 'Submit'); 
