@@ -19,10 +19,6 @@ class Auth extends CI_Controller {
 	{
 		if ($this->form_validation->run() == FALSE)
 		{
-			//Tijdelijk:
-			echo "<pre>";
-			print_r(this->session->all_userdata());
-			echo "</pre>";
 			$this->load->view('log_in');
 		}
 		else
@@ -71,6 +67,5 @@ class Auth extends CI_Controller {
 	 *     redirect('auth'); //Iets van een pagina maken die zegt: je moet eerst inloggen!
 	 * }
 	 */
-	
 	
 } ?>
