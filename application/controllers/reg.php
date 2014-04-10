@@ -56,7 +56,7 @@ class Reg extends CI_Controller {
 			$this->load->model('login');
 			
 			$this->email->from('email@email.com', "DataDate");
-			$this->email->to($this->input->post('email');
+			$this->email->to($this->input->post('email'));
 			$this->email->subject("Uw registratie bij DataDate.");
 			
 			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
