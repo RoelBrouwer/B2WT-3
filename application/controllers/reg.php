@@ -49,7 +49,6 @@ class Reg extends CI_Controller {
 		}
 		else
 		{
-			//Verwerk de input.
 		}
 	}
 	
