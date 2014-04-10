@@ -50,10 +50,11 @@ class Reg extends CI_Controller {
 		}
 		else
 		{
-			//generate a random key
 			$key = md5(uniqid());
 			
 			$this->load->library('email', array('mailtype' => 'html'));
+			$this->load->model('login');
+			
 			$this->email->from('email@email.com', "DataDate");
 			$this->email->to($this->input->post('email');
 			$this->email->subject("Uw registratie bij DataDate.");
@@ -61,20 +62,38 @@ class Reg extends CI_Controller {
 			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
 			$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig ue registratie</a>.</p>";
 			$this->email->message($message);
-			if ($this->email->send()){
-				echo "Een bevestiging-mail is verstuurd.";
+			if ($this->login->add_temp_user($key))
+			{
+				if ($this->email->send()){
+					echo "Een bevestiging-mail is verstuurd.";
+				}
+				else
+				{
+					echo "Er is iets misgegaan. Probeer het opnieuw.";
+				}
 			}
 			else
 			{
 				echo "Er is iets misgegaan. Probeer het opnieuw.";
-			}
-			//add user to temp database
+			}		
 		}
 	}
 	
 	public function confirm($key)
 	{
+		$this->load->model('login');
 		
+		if ($this->login->check_key($key))
+		{
+			if ($this->login->add_user($key))
+			{
+				echo "Uw registratie is bevestigd. U kunt nu inloggen."; //Of redirecten ergens daarnaartoe.
+			}
+			else
+			{
+				echo "Er is iets misgegaan. Probeer het opnieuw.";
+			}
+		}
 	}
 	
 	function date_validation($string)
