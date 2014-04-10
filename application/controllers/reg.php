@@ -25,6 +25,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('less_than','De %s moet lager zijn dan 120.');
 		$this->form_validation->set_message('check_ages','De gewenste maximumleeftijd moet groter zijn dan de gewenste minimumleeftijd.');
 		$this->form_validation->set_message('matches','De twee ingevoerde wachtwoorden zijn niet gelijk.');
+		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
 		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|matches[password_check]|md5');
@@ -49,7 +50,31 @@ class Reg extends CI_Controller {
 		}
 		else
 		{
+			//generate a random key
+			$key = md5(uniqid());
+			
+			$this->load->library('email', array('mailtype' => 'html'));
+			$this->email->from('email@email.com', "DataDate");
+			$this->email->to($this->input->post('email');
+			$this->email->subject("Uw registratie bij DataDate.");
+			
+			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
+			$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig ue registratie</a>.</p>";
+			$this->email->message($message);
+			if ($this->email->send()){
+				echo "Een bevestiging-mail is verstuurd.";
+			}
+			else
+			{
+				echo "Er is iets misgegaan. Probeer het opnieuw.";
+			}
+			//add user to temp database
 		}
+	}
+	
+	public function confirm($key)
+	{
+		
 	}
 	
 	function date_validation($string)

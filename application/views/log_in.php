@@ -14,6 +14,7 @@
 	Wachtwoord: <?php echo form_password('password'); ?> <br />
 	<?php echo form_submit('login', 'Log in!');
 	echo form_close(); ?>
+	Nog geen account? <a href='<?php echo base_url() . "reg" ?>'>Registreer!</a>
 	</div>
 </body>
 </html>
