@@ -19,10 +19,19 @@ class Auth extends CI_Controller {
 	{
 		if ($this->form_validation->run() == FALSE)
 		{
+			//Tijdelijk:
+			echo "<pre>";
+			print_r(this->session->all_userdata());
+			echo "</pre>";
 			$this->load->view('log_in');
 		}
 		else
 		{
+			$userdata = array(
+				'nickname' => $this->input->post('username'),
+				'logged_in' => 1
+			);
+			$this->session->set_userdata($userdata);
 			redirect('');
 		}
 	}
@@ -41,5 +50,27 @@ class Auth extends CI_Controller {
 			return false;
 		}
 	}
+	
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('auth');
+	}
+	
+	/* Logout linkje:
+	 * <a href='<?php echo base_url() . "auth/logout" ?>'>Log uit</a>
+	 */
+	
+	/* Example code op beveiligde pagina's:
+	 * if ($this->session->userdata('logged_in'))
+	 * {
+	 *     $this->load->view('');
+	 * }
+	 * else
+	 * {
+	 *     redirect('auth'); //Iets van een pagina maken die zegt: je moet eerst inloggen!
+	 * }
+	 */
+	
 	
 } ?>

@@ -1,5 +1,5 @@
 <?php 
-class Test_questions extends CI_Model {
+class Login extends CI_Model {
 
     function __construct()
     {
@@ -8,15 +8,17 @@ class Test_questions extends CI_Model {
     
     function able_login()
     {
-        $query = $this->db->get('questions');
-		$quest = $query->result_array();
-		foreach ($quest as &$q) {
-			//get answers
-			$this->db->where('question_tag', $q['question_tag']);
-			$qa = $this->db->get('answers');
-			$q['answers'] = $qa->result_array();
+		$this->db->where('nickname', $this->input->post('username');
+		$this->db->where('password',  md5($this->input->post('password')));
+        $query = $this->db->get('users');
+		if ($query->num_rows() == 1)
+		{
+			return true;
 		}
-        return $quest;
+		else
+		{
+			return false;
+		}
     }
 }
 ?>
