@@ -34,14 +34,15 @@ class Login extends CI_Model {
 			'birthdate' => $this->input->post('birthdate'),
 			'sexpref' => $this->input->post('gender_pref'),
 			'personality_id' => 1, //Ook nog niet functioneel
+			'personalitypref' => 1, //Niet functioneel
 			'minage' => $this->input->post('min_age'),
 			'maxage' => $this->input->post('max_age'),
 			'admin' => 0,
-			'regdate' => date('d-m-Y'),
+			'regdate' => date('Y-m-d'),
 			'key' => $key
 		);
 		
-		$query = $this->db->insert('temp_user',$data);
+		$query = $this->db->insert('temp_users',$data);
 		if ($query)
 		{
 			return true;
@@ -55,7 +56,7 @@ class Login extends CI_Model {
 	public function check_key($key)
 	{
 		$this->db->where('key', $key);
-		$query = $this->db->get('temp_user');
+		$query = $this->db->get('temp_users');
 		
 		if ($query->num_rows() == 1)
 		{
@@ -70,7 +71,7 @@ class Login extends CI_Model {
 	public function add_user($key)
 	{
 		$this->db->where('key', $key);
-		$temp_user = $this->db->get('temp_user');
+		$temp_user = $this->db->get('temp_users');
 		if ($temp_user)
 		{
 			$row = $temp_user->row();
@@ -85,7 +86,7 @@ class Login extends CI_Model {
 				'birthdate' => $row->birthdate,
 				'sexpref' => $row->sexpref,
 				'personality_id' => $row->personality_id,
-				'personalitypref' => 1, //Niet functioneel - Iets van een functie hier aanroepen die de persoonlijkheid uit personality_id inverteert
+				'personalitypref' => $row->personalitypref,
 				'minage' => $row->minage,
 				'maxage' => $row->maxage,
 				'admin' => $row->admin,
@@ -97,7 +98,7 @@ class Login extends CI_Model {
 			if ($user)
 			{
 				$this->db->where('key', $key);
-				$this->db->delete('temp_user');
+				$this->db->delete('temp_users');
 				return true;
 			}
 			else

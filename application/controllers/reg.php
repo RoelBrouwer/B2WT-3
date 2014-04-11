@@ -18,7 +18,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('max_length','Uw %s is te lang.');
 		$this->form_validation->set_message('min_length','Uw %s is te kort.');
 		$this->form_validation->set_message('alpha_numeric','Gebruik alleen alfanumerieke karakters in %s.');
-		$this->form_validation->set_message('alpha','Gebruik alleen letters in %s.');
+		$this->form_validation->set_message('alpha','Uw %s kan alleen uit letters bestaan.');
 		$this->form_validation->set_message('is_natural','De %s moet een positief getal zijn.');
 		$this->form_validation->set_message('date_validation','Voer een geldige %s in.');
 		$this->form_validation->set_message('valid_email','Het ingevoerde e-mailadres is niet geldig.');
@@ -28,7 +28,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
 		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|matches[password_check]|md5');
+		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|max_length[255]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim|required');
 		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
@@ -36,7 +36,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'required|callback_date_validation|xss_clean');
 		$this->form_validation->set_rules('gender', 'geslacht', 'required');
 		$this->form_validation->set_rules('picture', 'foto', '');
-		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|max_length[500]s|xss_clean');
 		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
 		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');
 		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]|callback_check_ages['.$this->input->post('min_age').']');
@@ -56,7 +56,7 @@ class Reg extends CI_Controller {
 			$this->load->model('login');
 			
 			$this->email->from('email@email.com', "DataDate");
-			$this->email->to($this->input->post('email');
+			$this->email->to($this->input->post('email'));
 			$this->email->subject("Uw registratie bij DataDate.");
 			
 			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
@@ -98,8 +98,8 @@ class Reg extends CI_Controller {
 	
 	function date_validation($string)
 	{
-		if ( preg_match('/^([0-9]{1,2})-([0-9]{1,2})-([0-9]{4})$/', $string, $match) ) 
-            return ( checkdate($match[2], $match[1], $match[3]) );
+		if ( preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/', $string, $match) ) 
+            return ( checkdate($match[2], $match[3], $match[1]) );
 		else
 			return false;
 	}
