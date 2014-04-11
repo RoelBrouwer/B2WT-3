@@ -27,10 +27,10 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('matches','De twee ingevoerde wachtwoorden zijn niet gelijk.');
 		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
-		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|is_unique[temp_users.nickname]|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|max_length[255]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim|required');
-		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]|is_unique[temp_users.email]');
 		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('last_name', 'achternaam', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'required|callback_date_validation|xss_clean');
@@ -99,6 +99,7 @@ class Reg extends CI_Controller {
 			{
 				echo "Er is iets misgegaan. Probeer het opnieuw.";
 			}
+			$this->login->brand_preference($key);
 			$this->load->view('common/header');
 			$this->load->view('test_succes', $this->login->personality_type($key));
 			$this->load->view('common/footer');

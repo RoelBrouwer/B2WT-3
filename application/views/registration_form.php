@@ -25,6 +25,7 @@
 	  <div id="tabs-1">
 		<?php echo validation_errors();
 		echo form_open('reg'); ?>
+		<h2>Gegevens</h2>
 		Gebruikersnaam: <?php echo form_input(array('name' => 'username', 'maxlength' => '25', 'size' => '30', 'value' => set_value('username'))) ?> <i>Kies een gebruikersnaam tussen de 3 en 30 alfanumerieke karakters (a-z, 0-9).</i>  <br />
 		Wachtwoord: <?php echo form_password(array('name' => 'password', 'maxlength' => '25', 'size' => '30')) ?> <i>Kies een wachtwoord tussen de 5 en 255 karakters.</i> <br />
 		Herhaal wachtwoord: <?php echo form_password(array('name' => 'password_check', 'maxlength' => '25', 'size' => '30')) ?> <br />
@@ -41,6 +42,7 @@
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-2">
+	    <h2>Persoonlijkheidstest</h2>
 		<?php foreach ($questions as $q):?>
 			<h4><?php echo $q['question_text'];?></h4>
 			<?php foreach ($q['answers'] as $answer):
@@ -51,8 +53,8 @@
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-3">
-		Merkvoorkeuren:
-		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i>
+		<h2>Merkvoorkeuren:</h2>
+		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i><br />
 		<?php foreach ($brands as $b): 
 			echo form_checkbox(array('name' => 'brandpref', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
 			echo $b['name'];

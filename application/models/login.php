@@ -189,6 +189,34 @@ class Login extends CI_Model {
 		
 		return $data;
 	}
+	public function brand_preference($key)
+	{
+		$form_input = $this->input->post();
+		
+		$this->db->select('user_id');
+		$this->db->where('key', $key);
+		$this->db->get('temp_users');
+		foreach ($form_input['brandpref'] as $b)
+		{
+			
+		}
+		$qbdata = array (
+			'E' => round((100 - $extravert), 1),
+			'N' => round((100 - $intuitive), 1),
+			'T' => round((100 - $thinking), 1),
+			'J' => round((100 - $judging), 1)
+		);
+		
+		$query2 = $this->db->insert('personalities',$qbdata);
+		
+		$id_n2 = $this->db->insert_id();
+		
+		$this->db->set('personalpref', $id_n2, FALSE);
+		$this->db->where('key', $key);
+		$this->db->update('temp_users');
+		
+		return $data;
+	}
 	
 }
 ?>
