@@ -59,6 +59,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('q17', 'antwoord bij vraag 17 van de persoonlijkheidstest', 'required');
 		$this->form_validation->set_rules('q18', 'antwoord bij vraag 18 van de persoonlijkheidstest', 'required');
 		$this->form_validation->set_rules('q19', 'antwoord bij vraag 19 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('brandpref', 'merkvoorkeuren', 'required');
 	}
 	
 	public function index()
@@ -67,6 +68,7 @@ class Reg extends CI_Controller {
 		{
 			$this->load->model('test_questions');
 			$data['questions'] = $this->test_questions->get_questions();
+			$data['brands'] = $this->test_questions->get_brands();
 			$this->load->view('registration_form', $data);
 		}
 		else
@@ -97,7 +99,9 @@ class Reg extends CI_Controller {
 			{
 				echo "Er is iets misgegaan. Probeer het opnieuw.";
 			}
+			$this->load->view('common/header');
 			$this->load->view('test_succes', $this->login->personality_type($key));
+			$this->load->view('common/footer');
 		}
 	}
 	

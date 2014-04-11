@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $this->load->helper('form','url'); ?>
+<?php $this->load->helper('form','url','html'); ?>
 <head>
 	<meta charset="utf-8">
 	<title>DataDate - Registreren</title>
@@ -51,7 +51,12 @@
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-3">
-		
+		Merkvoorkeuren:
+		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i>
+		<?php foreach ($brands as $b): 
+			echo form_checkbox(array('name' => 'brandpref', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
+			echo $b['name'];
+		endforeach; ?>
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-4">
