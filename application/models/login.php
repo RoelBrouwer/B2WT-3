@@ -8,7 +8,7 @@ class Login extends CI_Model {
     
     function able_login()
     {
-		$this->db->where('nickname', $this->input->post('username'));
+		$this->db->where('nickname', strtolower($this->input->post('username')));
 		$this->db->where('password',  md5($this->input->post('password')));
         $query = $this->db->get('users');
 		if ($query->num_rows() == 1)
@@ -24,7 +24,7 @@ class Login extends CI_Model {
 	public function add_temp_user($key)
 	{
 		$data = array (
-			'nickname' => $this->input->post('username'),
+			'nickname' => strtolower($this->input->post('username')),
 			'firstname' => $this->input->post('first_name'),
 			'lastname' => $this->input->post('last_name'),
 			'email' => $this->input->post('email'),
