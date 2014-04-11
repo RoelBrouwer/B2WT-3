@@ -205,27 +205,16 @@ class Login extends CI_Model {
 		
 		$this->db->select('user_id');
 		$this->db->where('key', $key);
-		$this->db->get('users');
+		$query = $this->db->get('users');
+		$cq = $query->row();
 		foreach ($form_input['brandpref'] as $b)
 		{
-			
+			$brandp = array (
+				'user_id' => $cq->user_id,
+				'brand_id' => $b
+			);
+			$this->db->insert('brandpref',$brandp);
 		}
-		$qbdata = array (
-			'E' => round((100 - $extravert), 1),
-			'N' => round((100 - $intuitive), 1),
-			'T' => round((100 - $thinking), 1),
-			'J' => round((100 - $judging), 1)
-		);
-		
-		$query2 = $this->db->insert('personalities',$qbdata);
-		
-		$id_n2 = $this->db->insert_id();
-		
-		$this->db->set('personalpref', $id_n2, FALSE);
-		$this->db->where('key', $key);
-		$this->db->update('temp_users');
-		
-		return $data;
 	}
 	
 }
