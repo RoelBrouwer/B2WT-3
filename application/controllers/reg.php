@@ -28,7 +28,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
 		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|matches[password_check]|md5');
+		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|max_length[25]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim|required');
 		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
@@ -36,7 +36,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'required|callback_date_validation|xss_clean');
 		$this->form_validation->set_rules('gender', 'geslacht', 'required');
 		$this->form_validation->set_rules('picture', 'foto', '');
-		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|max_length[500]s|xss_clean');
 		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
 		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');
 		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]|callback_check_ages['.$this->input->post('min_age').']');
