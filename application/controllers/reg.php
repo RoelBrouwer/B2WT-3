@@ -64,45 +64,52 @@ class Reg extends CI_Controller {
 	
 	public function index()
 	{
-		if ($this->form_validation->run() == FALSE)
+		if ($this->session->userdata('logged_in'))
 		{
-			$this->load->model('test_questions');
-			$data['questions'] = $this->test_questions->get_questions();
-			$data['brands'] = $this->test_questions->get_brands();
-			$this->load->view('registration_form', $data);
+			redirect('');
 		}
 		else
 		{
-			$key = md5(uniqid());
-			
-			$this->load->library('email', array('mailtype' => 'html'));
-			$this->load->model('login');
-			
-			$this->email->from('email@email.com', "DataDate");
-			$this->email->to($this->input->post('email'));
-			$this->email->subject("Uw registratie bij DataDate.");
-			
-			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
-			$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig uw registratie</a>.</p>";
-			$this->email->message($message);
-			if ($this->login->add_temp_user($key))
+			if ($this->form_validation->run() == FALSE)
 			{
-				if ($this->email->send()){
-					echo "Een bevestiging-mail is verstuurd.";
+				$this->load->model('test_questions');
+				$data['questions'] = $this->test_questions->get_questions();
+				$data['brands'] = $this->test_questions->get_brands();
+				$this->load->view('registration_form', $data);
+			}
+			else
+			{
+				$key = md5(uniqid());
+				
+				$this->load->library('email', array('mailtype' => 'html'));
+				$this->load->model('login');
+				
+				$this->email->from('email@email.com', "DataDate");
+				$this->email->to($this->input->post('email'));
+				$this->email->subject("Uw registratie bij DataDate.");
+				
+				$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
+				$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig uw registratie</a>.</p>";
+				$this->email->message($message);
+				if ($this->login->add_temp_user($key))
+				{
+					if ($this->email->send()){
+						echo "Een bevestiging-mail is verstuurd.";
+					}
+					else
+					{
+						echo "Er is iets misgegaan. Probeer het opnieuw.";
+					}
 				}
 				else
 				{
 					echo "Er is iets misgegaan. Probeer het opnieuw.";
 				}
+				$this->login->brand_preference($key);
+				$this->load->view('common/header');
+				$this->load->view('test_succes', $this->login->personality_type($key));
+				$this->load->view('common/footer');
 			}
-			else
-			{
-				echo "Er is iets misgegaan. Probeer het opnieuw.";
-			}
-			$this->login->brand_preference($key);
-			$this->load->view('common/header');
-			$this->load->view('test_succes', $this->login->personality_type($key));
-			$this->load->view('common/footer');
 		}
 	}
 	
