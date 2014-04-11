@@ -11,7 +11,7 @@
 	<h1>Registratie</h1>
 	<?php echo form_open('reg'); ?>
 	Gebruikersnaam: <?php echo form_input(array('name' => 'username', 'maxlength' => '25', 'size' => '30', 'value' => set_value('username'))) ?> <i>Kies een gebruikersnaam tussen de 3 en 30 alfanumerieke karakters (a-z, 0-9).</i>  <br />
-	Wachtwoord: <?php echo form_password(array('name' => 'password', 'maxlength' => '25', 'size' => '30')) <i>Kies een wachtwoord tussen de 5 en 25 karakters.</i> ?> <br />
+	Wachtwoord: <?php echo form_password(array('name' => 'password', 'maxlength' => '25', 'size' => '30')) ?> <i>Kies een wachtwoord tussen de 5 en 25 karakters.</i> <br />
 	Herhaal wachtwoord: <?php echo form_password(array('name' => 'password_check', 'maxlength' => '25', 'size' => '30')) ?> <br />
 	E-mail: <?php echo form_input(array('name' => 'email', 'maxlength' => '35', 'size' => '30', 'value' => set_value('email'))) ?> <br />
 	Voornaam: <?php echo form_input(array('name' => 'first_name', 'maxlength' => '20', 'size' => '30', 'value' => set_value('first_name'))) ?> <br />
