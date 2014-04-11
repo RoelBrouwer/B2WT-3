@@ -32,7 +32,7 @@
 				<li>Merken</li>
 				</ul>
 			</li>
-			<li><a href="#">Uitloggen</a></li>
+			<li><a href="http://www.students.science.uu.nl/~3976866/ci/auth/logout">Uitloggen</a></li>
 		</ul>
 	</nav>
 	</div>

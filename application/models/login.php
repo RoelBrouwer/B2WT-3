@@ -80,37 +80,6 @@ class Login extends CI_Model {
 			$this->db->where('key', $key);
 			$this->db->update('users');
 			return true;
-			// $row = $temp_user->row();
-			// $data = array(
-				// 'nickname' => $row->nickname,
-				// 'firstname' => $row->firstname,
-				// 'lastname' => $row->lastname,
-				// 'email' => $row->email,
-				// 'password' => $row->password,
-				// 'photo_id' => $row->photo_id,
-				// 'sex' => $row->sex,
-				// 'birthdate' => $row->birthdate,
-				// 'sexpref' => $row->sexpref,
-				// 'personality_id' => $row->personality_id,
-				// 'personalpref' => $row->personalpref,
-				// 'minage' => $row->minage,
-				// 'maxage' => $row->maxage,
-				// 'admin' => $row->admin,
-				// 'regdate' => $row->regdate
-			// );
-			
-			// $user = $this->db->insert('users',$data);
-			
-			// if ($user)
-			// {
-				// $this->db->where('key', $key);
-				// $this->db->delete('users');
-				// return true;
-			// }
-			// else
-			// {
-				// return false;
-			// }
 		}
 		else
 		{
@@ -121,7 +90,7 @@ class Login extends CI_Model {
 	public function personality_type($key)
 	{
 		$form_in = $this->input->post();
-		$type_occ = array_count_values($form_in);
+		$type_occ = array_count_values(array($form_in['q1'],$form_in['q2'],$form_in['q3'],$form_in['q4'],$form_in['q5'],$form_in['q6'],$form_in['q7'],$form_in['q8'],$form_in['q9'],$form_in['q10'],$form_in['q11'],$form_in['q12'],$form_in['q13'],$form_in['q14'],$form_in['q15'],$form_in['q16'],$form_in['q17'],$form_in['q18'],$form_in['q19']));
 		$types = array('E', 'I', 'N','S', 'T', 'F', 'J', 'P');
 		foreach ($types as $type) {
 			if (!isset($type_occ[$type]))
@@ -206,11 +175,11 @@ class Login extends CI_Model {
 		$this->db->select('user_id');
 		$this->db->where('key', $key);
 		$query = $this->db->get('users');
-		$cq = $query->row();
+		$cq = array_shift(array_values($query->result_array()));
 		foreach ($form_input['brandpref'] as $b)
 		{
 			$brandp = array (
-				'user_id' => $cq->user_id,
+				'user_id' => $cq['user_id'],
 				'brand_id' => $b
 			);
 			$this->db->insert('brandpref',$brandp);

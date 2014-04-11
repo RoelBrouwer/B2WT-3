@@ -56,7 +56,7 @@
 		<h2>Merkvoorkeuren:</h2>
 		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i><br />
 		<?php foreach ($brands as $b): 
-			echo form_checkbox(array('name' => 'brandpref', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
+			echo form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
 			echo $b['name'];
 		endforeach; ?>
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
