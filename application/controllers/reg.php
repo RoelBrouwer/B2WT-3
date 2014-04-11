@@ -40,13 +40,34 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
 		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');
 		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]|callback_check_ages['.$this->input->post('min_age').']');
+		$this->form_validation->set_rules('q1', 'antwoord bij vraag 1 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q2', 'antwoord bij vraag 2 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q3', 'antwoord bij vraag 3 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q4', 'antwoord bij vraag 4 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q5', 'antwoord bij vraag 5 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q6', 'antwoord bij vraag 6 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q7', 'antwoord bij vraag 7 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q8', 'antwoord bij vraag 8 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q9', 'antwoord bij vraag 9 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q10', 'antwoord bij vraag 10 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q11', 'antwoord bij vraag 11 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q12', 'antwoord bij vraag 12 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q13', 'antwoord bij vraag 13 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q14', 'antwoord bij vraag 14 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q15', 'antwoord bij vraag 15 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q16', 'antwoord bij vraag 16 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q17', 'antwoord bij vraag 17 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q18', 'antwoord bij vraag 18 van de persoonlijkheidstest', 'required');
+		$this->form_validation->set_rules('q19', 'antwoord bij vraag 19 van de persoonlijkheidstest', 'required');
 	}
 	
 	public function index()
 	{
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('registration_form', NULL);
+			$this->load->model('test_questions');
+			$data['questions'] = $this->test_questions->get_questions();
+			$this->load->view('registration_form', $data);
 		}
 		else
 		{

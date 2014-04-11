@@ -20,11 +20,11 @@
 		<li><a href="#tabs-1">Stap 1: Gegevens</a></li>
 		<li><a href="#tabs-2">Stap 2: Persoonlijkheidstest</a></li>
 		<li><a href="#tabs-3">Stap 3: Merkvoorkeuren</a></li>
+		<li><a href="#tabs-4">Stap 4: Versturen</a></li>
 	  </ul>
 	  <div id="tabs-1">
-		<?php echo validation_errors(); ?>
-		<h1>Registratie</h1>
-		<?php echo form_open('reg'); ?>
+		<?php echo validation_errors();
+		echo form_open('reg'); ?>
 		Gebruikersnaam: <?php echo form_input(array('name' => 'username', 'maxlength' => '25', 'size' => '30', 'value' => set_value('username'))) ?> <i>Kies een gebruikersnaam tussen de 3 en 30 alfanumerieke karakters (a-z, 0-9).</i>  <br />
 		Wachtwoord: <?php echo form_password(array('name' => 'password', 'maxlength' => '25', 'size' => '30')) ?> <i>Kies een wachtwoord tussen de 5 en 255 karakters.</i> <br />
 		Herhaal wachtwoord: <?php echo form_password(array('name' => 'password_check', 'maxlength' => '25', 'size' => '30')) ?> <br />
@@ -38,14 +38,26 @@
 		<strong>Ik ben op zoek naar</strong> <br />
 		Geslacht: <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
 		Minimumleeftijd: <?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />
-		<?php echo form_submit('reg', 'Submit'); 
-		echo form_close(); ?>
+		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-2">
-
+		<?php foreach ($questions as $q):?>
+			<h4><?php echo $q['question_text'];?></h4>
+			<?php foreach ($q['answers'] as $answer):
+				echo form_radio(array('name' => $q['question_tag'], 'value' => $answer['answer_tag'], 'checked' => set_radio($q['question_tag'], $answer['answer_tag'])));
+				echo $answer['answer_text'];?><br />
+			<?php endforeach;
+		endforeach; ?>
+		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-3">
 		
+		<div id="continue"><a href="#container">Terug naar boven</a></div>
+	  </div>
+	  <div id="tabs-4">
+		<?php echo form_submit('reg', 'Submit'); 
+		echo form_close(); ?>
+		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	</div>
 </div>
