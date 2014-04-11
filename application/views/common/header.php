@@ -16,11 +16,23 @@
 <header>
 	<div id="siteheader">
 	<nav class='navbar'>
+		<section id="logo">
+			<a href="#">DataDate</a>
+		</section>
 		<ul>
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Inloggen</a></li>
 			<li><a href="#">Registreren</a></li>
 			<li><a href="#">Over</a></li>
+			<li><a href="#">Zoeken</a>
+				<ul>
+				<li>Geslacht</li>
+				<li>Minimale leeftijd</li>
+				<li>Maximale leeftijd</li>
+				<li>Persoonlijkheid</li>
+				<li>Merken</li>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 	</div>

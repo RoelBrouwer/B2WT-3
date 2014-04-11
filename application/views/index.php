@@ -9,12 +9,12 @@
 		    </p>
 
         <div class="profielen">
-          <div class="profiel"></div>
-          <div class="profiel"></div>
-          <div class="profiel"></div>
-          <div class="profiel"></div>
-          <div class="profiel"></div>
-          <div class="profiel"></div>
+          <div class="profiel">Profiel 1</div>
+          <div class="profiel">Profiel 2</div>
+          <div class="profiel">Profiel 3</div>
+          <div class="profiel">Profiel 4</div>
+          <div class="profiel">Profiel 5</div>
+          <div class="profiel">Profiel 6</div>
         </div>
 		</div>
 	</div>

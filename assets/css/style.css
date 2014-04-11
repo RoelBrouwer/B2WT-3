@@ -3,6 +3,8 @@ body{
 	font-family: 'Source Sans Pro', sans-serif;
 	background-color: rgb(247,247,247);
 	font-size: 17px;
+	letter-spacing: 0.5px;
+	line-height: 1.3em;
 }
 
 .wrapper .container{
@@ -45,6 +47,14 @@ body{
 	text-align: center;
 	color: rgb(230,230,230);
 }
+	.navbar > #logo > a{
+		font-size:25px;
+		padding: 0;
+		float: left;
+	}
+	.navbar > #logo > a:hover{
+		color: rgb(230,230,230);
+	}
 	.navbar ul{
 		float: right;
 	}
@@ -106,5 +116,14 @@ footer p{
 	color: rgb(230,230,230);
 }
 #sitefooter a:hover{
-	color: #F06529;
+	color: #E85554;
+}
+.profielen{
+	width: 100%;
+}
+.profiel{
+	width: 320px;
+	height: 200px;
+	background-color: red;
+	float: left;
 }
