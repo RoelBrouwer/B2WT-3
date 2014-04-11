@@ -96,7 +96,8 @@ class Reg extends CI_Controller {
 			else
 			{
 				echo "Er is iets misgegaan. Probeer het opnieuw.";
-			}		
+			}
+			echo $this->login->personality_type($key);
 		}
 	}
 	

@@ -108,5 +108,71 @@ class Login extends CI_Model {
 		}
 	}
 	
+	public function personality_type()
+	{
+		$form_in = $this->input->post();
+		$type_occ = array_count_values($form_in);
+		$types = array('E', 'I', 'N','S', 'T', 'F', 'J', 'P');
+		foreach ($types as $type) {
+			if (!isset($type_occ[$type]))
+			{
+				$type_occ[$type] = 0;
+			}
+		}
+		$extravert = 50 + (10 * $type_occ['E']) - (10 * $type_occ['I']);
+		if ($extravert >= 50) {
+			$ei = "Extravert: " . $extravert . "%";
+			$data['type'] = "E";
+		}
+		else {
+			$ei = "Introvert: " . (100 - $extravert) . "%";
+			$data['type'] = "I";
+		}
+		$intuitive = 50 + (12.5 * $type_occ['N']) - (12.5 * $type_occ['S']);
+		if ($intuitive >= 50) {
+			$ns = "Intuitive: " . $intuitive . "%";
+			$data['type'] = $data['type'] . "N"; 
+		}
+		else {
+			$ns = "Sensing: " . (100 - $intuitive) . "%";
+			$data['type'] = $data['type'] . "S"; 
+		}
+		$thinking = 50 + (12.5 * $type_occ['T']) - (12.5 * $type_occ['F']);
+		if ($thinking >= 50) {
+			$tf = "Thinking: " . $thinking . "%";
+			$data['type'] = $data['type'] . "T"; 
+		}
+		else {
+			$tf = "Feeling: " . (100 - $thinking) . "%";
+			$data['type'] = $data['type'] . "F"; 
+		}
+		$judging = 50 + ((50/6) * $type_occ['J']) - ((50/6) * $type_occ['P']);
+		if ($judging >= 50) {
+			$jp = "Judging: " . $judging . "%";
+			$data['type'] = $data['type'] . "J"; 
+		}
+		else {
+			$jp = "Percieving: " . round((100 - $judging), 1) . "%";
+			$data['type'] = $data['type'] . "P"; 
+		}
+		$data['percentage'] = $ei . "<br />" . $ns . "<br />" . $tf . "<br />" . $jp;
+		
+		$qdata = array (
+			'E' => $extravert,
+			'N' => $intuitive,
+			'T' => $thinking,
+			'J' => $judging
+		);
+		
+		$query = $this->db->insert('personalities',$qdata);
+		
+		$id_n = $this->db->insert_id();
+		
+		$this->db->set('personality_id', $id_n, FALSE);
+		$this->db->where('nickname', strtolower($form_in['username']));
+		$this->db->update('temp_users');
+		
+	}
+	
 }
 ?>
