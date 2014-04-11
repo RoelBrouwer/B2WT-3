@@ -2,10 +2,9 @@
 
 class Welcome extends CI_Controller {
 
-
 	public function index()
 	{
-		$data = get_six_profiles();
+		$data = $this->get_six_profiles();
 		$this->load->view('common/header');
 		$this->load->view('index', $data);
 		$this->load->view('common/footer');
@@ -32,6 +31,3 @@ class Welcome extends CI_Controller {
 		return $six;
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
