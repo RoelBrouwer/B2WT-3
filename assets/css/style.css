@@ -16,11 +16,11 @@ body{
 
 .container h2{
 	font-size: 30px;
+	font-weight: 600;
 	margin-bottom: 1em;
 	margin-top: 2em;
-	font-weight: 400;
 	text-align: center;
-	color: rgb(70,70,70);
+	color: rgb(120,120,120);
 }
 
 #siteheader{
@@ -49,6 +49,7 @@ body{
 }
 	.navbar > #logo > a{
 		font-size:25px;
+		letter-spacing: 1px;
 		padding: 0;
 		float: left;
 	}
@@ -127,3 +128,16 @@ footer p{
 	background-color: red;
 	float: left;
 }
+.profiel figure{
+	float: left;
+}
+.profiel ul{
+	overflow: hidden;
+	padding-left: 20px;
+}
+.profiel ul li:first-child{
+	font-weight: 600;
+	letter-spacing: 3px;
+	color: rgb(100,100,100);
+}
+
