@@ -86,7 +86,7 @@ class Login extends CI_Model {
 				'birthdate' => $row->birthdate,
 				'sexpref' => $row->sexpref,
 				'personality_id' => $row->personality_id,
-				'personalpref' => $row->personalitypref,
+				'personalpref' => $row->personalpref,
 				'minage' => $row->minage,
 				'maxage' => $row->maxage,
 				'admin' => $row->admin,
