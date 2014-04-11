@@ -34,7 +34,7 @@ class Login extends CI_Model {
 			'birthdate' => $this->input->post('birthdate'),
 			'sexpref' => $this->input->post('gender_pref'),
 			'personality_id' => 1, //Ook nog niet functioneel
-			'personalitypref' => 1, //Niet functioneel
+			'personalpref' => 1, //Niet functioneel
 			'minage' => $this->input->post('min_age'),
 			'maxage' => $this->input->post('max_age'),
 			'admin' => 0,
@@ -86,14 +86,14 @@ class Login extends CI_Model {
 				'birthdate' => $row->birthdate,
 				'sexpref' => $row->sexpref,
 				'personality_id' => $row->personality_id,
-				'personalitypref' => $row->personalitypref,
+				'personalpref' => $row->personalitypref,
 				'minage' => $row->minage,
 				'maxage' => $row->maxage,
 				'admin' => $row->admin,
 				'regdate' => $row->regdate
 			);
 			
-			$user = $this->db->insert('user',$data);
+			$user = $this->db->insert('users',$data);
 			
 			if ($user)
 			{

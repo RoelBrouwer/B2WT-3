@@ -60,7 +60,7 @@ class Reg extends CI_Controller {
 			$this->email->subject("Uw registratie bij DataDate.");
 			
 			$message = "<h2>Welkom bij DataDate!</h2><p>Wij heten u van harte welkom in onze DataDate-community. Klik op de onderstaande link om uw registratie te bevestigen:</p>";
-			$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig ue registratie</a>.</p>";
+			$message .= "<p><a href= '". base_url()."reg/confirm/$key'>Bevestig uw registratie</a>.</p>";
 			$this->email->message($message);
 			if ($this->login->add_temp_user($key))
 			{
