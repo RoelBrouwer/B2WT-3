@@ -5,11 +5,22 @@ body{
 	font-size: 17px;
 }
 
-.container{
+.wrapper .container{
 	width: 960px;
 	margin: auto;
-	padding-top: 70px;
+	padding: 0 0 50px;
+	overflow: hidden;
 }
+
+.container h2{
+	font-size: 30px;
+	margin-bottom: 1em;
+	margin-top: 2em;
+	font-weight: 400;
+	text-align: center;
+	color: rgb(70,70,70);
+}
+
 #siteheader{
 	height: 70px;
 	line-height: 70px;
@@ -72,3 +83,28 @@ body{
 		.navbar ul ul li:first-child{
 			border-top: 2px solid #E34C26;
 		}
+
+footer{
+	background-color: rgb(50,50,50);
+	width: 100%;
+	padding: 40px;
+}
+footer p{
+	color: rgb(230,230,230);
+	font-weight: 300;
+	font-size: 15px;
+	float: left;
+}
+#sitefooter{
+	width: 960px;
+	margin:auto;
+	overflow: hidden;
+}
+#sitefooter a{
+	font-weight: 300;
+	margin-right: 10px;
+	color: rgb(230,230,230);
+}
+#sitefooter a:hover{
+	color: #F06529;
+}
