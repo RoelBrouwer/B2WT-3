@@ -18,5 +18,12 @@ class Test_questions extends CI_Model {
 		}
         return $quest;
     }
+	
+	function get_brands()
+    {
+        $query = $this->db->get('brands');
+		$quest = $query->result_array();
+        return $quest;
+    }
 }
 ?>
