@@ -2,28 +2,32 @@
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
+		$data = $this->get_six_profiles();
 		$this->load->view('common/header');
-		$this->load->view('index');
+		$this->load->view('index', $data);
 		$this->load->view('common/footer');
 	}
+	
+	public function get_six_profiles()
+	{
+		$this->load->model('user_profiles');
+		$user1 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		$user2 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		$user3 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		$user4 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		$user5 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		$user6 = array_shift(array_values($this->user_profiles->get_random_user_profile()));
+		//Hier later nog de juiste foto erin stoppen, de persoonlijkheid erbij halen en de merkvoorkeuren pakken.
+		$six = array(
+			'person1' => $user1,
+			'person2' => $user2,
+			'person3' => $user3,
+			'person4' => $user4,
+			'person5' => $user5,
+			'person6' => $user6
+		);
+		return $six;
+	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
