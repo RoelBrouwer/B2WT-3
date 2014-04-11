@@ -18,7 +18,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('max_length','Uw %s is te lang.');
 		$this->form_validation->set_message('min_length','Uw %s is te kort.');
 		$this->form_validation->set_message('alpha_numeric','Gebruik alleen alfanumerieke karakters in %s.');
-		$this->form_validation->set_message('alpha','Gebruik alleen letters in %s.');
+		$this->form_validation->set_message('alpha','Uw %s kan alleen uit letters bestaan.');
 		$this->form_validation->set_message('is_natural','De %s moet een positief getal zijn.');
 		$this->form_validation->set_message('date_validation','Voer een geldige %s in.');
 		$this->form_validation->set_message('valid_email','Het ingevoerde e-mailadres is niet geldig.');
@@ -28,7 +28,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
 		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|is_unique[users.nickname]|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|max_length[25]|matches[password_check]|md5');
+		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|min_length[5]|max_length[255]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim|required');
 		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
