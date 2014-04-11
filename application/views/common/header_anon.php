@@ -32,7 +32,8 @@
 				<li>Merken</li>
 				</ul>
 			</li>
-			<li><a href="#">Uitloggen</a></li>
+			<li><a href="#">Inloggen</a></li>
+			<li><a href="#">Registreren</a></li>
 		</ul>
 	</nav>
 	</div>
