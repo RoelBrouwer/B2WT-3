@@ -108,7 +108,7 @@ class Login extends CI_Model {
 		}
 	}
 	
-	public function personality_type()
+	public function personality_type($key)
 	{
 		$form_in = $this->input->post();
 		$type_occ = array_count_values($form_in);
@@ -158,10 +158,10 @@ class Login extends CI_Model {
 		$data['percentage'] = $ei . "<br />" . $ns . "<br />" . $tf . "<br />" . $jp;
 		
 		$qdata = array (
-			'E' => $extravert,
-			'N' => $intuitive,
-			'T' => $thinking,
-			'J' => $judging
+			'E' => round($extravert, 1),
+			'N' => round($intuitive, 1),
+			'T' => round($thinking, 1),
+			'J' => round($judging, 1)
 		);
 		
 		$query = $this->db->insert('personalities',$qdata);
@@ -169,9 +169,25 @@ class Login extends CI_Model {
 		$id_n = $this->db->insert_id();
 		
 		$this->db->set('personality_id', $id_n, FALSE);
-		$this->db->where('nickname', strtolower($form_in['username']));
+		$this->db->where('key', $key);
 		$this->db->update('temp_users');
 		
+		$qbdata = array (
+			'E' => round((100 - $extravert), 1),
+			'N' => round((100 - $intuitive), 1),
+			'T' => round((100 - $thinking), 1),
+			'J' => round((100 - $judging), 1)
+		);
+		
+		$query2 = $this->db->insert('personalities',$qbdata);
+		
+		$id_n2 = $this->db->insert_id();
+		
+		$this->db->set('personalpref', $id_n2, FALSE);
+		$this->db->where('key', $key);
+		$this->db->update('temp_users');
+		
+		return $data;
 	}
 	
 }

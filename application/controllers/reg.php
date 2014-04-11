@@ -97,7 +97,7 @@ class Reg extends CI_Controller {
 			{
 				echo "Er is iets misgegaan. Probeer het opnieuw.";
 			}
-			echo $this->login->personality_type($key);
+			$this->load->view('test_succes', $this->login->personality_type($key));
 		}
 	}
 	
