@@ -38,7 +38,7 @@ class Login extends CI_Model {
 			'minage' => $this->input->post('min_age'),
 			'maxage' => $this->input->post('max_age'),
 			'admin' => 0,
-			'regdate' => date('d-m-Y'),
+			'regdate' => date('Y-m-d'),
 			'key' => $key
 		);
 		

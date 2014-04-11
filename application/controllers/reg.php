@@ -98,8 +98,8 @@ class Reg extends CI_Controller {
 	
 	function date_validation($string)
 	{
-		if ( preg_match('/^([0-9]{1,2})-([0-9]{1,2})-([0-9]{4})$/', $string, $match) ) 
-            return ( checkdate($match[2], $match[1], $match[3]) );
+		if ( preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/', $string, $match) ) 
+            return ( checkdate($match[2], $match[3], $match[1]) );
 		else
 			return false;
 	}
