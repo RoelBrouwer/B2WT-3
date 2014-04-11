@@ -29,7 +29,7 @@ class Login extends CI_Model {
 			'firstname' => $this->input->post('first_name'),
 			'lastname' => $this->input->post('last_name'),
 			'email' => $this->input->post('email'),
-			'password' => md5($this->input->post('password')),
+			'password' => $this->input->post('password'),
 			'photo_id' => 0,   //Hier moeten we nog iets mee
 			'sex' => $this->input->post('gender'),
 			'birthdate' => $this->input->post('birthdate'),
