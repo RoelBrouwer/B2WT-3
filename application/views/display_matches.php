@@ -4,10 +4,11 @@
 			<?php if (isset($user)){
 				if(count($user) !== 0){?>
 					U heeft <?php echo count($user) ?> matches.
-					<?php foreach ($user as $usr):?>
+					<?php foreach ($user as $usr):
+						$rl_usr = $usr['user'];?>
 						<div id="userprofile">
 							GEGEVENS <br />
-							<?php echo $usr['firstname']. " " . $usr['lastname'] ?>
+							<?php echo $rl_usr['firstname'] . " " . $rl_usr['lastname'] . ", for debug-purposes only: " . $usr['rank']; ?>
 						</div>
 					<?php endforeach; 
 				} else { echo "U heeft geen matches. Probeer eens om uw voorkeuren te verruimen."; }

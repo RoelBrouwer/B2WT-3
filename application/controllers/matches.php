@@ -14,7 +14,7 @@ class Matches extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in'))
 		{
-			$data['user'] = $this->_matched_users(); //array(1,2,3); //array of users
+			$data['user'] = $this->_matched_users();
 			$this->load->view('common/header');
 			$this->load->view('display_matches', $data);
 			$this->load->view('common/footer');
@@ -28,17 +28,23 @@ class Matches extends CI_Controller {
 	public function _matched_users()
 	{
 		$matches1 = $this->user_profiles->get_users_matching_pref(); //Get the users that match the pref
-		$this->_assign_ranking($matches1);
-		return $matches1;
+		$matches2 = $this->_assign_ranking($matches1);
+		usort($matches2, "sort_users");
+		return $matches2;
 	}
 	
 	public function _assign_ranking($users)
 	{
+		$ranked_users = array();
 		foreach ($users as $user)
 		{
 			$pers_dist = $this->_get_distance($user);
 			$brands_dist = $this->_get_brands_distance($user);
+			$xfactor = 0.5; //Get from DB!
+			$match_fact = ($xfactor * $pers_dist) + ((1 - $xfactor) * $brands_dist);
+			array_push($ranked_users, array('rank' => $match_fact, 'user' => $user));
 		}
+		return $ranked_users;
 	}
 	
 	public function _get_distance($user)
@@ -61,7 +67,7 @@ class Matches extends CI_Controller {
 		$curr_user_brands = $this->_normalize_brands_list($this->user_profiles->get_brandpref_by_id($curr_user['user_id']));
 		$user_brands = $this->_normalize_brands_list($this->user_profiles->get_brandpref_by_id($user['user_id']));
 		
-		$distance_measure = 1; //TODO: Get form database!
+		$distance_measure = 1; //TODO: Get from database!
 		switch ($distance_measure) {
 			case 1: //Dice's coefficient
 				$similarity = (2 * count(array_intersect($curr_user_brands, $user_brands))) / (count($curr_user_brands) + count($user_brands));
@@ -76,10 +82,7 @@ class Matches extends CI_Controller {
 				$similarity = (count(array_intersect($curr_user_brands, $user_brands))) / (min(count($curr_user_brands), count($user_brands)));
 				break;
 		}
-		echo $similarity;
-		//aantal: count()
-		//union: array_unique(array_merge($curr_user_brands, $user_brands))
-		//intersection: array_intersect($curr_user_brands, $user_brands)
+		return (1 - $similarity);
 		
 	}
 	

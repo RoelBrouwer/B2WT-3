@@ -44,4 +44,12 @@ if ( ! function_exists('get_personality_string'))
 		
 		return $data;
 	}
+	
+	
+}
+if ( ! function_exists('sort_users'))
+{
+	function sort_users($a, $b) {
+		return $b['rank'] - $a['rank'];
+	}
 }
