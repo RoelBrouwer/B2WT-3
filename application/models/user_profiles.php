@@ -14,8 +14,8 @@ class User_profiles extends CI_Model {
 		$this->db->limit(1);
 		$query = $this->db->get('users');
 		$user = array_shift(array_values($query->result_array()));
-		$user['personality'] = get_personality_string($this->get_personalitytype_by_id($user['id']));
-		$user['brandpref'] = $this->get_brandpref_by_id($user['id']);
+		$user['personality'] = get_personality_string($this->get_personalitytype_by_id($user['user_id']));
+		$user['brandpref'] = $this->get_brandpref_by_id($user['user_id']);
 		return $user;
 	}
 	

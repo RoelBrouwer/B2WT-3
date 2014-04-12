@@ -32,9 +32,16 @@ class Profile extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in'))
 		{
-			$this->load->view('common/header');
-			$this->load->view('profile_page', NULL);
-			$this->load->view('common/footer');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data = array();
+				$this->load->view('common/header');
+				$this->load->view('change_brands', $data);
+				$this->load->view('common/footer');
+			}
+			else
+			{
+			}
 		}
 		else
 		{
@@ -46,9 +53,16 @@ class Profile extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in'))
 		{
-			$this->load->view('common/header');
-			$this->load->view('profile_page', NULL);
-			$this->load->view('common/footer');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data = array();
+				$this->load->view('common/header');
+				$this->load->view('change_profile', $data);
+				$this->load->view('common/footer');
+			}
+			else
+			{
+			}
 		}
 		else
 		{
