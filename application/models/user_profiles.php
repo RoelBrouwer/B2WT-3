@@ -230,5 +230,13 @@ class User_profiles extends CI_Model {
 		}
 					
 	}
+	
+	public function is_admin()
+	{
+		$this->db->where('nickname',  $this->session->userdata('nickname'));
+		$query = $this->db->get('users');
+		$data = array_shift(array_values($query->result_array()));
+		return $data['admin'];
+	}
 }	
 ?>

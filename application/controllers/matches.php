@@ -8,6 +8,7 @@ class Matches extends CI_Controller {
 		$this->load->helper(array('form', 'url','common_functions_helper'));
 		$this->load->library('form_validation');
 		$this->load->model('user_profiles');
+		$this->load->model('admin_model');
 	}
 
 	public function index()
@@ -40,7 +41,7 @@ class Matches extends CI_Controller {
 		{
 			$pers_dist = $this->_get_distance($user);
 			$brands_dist = $this->_get_brands_distance($user);
-			$xfactor = 0.5; //Get from DB!
+			$xfactor = $this->admin_model->get_xfactor();
 			$match_fact = ($xfactor * $pers_dist) + ((1 - $xfactor) * $brands_dist);
 			array_push($ranked_users, array('rank' => $match_fact, 'user' => $user));
 		}
@@ -67,7 +68,7 @@ class Matches extends CI_Controller {
 		$curr_user_brands = $this->_normalize_brands_list($this->user_profiles->get_brandpref_by_id($curr_user['user_id']));
 		$user_brands = $this->_normalize_brands_list($this->user_profiles->get_brandpref_by_id($user['user_id']));
 		
-		$distance_measure = 1; //TODO: Get from database!
+		$distance_measure = $this->admin_model->get_distance_measure();
 		switch ($distance_measure) {
 			case 1: //Dice's coefficient
 				$similarity = (2 * count(array_intersect($curr_user_brands, $user_brands))) / (count($curr_user_brands) + count($user_brands));
