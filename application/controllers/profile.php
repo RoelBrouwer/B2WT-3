@@ -66,6 +66,7 @@ class Profile extends CI_Controller {
 			else
 			{
 				$this->user_profiles->update_brandspref();
+				redirect('profile');
 			}
 		}
 		else
@@ -92,6 +93,7 @@ class Profile extends CI_Controller {
 						$this->user_profiles->update_user($data);
 					}
 				}
+				redirect('profile');
 			}
 		}
 		else

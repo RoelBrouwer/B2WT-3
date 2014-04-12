@@ -122,9 +122,25 @@ class User_profiles extends CI_Model {
 	public function update_brandspref()
 	{
 		$data = $this->get_user_by_nickname();
-		$form_input = $this->input->post();
-		
+		$form_input = $this->input->post();		
 		if (isset($form_input['brandpref'])) {
+		
+			foreach ($data['brandpref'] as $bref) {
+				$check = false;
+				foreach ($form_input['brandpref'] as $bfi) {
+					if ($bref['name']==$bfi['name']){$check = true;}
+				}
+				if(!$check){
+					$this->db->where('name', $bref['name']);
+					$query = $this->db->get('brands');
+					$getid = array_shift(array_values($query->result_array()));
+					
+					$this->db->where('user_id', $data['user_id']);
+					$this->db->where('brand_id', $getid['brand_id']);
+					$this->db->delete('brandpref');
+				}
+			}
+		
 			foreach ($form_input['brandpref'] as $b)
 			{
 				$this->db->where('user_id', $data['user_id']);
