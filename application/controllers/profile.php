@@ -114,5 +114,18 @@ class Profile extends CI_Controller {
 	{
 		return ($max > $min);
 	}
+	
+	function deregister()
+	{
+		if($this->user_profiles->delete_user())
+		{
+			$this->session->sess_destroy();
+			redirect('');
+		}
+		else
+		{
+			redirect('profile');
+		}
+	}
 }
 ?>

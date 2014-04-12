@@ -203,5 +203,20 @@ class User_profiles extends CI_Model {
 		$years = mktime(0,0,0,date("m"),date("d"),(date("Y")-$age));
 		return date("Y-m-d", $years);
 	}
+	
+	public function delete_user()
+	{
+		$this->db->where('nickname',  $this->session->userdata('nickname'));
+		$query = $this->db->delete('users');
+		if ($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+					
+	}
 }	
 ?>
