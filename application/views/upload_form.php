@@ -10,7 +10,7 @@
 				</div>
 				<?php endif ?>
 				
-				<?php echo form_open_multipart('upload/do_upload');?>
+				<?php echo form_open_multipart('upl/do_upload');?>
 					<?php 
 					$data_form = array(
 						'name' => 'userfile'
