@@ -145,17 +145,17 @@ class Reg extends CI_Controller {
 
 	function do_upload()
 	{
-		if ( ! $this->upload->do_upload())
+		if ( ! $this->reg->do_upload())
 		{
 			// display errors
-			$error = array('error' => $this->upload->display_errors());
+			$error = array('error' => $this->reg->display_errors());
 
 			$this->load->view('', $error);
 		}
 		else
 		{
 			//Upload and Resize the image
-			$data = array('upload_data' => $this->upload->data());
+			$data = array('upload_data' => $this->reg->data());
 			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
 			$this->load->view('', $data);
 		}
