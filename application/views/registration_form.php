@@ -46,7 +46,7 @@
 	</div>
 </header>
 
-<body>
+<div class="wrapper">
 <div id="container">
 	<div id="tabs">
 	  <ul>
@@ -100,6 +100,7 @@
 		<div id="continue"><a href="#container">Terug naar boven</a></div>
 	  </div>
 	</div>
+</div>
 </div>
 
 </body>

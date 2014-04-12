@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Upload extends CI_Controller
+class Upl extends CI_Controller
 {
 	function __construct()
 	{
@@ -10,15 +10,13 @@ class Upload extends CI_Controller
 
 	function index()
 	{
-		$this->load->view('header');
 		$this->load->view('upload_form', array('error'=>''));
-		$this->load->view('footer');
 	}
 
 	function do_upload()
 	{
 
-		$config['upload_path'] = './uploads';
+		$config['upload_path'] = './assets/uploads';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '10000';
 		$config['max_width']  = '2000';
