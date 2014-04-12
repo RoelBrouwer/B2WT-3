@@ -136,18 +136,11 @@ class Profile extends CI_Controller {
 	}
 	
 	function user($id) //Profiel detail-pagina
-	{
-		if ($this->session->userdata('logged_in'))
-		{
-			$user_data = $this->user_profiles->get_user_by_id($id);
-			$this->load->view('common/header');
-			$this->load->view('profile_detail', $user_data);
-			$this->load->view('common/footer');
-		}
-		else
-		{
-			redirect('auth');
-		}
+	{ //Je hoeft niet ingelogd te zijn om dit te mogen bekijken...
+		$user_data = $this->user_profiles->get_user_by_id($id);
+		$this->load->view('common/header');
+		$this->load->view('profile_detail', $user_data);
+		$this->load->view('common/footer');
 	}
 }
 ?>
