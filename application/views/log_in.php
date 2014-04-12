@@ -6,7 +6,8 @@
 	<title>DataDate - Inloggen</title>
 </head>
 <body>
-	<div id="container">
+	<div class = "wrapper">
+	<div class="container">
 	<?php echo validation_errors(); ?>
 	<h1>Login</h1>
 	<?php echo form_open('auth'); ?>
@@ -15,6 +16,7 @@
 	<?php echo form_submit('login', 'Log in!');
 	echo form_close(); ?>
 	Nog geen account? <a href='<?php echo base_url() . "reg" ?>'>Registreer!</a>
+	</div>
 	</div>
 </body>
 </html>
