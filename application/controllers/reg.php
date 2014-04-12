@@ -35,7 +35,7 @@ class Reg extends CI_Controller {
 		$this->form_validation->set_rules('last_name', 'achternaam', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'required|callback_date_validation|xss_clean');
 		$this->form_validation->set_rules('gender', 'geslacht', 'required');
-		$this->form_validation->set_rules('picture', 'foto', '');
+		$this->form_validation->set_rules('picture', 'foto');
 		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|max_length[500]s|xss_clean');
 		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
 		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');

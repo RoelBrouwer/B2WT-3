@@ -10,8 +10,9 @@ class Upload extends CI_Controller
 
 	function index()
 	{
-
+		$this->load->view('header');
 		$this->load->view('upload_form', array('error'=>''));
+		$this->load->view('footer');
 	}
 
 	function do_upload()

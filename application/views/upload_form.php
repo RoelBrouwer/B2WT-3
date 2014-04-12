@@ -1,5 +1,3 @@
-<?php include 'header.php'; ?>
-	
 	<div class="container">
 		<h1>Upload Post Image</h1>
 		
@@ -26,5 +24,3 @@
 			
 		</div>
 	</div>
-
-<?php include 'footer.php'; ?>
