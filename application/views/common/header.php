@@ -1,7 +1,7 @@
 <?php 
-$this->load->helper('html');
-$this->load->helper('url'); ?>
-
+$this->load->helper(array('html', 'url'));
+$this->load->model('user_profiles');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,16 +26,13 @@ $this->load->helper('url'); ?>
 			<li><a href="<?php echo base_url();?>">Home</a></li>
 			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
 			<li><a href="<?php echo base_url();?>">Over</a></li>
-			<li><a href="<?php echo base_url();?>">Zoeken</a>
-				<ul>
-				<li>Geslacht</li>
-				<li>Minimale leeftijd</li>
-				<li>Maximale leeftijd</li>
-				<li>Persoonlijkheid</li>
-				<li>Merken</li>
-				</ul>
-			</li>
+			<li><a href="<?php echo base_url();?>">Matchen</a></li>
 			<li><a href="<?php echo base_url();?>auth/logout"> Uitloggen </a><li>
+			<?php
+			if($this->user_profiles->is_admin()){
+				 echo'<li><a href="'.base_url().'admin">Admin omgeving</a></li';
+			}
+			?>
 		</ul>
 	</nav>
 	</div>

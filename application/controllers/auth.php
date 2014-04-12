@@ -19,7 +19,9 @@ class Auth extends CI_Controller {
 	{
 		if ($this->form_validation->run() == FALSE)
 		{
+			$this->load->view('common/header_anon');
 			$this->load->view('log_in');
+			$this->load->view('common/footer');
 		}
 		else
 		{
