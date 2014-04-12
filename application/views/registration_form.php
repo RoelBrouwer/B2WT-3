@@ -34,7 +34,7 @@
 		Achternaam: <?php echo form_input(array('name' => 'last_name', 'maxlength' => '30', 'size' => '30', 'value' => set_value('last_name'))) ?> <br />
 		Geboortedatum: <?php echo form_input(array('name' => 'birthdate', 'maxlength' => '10', 'size' => '12', 'value' => set_value('birthdate'))) ?> <i>Voer in jjjj-mm-dd formaat in.</i><br />
 		Geslacht: <?php echo form_radio(array('name' => 'gender', 'value' => 'M', 'checked' => set_radio('gender', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender', 'value' => 'V', 'checked' => set_radio('gender', 'V'))) ?> Vrouw <br />
-		Foto: <?php echo form_upload(array('name' => 'picture', 'maxlength' => '35', 'size' => '30')) ?> <i>Alleen afbeeldingsbestanden (*.jpg, *.png) zijn toegestaan.</i> <br /> 
+		Foto: <?php echo form_open_multipart('reg/do_upload');?> <?php echo form_upload(array('name' => 'picture', 'maxlength' => '35', 'size' => '30')) ?> <i>Alleen afbeeldingsbestanden (*.jpg, *.png) zijn toegestaan.</i> <br /> 
 		Beschrijving: <?php echo form_open_multipart('reg/do_upload');?> <?php echo form_textarea(array('name' => 'description', 'rows' => '7', 'cols' => '30', 'value' => set_value('description'))) ?> <i>Gebruik maximaal 500 karakters.</i><br />
 		<strong>Ik ben op zoek naar</strong> <br />
 		Geslacht: <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
