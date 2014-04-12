@@ -1,6 +1,5 @@
 <?php 
 $this->load->helper(array('html', 'url'));
-$this->load->model('user_profiles');
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,11 +27,6 @@ $this->load->model('user_profiles');
 			<li><a href="<?php echo base_url();?>">Over</a></li>
 			<li><a href="<?php echo base_url();?>">Matchen</a></li>
 			<li><a href="<?php echo base_url();?>auth/logout"> Uitloggen </a><li>
-			<?php
-			if($this->user_profiles->is_admin()){
-				 echo'<li><a href="'.base_url().'admin">Admin omgeving</a></li';
-			}
-			?>
 		</ul>
 	</nav>
 	</div>
