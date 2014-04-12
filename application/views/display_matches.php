@@ -6,7 +6,8 @@
 					U heeft <?php echo count($user) ?> matches.
 					<?php foreach ($user as $usr):?>
 						<div id="userprofile">
-							GEGEVENS
+							GEGEVENS <br />
+							<?php echo $usr['firstname']. " " . $usr['lastname'] ?>
 						</div>
 					<?php endforeach; 
 				} else { echo "U heeft geen matches. Probeer eens om uw voorkeuren te verruimen."; }
