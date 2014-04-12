@@ -34,7 +34,15 @@ class Matches extends CI_Controller {
 	
 	public function _assign_ranking($users)
 	{
+		foreach ($users as $user)
+		{
+			$pers_dist = _get_distance($user);
+		}
+	}
 	
+	public function _get_distance($user)
+	{
+		$curr_user = $this->user_profiles->get_user_by_nickname();
 	}
 
 }
