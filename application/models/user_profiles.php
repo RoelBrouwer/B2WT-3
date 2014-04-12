@@ -170,5 +170,25 @@ class User_profiles extends CI_Model {
 		}
     }
 	
+	public function get_users_matching_pref()
+	{
+		$curr_user = $this->get_user_by_nickname();		
+		if ($curr_user['sexpref'] != 'B')
+		{
+			$this->db->where('sex', $curr_user['sexpref']);
+		}
+		$min = $this->get_date_from_age($curr_user['minage']);
+		$max = $this->get_date_from_age($curr_user['maxage']);
+		$this->db->where('birthdate <=', $min);
+		$this->db->where('birthdate >=', $max);
+		$query = $this->db->get('users');
+		return $query->result_array();
+	}
+	
+	public function get_date_from_age($age)
+	{
+		$years = mktime(0,0,0,date("m"),date("d"),(date("Y")-$age));
+		return date("Y-m-d", $years);
+	}
 }	
 ?>

@@ -2,11 +2,19 @@
 
 class Matches extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('form', 'url','common_functions_helper'));
+		$this->load->library('form_validation');
+		$this->load->model('user_profiles');
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('logged_in'))
 		{
-			$data['user'] = array(1,2,3); //array of users
+			$data['user'] = $this->_matched_users(); //array(1,2,3); //array of users
 			$this->load->view('common/header');
 			$this->load->view('display_matches', $data);
 			$this->load->view('common/footer');
@@ -19,7 +27,14 @@ class Matches extends CI_Controller {
 	
 	public function _matched_users()
 	{
-		$this->some_model->get_users_matching_pref() //Get the users that match the pref
+		$matches1 = $this->user_profiles->get_users_matching_pref(); //Get the users that match the pref
+		$this->_assign_ranking($matches1);
+		return array(1,2,3);
+	}
+	
+	public function _assign_ranking($users)
+	{
+	
 	}
 
 }
