@@ -47,7 +47,7 @@
 </header>
 
 <div class="wrapper">
-<div id="container">
+<div class="container">
 	<div id="tabs">
 	  <ul>
 		<li><a href="#tabs-1">Stap 1: Gegevens</a></li>
