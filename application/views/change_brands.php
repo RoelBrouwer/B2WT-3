@@ -1,6 +1,8 @@
 <?php $this->load->helper('form','url'); ?>
    	<div class="wrapper">
 	   	<div class="container">
+			<?php echo validation_errors();
+			echo form_open('profile/change_brands'); ?>
 			<h2>Merkvoorkeuren</h2>
 			<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i><br />
 			<?php foreach ($brands as $b):

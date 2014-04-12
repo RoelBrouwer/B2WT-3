@@ -58,7 +58,7 @@ class User_profiles extends CI_Model {
 	
 	function update_user($data)
 	{
-		if (($this->input->post('username') != $data['nickname']) && $this->is_unique('nickname',$this->input->post('username')))
+		if ((($this->input->post('username') != $data['nickname']) && $this->is_unique('nickname',$this->input->post('username'))) && $this->input->post('username') != '')
 		{ 
 			$changes['nickname'] = $this->input->post('username');
 		}
@@ -68,47 +68,47 @@ class User_profiles extends CI_Model {
 			$changes['password'] = md5($this->input->post('password'));
 		}
 		
-		if (($this->input->post('email') != $data['email']) && $this->is_unique('email',$this->input->post('email')))
+		if ((($this->input->post('email') != $data['email']) && $this->is_unique('email',$this->input->post('email'))) && $this->input->post('username') != '')
 		{ 
 			$changes['email'] = $this->input->post('email');
 		}
 		
-		if ($this->input->post('first_name') != $data['firstname']) 
+		if (($this->input->post('first_name') != $data['firstname']) && $this->input->post('first_name') != '')
 		{
 			$changes['firstname'] = $this->input->post('first_name');
 		}
 		
-		if ($this->input->post('last_name') != $data['lastname']) 
+		if (($this->input->post('last_name') != $data['lastname']) && $this->input->post('last_name') != '')
 		{ 
 			$changes['lastname'] = $this->input->post('last_name');
 		}
 		
-		if ($this->input->post('birthdate') != $data['birthdate']) 
+		if (($this->input->post('birthdate') != $data['birthdate']) && $this->input->post('birthdate') != '')
 		{ 
 			$changes['birthdate'] = $this->input->post('birthdate');
 		}
 		
-		if ($this->input->post('gender') != $data['sex']) 
+		if (($this->input->post('gender') != $data['sex']) && $this->input->post('gender') != '')
 		{ 
 			$changes['sex'] = $this->input->post('gender');
 		}
 		
-		if ($this->input->post('description') != $data['description']) 
+		if (($this->input->post('description') != $data['description']) && $this->input->post('description') != '')
 		{ 
 			$changes['description'] = $this->input->post('description');
 		}
 		
-		if ($this->input->post('gender_pref') != $data['sexpref']) 
+		if (($this->input->post('gender_pref') != $data['sexpref']) && $this->input->post('gender_pref') != '')
 		{ 
 			$changes['sexpref'] = $this->input->post('gender_pref');
 		}
 		
-		if ($this->input->post('min_age') != $data['minage']) 
+		if (($this->input->post('min_age') != $data['minage']) && $this->input->post('min_age') != '')
 		{ 
 			$changes['minage'] = $this->input->post('min_age');
 		}
 		
-		if ($this->input->post('max_age') != $data['maxage']) 
+		if (($this->input->post('max_age') != $data['maxage']) && $this->input->post('max_age') != '')
 		{ 
 			$changes['maxage'] = $this->input->post('max_age');
 		}
@@ -116,6 +116,28 @@ class User_profiles extends CI_Model {
 		{
 			$this->db->where('user_id', $data['user_id']);
 			$this->db->update('users', $changes);
+		}
+	}
+	
+	public function update_brandspref()
+	{
+		$data = $this->get_user_by_nickname();
+		$form_input = $this->input->post();
+		
+		if (isset($form_input['brandpref'])) {
+			foreach ($form_input['brandpref'] as $b)
+			{
+				$this->db->where('user_id', $data['user_id']);
+				$this->db->where('brand_id', $b);
+				$query = $this->db->get('brandpref');
+				if ($query->num_rows() === 0) {
+					$brandp = array (
+						'user_id' => $data['user_id'],
+						'brand_id' => $b
+					);
+					$this->db->insert('brandpref',$brandp);
+				}
+			}
 		}
 	}
 	

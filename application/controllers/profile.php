@@ -22,18 +22,16 @@ class Profile extends CI_Controller {
 		$this->form_validation->set_message('matches','De twee ingevoerde wachtwoorden zijn niet gelijk.');
 		$this->form_validation->set_message('is_unique','%s is al in gebruik.');
 		
-		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|min_length[3]|max_length[30]|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|min_length[3]|max_length[30]|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|min_length[5]|max_length[255]|matches[password_check]|md5');
 		$this->form_validation->set_rules('password_check', 'wachtwoord een tweede keer', 'trim');
-		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|valid_email');
-		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|required|alpha|xss_clean');
-		$this->form_validation->set_rules('last_name', 'achternaam', 'trim|required|alpha|xss_clean');
-		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'required|callback_date_validation|xss_clean');
-		$this->form_validation->set_rules('gender', 'geslacht', 'required');
-		$this->form_validation->set_rules('description', 'beschrijving', 'trim|required|max_length[500]s|xss_clean');
-		$this->form_validation->set_rules('gender_pref', 'geslachtsvoorkeur', 'required');
-		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'required|is_natural|less_than[120]');
-		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'required|is_natural|less_than[120]|callback_check_ages['.$this->input->post('min_age').']');
+		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|valid_email');
+		$this->form_validation->set_rules('first_name', 'voornaam', 'trim|alpha|xss_clean');
+		$this->form_validation->set_rules('last_name', 'achternaam', 'trim|alpha|xss_clean');
+		$this->form_validation->set_rules('birthdate', 'geboortedatum', 'xss_clean');
+		$this->form_validation->set_rules('description', 'beschrijving', 'trim|max_length[500]s|xss_clean');
+		$this->form_validation->set_rules('min_age', 'gewenste minimumleeftijd', 'is_natural|less_than[120]');
+		$this->form_validation->set_rules('max_age', 'gewenste maximumleeftijd', 'is_natural|less_than[120]');
 	}
 
 	public function index()
@@ -67,6 +65,7 @@ class Profile extends CI_Controller {
 			}
 			else
 			{
+				$this->user_profiles->update_brandspref();
 			}
 		}
 		else
@@ -88,7 +87,11 @@ class Profile extends CI_Controller {
 			}
 			else
 			{
-				$this->user_profiles->update_user($data);
+				if ($this->date_validation($this->input->post('birthdate'))) {
+					if ($this->check_ages($this->input->post('maxage'),$this->input->post('minage'))) {
+						$this->user_profiles->update_user($data);
+					}
+				}
 			}
 		}
 		else
