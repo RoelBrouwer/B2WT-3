@@ -13,7 +13,7 @@
 				Beschrijving: <?php echo $description ?> <br />
 				<h3>Voorkeuren</h3>
 				Geslacht: <?php echo $sexpref ?> <br />
-				Minimumleeftijd: <?php $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
+				Minimumleeftijd: <?php echo $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
 				<?php echo form_open('profile/change_profile');
 				echo form_submit('change_profile', 'Wijzig gegevens'); 
 				echo form_close(); ?>

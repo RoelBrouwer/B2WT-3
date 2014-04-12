@@ -4,11 +4,11 @@ class User_profiles extends CI_Model {
     function __construct()
     {
         parent::__construct();
+		$this->load->helper('common_functions_helper');
     }
     
     function get_random_user_profile()
 	{
-		$this->load->helper('common_functions_helper');
 		//nickname, geslacht, leeftijd, beschrijving (eerste zin), persoonlijkheidstype, merkvoorkeuren
 		$this->db->order_by('user_id', 'RANDOM');
 		$this->db->limit(1);
@@ -25,6 +25,8 @@ class User_profiles extends CI_Model {
 		$this->db->where('nickname',  $this->session->userdata('nickname'));
 		$query = $this->db->get('users');
 		$data = array_shift(array_values($query->result_array()));
+		$data['personality'] = get_personality_string($this->get_personalitytype_by_id($data['user_id']));
+		$data['brandpref'] = $this->get_brandpref_by_id($data['user_id']);
 		return $data;
 	}
 	
