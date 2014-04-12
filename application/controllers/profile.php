@@ -69,5 +69,33 @@ class Profile extends CI_Controller {
 		
 		return $data;
 	}
+	
+	public function change_brands()
+	{
+		if ($this->session->userdata('logged_in'))
+		{
+			$this->load->view('common/header');
+			$this->load->view('profile_page', NULL);
+			$this->load->view('common/footer');
+		}
+		else
+		{
+			redirect('auth');
+		}
+	}
+	
+	public function change_profile()
+	{
+		if ($this->session->userdata('logged_in'))
+		{
+			$this->load->view('common/header');
+			$this->load->view('profile_page', NULL);
+			$this->load->view('common/footer');
+		}
+		else
+		{
+			redirect('auth');
+		}
+	}
 }
 ?>
