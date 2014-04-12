@@ -1,4 +1,6 @@
-<?php $this->load->helper('html'); ?>
+<?php 
+$this->load->helper('html');
+$this->load->helper('url'); ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,12 +20,13 @@
 	<div id="siteheader">
 	<nav class='navbar'>
 		<section id="logo">
-			<a href="#">DataDate</a>
+			<a href="<?php echo base_url();?>">DataDate</a>
 		</section>
 		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Over</a></li>
-			<li><a href="#">Zoeken</a>
+			<li><a href="<?php echo base_url();?>">Home</a></li>
+			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
+			<li><a href="<?php echo base_url();?>">Over</a></li>
+			<li><a href="<?php echo base_url();?>">Zoeken</a>
 				<ul>
 				<li>Geslacht</li>
 				<li>Minimale leeftijd</li>
@@ -32,7 +35,7 @@
 				<li>Merken</li>
 				</ul>
 			</li>
-			<li><a href="http://www.students.science.uu.nl/~3976866/ci/auth/logout">Uitloggen</a></li>
+			<li><a href="<?php echo base_url();?>auth/logout"> Uitloggen </a><li>
 		</ul>
 	</nav>
 	</div>

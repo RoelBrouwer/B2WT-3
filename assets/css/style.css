@@ -14,6 +14,14 @@ body{
 	overflow: hidden;
 }
 
+.container h2:first-child{
+	font-size: 30px;
+	font-weight: 600;
+	margin-bottom: 1em;
+	margin-top: 0em;
+	text-align: center;
+	color: rgb(120,120,120);
+}
 .container h2{
 	font-size: 30px;
 	font-weight: 600;

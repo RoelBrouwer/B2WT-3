@@ -1,4 +1,4 @@
-<?php $this->load->helper('html'); ?>
+<?php $this->load->helper('html'); $this->load->helper('url'); ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,12 +18,12 @@
 	<div id="siteheader">
 	<nav class='navbar'>
 		<section id="logo">
-			<a href="#">DataDate</a>
+			<a href="<?php echo base_url();?>">DataDate</a>
 		</section>
 		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Over</a></li>
-			<li><a href="#">Zoeken</a>
+			<li><a href="<?php echo base_url();?>">Home</a></li>
+			<li><a href="<?php echo base_url();?>">Over</a></li>
+			<li><a href="<?php echo base_url();?>">Zoeken</a>
 				<ul>
 				<li>Geslacht</li>
 				<li>Minimale leeftijd</li>
@@ -32,8 +32,8 @@
 				<li>Merken</li>
 				</ul>
 			</li>
-			<li><a href="#">Inloggen</a></li>
-			<li><a href="#">Registreren</a></li>
+			<li><a href="<?php echo base_url();?>auth">Inloggen</a></li>
+			<li><a href="<?php echo base_url();?>reg">Registreren</a></li>
 		</ul>
 	</nav>
 	</div>
