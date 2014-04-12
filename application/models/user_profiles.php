@@ -56,5 +56,81 @@ class User_profiles extends CI_Model {
 		return $query->result_array();
 	}
 	
+	function update_user($data)
+	{
+		if (($this->input->post('username') != $data['nickname']) && $this->is_unique('nickname',$this->input->post('username')))
+		{ 
+			$changes['nickname'] = $this->input->post('username');
+		}
+		
+		if ($this->input->post('password') != '') 
+		{ 
+			$changes['password'] = md5($this->input->post('password'));
+		}
+		
+		if (($this->input->post('email') != $data['email']) && $this->is_unique('email',$this->input->post('email')))
+		{ 
+			$changes['email'] = $this->input->post('email');
+		}
+		
+		if ($this->input->post('first_name') != $data['firstname']) 
+		{
+			$changes['firstname'] = $this->input->post('first_name');
+		}
+		
+		if ($this->input->post('last_name') != $data['lastname']) 
+		{ 
+			$changes['lastname'] = $this->input->post('last_name');
+		}
+		
+		if ($this->input->post('birthdate') != $data['birthdate']) 
+		{ 
+			$changes['birthdate'] = $this->input->post('birthdate');
+		}
+		
+		if ($this->input->post('gender') != $data['sex']) 
+		{ 
+			$changes['sex'] = $this->input->post('gender');
+		}
+		
+		if ($this->input->post('description') != $data['description']) 
+		{ 
+			$changes['description'] = $this->input->post('description');
+		}
+		
+		if ($this->input->post('gender_pref') != $data['sexpref']) 
+		{ 
+			$changes['sexpref'] = $this->input->post('gender_pref');
+		}
+		
+		if ($this->input->post('min_age') != $data['minage']) 
+		{ 
+			$changes['minage'] = $this->input->post('min_age');
+		}
+		
+		if ($this->input->post('max_age') != $data['maxage']) 
+		{ 
+			$changes['maxage'] = $this->input->post('max_age');
+		}
+		if (isset($changes))
+		{
+			$this->db->where('user_id', $data['user_id']);
+			$this->db->update('users', $changes);
+		}
+	}
+	
+	public function is_unique($field, $str) {
+        $this->db->where($field, $str);
+		$query = $this->db->get('users');
+		if ($query->num_rows() === 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+    }
+	
 }	
 ?>

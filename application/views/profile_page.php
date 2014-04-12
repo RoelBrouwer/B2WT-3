@@ -14,9 +14,7 @@
 				<h3>Voorkeuren</h3>
 				Geslacht: <?php echo $sexpref ?> <br />
 				Minimumleeftijd: <?php echo $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
-				<?php echo form_open('profile/change_profile');
-				echo form_submit('change_profile', 'Wijzig gegevens'); 
-				echo form_close(); ?>
+				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></div>
 			</div>
 			<div id="matching">
 				<h3>Matching</h3>
@@ -30,10 +28,8 @@
 					endforeach;
 					echo "</ul>";
 				}
-				echo form_open('profile/change_brands');
-				echo form_submit('change_brands', 'Wijzig merkvoorkeuren'); 
-				echo form_close();
 			?>
+			<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
 			</div>
 		</div>
 	</div>
