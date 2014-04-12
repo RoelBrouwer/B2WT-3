@@ -15,6 +15,7 @@ class User_profiles extends CI_Model {
 		$query = $this->db->get('users');
 		$user = array_shift(array_values($query->result_array()));
 		$user['personality'] = get_personality_string($this->get_personalitytype_by_id($user['user_id']));
+		$user['perspref'] = get_personality_string($this->get_personalitypref_by_id($user['user_id']));
 		$user['brandpref'] = $this->get_brandpref_by_id($user['user_id']);
 		return $user;
 	}
@@ -28,6 +29,17 @@ class User_profiles extends CI_Model {
 		$data['personality'] = get_personality_string($this->get_personalitytype_by_id($data['user_id']));
 		$data['perspref'] = get_personality_string($this->get_personalitypref_by_id($data['user_id']));
 		$data['brandpref'] = $this->get_brandpref_by_id($data['user_id']);
+		return $data;
+	}
+	
+	function get_user_by_id($id)
+	{
+		$this->db->where('user_id',  $id);
+		$query = $this->db->get('users');
+		$data = array_shift(array_values($query->result_array()));
+		$data['personality'] = get_personality_string($this->get_personalitytype_by_id($id));
+		$data['perspref'] = get_personality_string($this->get_personalitypref_by_id($id));
+		$data['brandpref'] = $this->get_brandpref_by_id($id);
 		return $data;
 	}
 	

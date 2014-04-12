@@ -14,7 +14,6 @@
 				<h3>Voorkeuren</h3>
 				Geslacht: <?php echo $sexpref ?> <br />
 				Minimumleeftijd: <?php echo $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
-				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></div>
 			</div>
 			<div id="matching">
 				<h3>Matching</h3>
