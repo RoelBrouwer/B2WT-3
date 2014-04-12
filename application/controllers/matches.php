@@ -36,7 +36,7 @@ class Matches extends CI_Controller {
 	{
 		foreach ($users as $user)
 		{
-			$pers_dist = _get_distance($user);
+			$pers_dist = $this->_get_distance($user);
 		}
 	}
 	
