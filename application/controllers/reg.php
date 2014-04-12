@@ -142,21 +142,37 @@ class Reg extends CI_Controller {
 	{
 		return ($max > $min);
 	}
-	
-	//Currently useless..
+
 	function do_upload()
 	{
 		if ( ! $this->upload->do_upload())
 		{
+			// display errors
 			$error = array('error' => $this->upload->display_errors());
 
 			$this->load->view('', $error);
 		}
 		else
 		{
+			//Upload and Resize the image
 			$data = array('upload_data' => $this->upload->data());
+			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
 			$this->load->view('', $data);
 		}
+	}
+
+	function resize($path, $file)
+	{
+		$config['image_library']	= 	'gd2'; //or imagemagick
+		$config['source_image'] 	= 	$path;
+		$config['create_thumb']  	= 	TRUE;
+		$config['maintain_ratio']	=	TRUE;
+		$config['width']			=	150;
+		$config['height']			=	75;
+		$config['new_image']		=	'./assets/uploads/'.$file;
+
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
 	}
 }
 ?>
