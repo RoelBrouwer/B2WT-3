@@ -34,5 +34,6 @@
 			<div id="likes">
 				Likes en dislikes -- TO DO.
 			</div>
+			<a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account.</a>
 		</div>
 	</div>
