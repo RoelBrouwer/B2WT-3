@@ -26,7 +26,13 @@ class User_profiles extends CI_Model {
 	
 	function get_personalitytype_by_id($id)
 	{
-	
+		$this->db->select('personality_id');
+		$this->db->where('user_id', $id);
+		$query = $this->db->get('users');
+		$pers_id = array_shift(array_values($query->result_array()));
+		$this->db->where('personality_id', $pers_id['personality_id']);
+		$query2 = $this->db->get('personalities');
+		return array_shift(array_values($query2->result_array()));
 	}
 	
 	function get_photo_by_id($id)

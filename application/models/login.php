@@ -128,7 +128,7 @@ class Login extends CI_Model {
 		}
 		$judging = 50 + ((50/6) * $type_occ['J']) - ((50/6) * $type_occ['P']);
 		if ($judging >= 50) {
-			$jp = "Judging: " . $judging . "%";
+			$jp = "Judging: " . round($judging,1) . "%";
 			$data['type'] = $data['type'] . "J"; 
 		}
 		else {

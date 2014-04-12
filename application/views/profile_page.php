@@ -13,7 +13,7 @@
 			Geslacht: <?php echo $sexpref ?> <br />
 			Minimumleeftijd: <?php $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
 			<h3>Matching</h3>
-			Persoonlijkheidstype: <?php echo $personality ?>
+			Persoonlijkheidstype: <?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> <br />
 			Merkvoorkeuren: <br />
 			<?php if (isset($brandpref))
 			{
