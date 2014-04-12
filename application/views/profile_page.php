@@ -28,8 +28,11 @@
 					endforeach;
 					echo "</ul>";
 				}
-			?>
-			<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
+				?>
+				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
+			</div>
+			<div id="likes">
+				Likes en dislikes -- TO DO.
 			</div>
 		</div>
 	</div>
