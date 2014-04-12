@@ -157,7 +157,6 @@ class Reg extends CI_Controller {
 			//Upload and Resize the image
 			$data = array('upload_data' => $this->reg->data());
 			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
-			$this->load->view('', $data);
 		}
 	}
 
