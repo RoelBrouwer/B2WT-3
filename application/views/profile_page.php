@@ -33,7 +33,7 @@
 				echo form_open('profile/change_brands');
 				echo form_submit('change_brands', 'Wijzig merkvoorkeuren'); 
 				echo form_close();
-			</div>
 			?>
+			</div>
 		</div>
 	</div>

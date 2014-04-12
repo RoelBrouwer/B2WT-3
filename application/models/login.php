@@ -90,6 +90,7 @@ class Login extends CI_Model {
 	
 	public function personality_type($key)
 	{
+		$this->load->helper('common_functions_helper');
 		$form_in = $this->input->post();
 		$type_occ = array_count_values(array($form_in['q1'],$form_in['q2'],$form_in['q3'],$form_in['q4'],$form_in['q5'],$form_in['q6'],$form_in['q7'],$form_in['q8'],$form_in['q9'],$form_in['q10'],$form_in['q11'],$form_in['q12'],$form_in['q13'],$form_in['q14'],$form_in['q15'],$form_in['q16'],$form_in['q17'],$form_in['q18'],$form_in['q19']));
 		$types = array('E', 'I', 'N','S', 'T', 'F', 'J', 'P');
@@ -99,43 +100,13 @@ class Login extends CI_Model {
 				$type_occ[$type] = 0;
 			}
 		}
+		
 		$extravert = 50 + (10 * $type_occ['E']) - (10 * $type_occ['I']);
-		if ($extravert >= 50) {
-			$ei = "Extravert: " . $extravert . "%";
-			$data['type'] = "E";
-		}
-		else {
-			$ei = "Introvert: " . (100 - $extravert) . "%";
-			$data['type'] = "I";
-		}
 		$intuitive = 50 + (12.5 * $type_occ['N']) - (12.5 * $type_occ['S']);
-		if ($intuitive >= 50) {
-			$ns = "Intuitive: " . $intuitive . "%";
-			$data['type'] = $data['type'] . "N"; 
-		}
-		else {
-			$ns = "Sensing: " . (100 - $intuitive) . "%";
-			$data['type'] = $data['type'] . "S"; 
-		}
 		$thinking = 50 + (12.5 * $type_occ['T']) - (12.5 * $type_occ['F']);
-		if ($thinking >= 50) {
-			$tf = "Thinking: " . $thinking . "%";
-			$data['type'] = $data['type'] . "T"; 
-		}
-		else {
-			$tf = "Feeling: " . (100 - $thinking) . "%";
-			$data['type'] = $data['type'] . "F"; 
-		}
 		$judging = 50 + ((50/6) * $type_occ['J']) - ((50/6) * $type_occ['P']);
-		if ($judging >= 50) {
-			$jp = "Judging: " . round($judging,1) . "%";
-			$data['type'] = $data['type'] . "J"; 
-		}
-		else {
-			$jp = "Percieving: " . round((100 - $judging), 1) . "%";
-			$data['type'] = $data['type'] . "P"; 
-		}
-		$data['percentage'] = $ei . "<br />" . $ns . "<br />" . $tf . "<br />" . $jp;
+		
+		$data = get_personality_string(array('E' => $extravert, 'N' => $intuitive, 'T' => $thinking, 'J' => $judging));
 		
 		$qdata = array (
 			'E' => round($extravert, 1),
