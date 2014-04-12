@@ -33,7 +33,7 @@ class Login extends CI_Model {
 			'photo_id' => 0,   //Hier moeten we nog iets mee
 			'sex' => $this->input->post('gender'),
 			'birthdate' => $this->input->post('birthdate'),
-			//'description' => $this->input->post('description'),
+			'description' => $this->input->post('description'),
 			'sexpref' => $this->input->post('gender_pref'),
 			'personality_id' => 0, 
 			'personalpref' => 0,

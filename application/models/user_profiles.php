@@ -36,7 +36,12 @@ class User_profiles extends CI_Model {
 	
 	function get_brandpref_by_id($id)
 	{
-	
+		$this->db->select('name');
+		$this->db->where('user_id', $id);
+		$this->db->from('brandpref');
+		$this->db->join('brands', 'brands.brand_id = brandpref.brand_id');
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 	
 }	

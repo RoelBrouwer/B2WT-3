@@ -8,7 +8,7 @@
 			Achternaam: <?php echo $lastname ?> <br />
 			Geboortedatum: <?php echo $birthdate ?> <br />
 			Geslacht: <?php echo $sex ?> <br /> 
-			<!-- Beschrijving: <?php //echo $description ?> <br /> -->
+			Beschrijving: <?php echo $description ?> <br />
 			<h3>Voorkeuren</h3>
 			Geslacht: <?php echo $sexpref ?> <br />
 			Minimumleeftijd: <?php $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
