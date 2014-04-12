@@ -1,11 +1,15 @@
 <?php $this->load->helper('form','url'); ?>
    	<div class="wrapper">
 	   	<div class="container">
-			U heeft <?php echo count($user) ?> matches.
-			<?php foreach ($user as $usr):?>
-				<div id="userprofile">
-					GEGEVENS
-				</div>
-			<?php endforeach; ?>
+			<?php if (isset($user)){
+				if(count($user) !== 0){?>
+					U heeft <?php echo count($user) ?> matches.
+					<?php foreach ($user as $usr):?>
+						<div id="userprofile">
+							GEGEVENS
+						</div>
+					<?php endforeach; 
+				} else { echo "U heeft geen matches. Probeer eens om uw voorkeuren te verruimen."; }
+			} else { echo "U heeft geen matches. Probeer eens om uw voorkeuren te verruimen.";}?>
 		</div>
 	</div>

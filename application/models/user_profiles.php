@@ -181,6 +181,7 @@ class User_profiles extends CI_Model {
 		$max = $this->get_date_from_age($curr_user['maxage']);
 		$this->db->where('birthdate <=', $min);
 		$this->db->where('birthdate >=', $max);
+		$this->db->where('user_id !=', $curr_user['user_id']);
 		$query = $this->db->get('users');
 		return $query->result_array();
 	}

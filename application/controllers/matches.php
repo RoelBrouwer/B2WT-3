@@ -29,7 +29,7 @@ class Matches extends CI_Controller {
 	{
 		$matches1 = $this->user_profiles->get_users_matching_pref(); //Get the users that match the pref
 		$this->_assign_ranking($matches1);
-		return array(1,2,3);
+		return $matches1;
 	}
 	
 	public function _assign_ranking($users)
