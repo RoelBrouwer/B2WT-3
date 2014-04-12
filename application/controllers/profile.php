@@ -58,7 +58,9 @@ class Profile extends CI_Controller {
 		{
 			if ($this->form_validation->run() == FALSE)
 			{
+				$this->load->model('test_questions');
 				$data = $this->user_profiles->get_user_by_nickname();
+				$data['brands'] = $this->test_questions->get_brands();
 				$this->load->view('common/header');
 				$this->load->view('change_brands', $data);
 				$this->load->view('common/footer');

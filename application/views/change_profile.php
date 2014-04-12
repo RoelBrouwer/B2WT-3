@@ -18,7 +18,7 @@
 			<?php if($sexpref=='M'){$m2 = true; $v2 = false; $b = false;}else{if($sexpref=='V'){$m2 = false; $v2 = true; $b = false;}else{$m2 = false; $v2 = false; $b = true;}} ?>
 			Geslacht: <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => $m2)) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => $v2)) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => $b)) ?> Beide <br />
 			Minimumleeftijd: <?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => $minage)) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => $maxage)) ?> <br />
-			<?php echo form_submit('change_profile', 'Submit'); 
+			<?php echo form_submit('change_profile', 'Wijzig'); 
 			echo form_close(); ?>
 		</div>
 	</div>
