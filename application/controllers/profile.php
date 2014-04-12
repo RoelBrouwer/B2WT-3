@@ -13,10 +13,13 @@ class Profile extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in'))
 		{
-		$data = array();
-		$this->load->view('common/header');
-	    $this->load->view('profile_page', $data);
-		$this->load->view('common/footer');
+			$this->load->model('user_profiles');
+			$data = $this->user_profiles->get_user_by_nickname();
+			$data['brandpref'] = $this->user_profiles->get_brandpref_by_id($data['user_id']);
+			$data['$personality'] = this->user_profiles->get_personalitytype_by_id($data['user_id']);
+			$this->load->view('common/header');
+			$this->load->view('profile_page', $data);
+			$this->load->view('common/footer');
 		}
 		else
 		{
