@@ -10,7 +10,7 @@
 							if($sex == 'M'){ 
 								echo '<img src="'.base_url().'assets/uploads/male.jpg" alt="Male Foto">';
 							} else{
-								echo '<img src="'.base_url().'assets/uploads/female.jpg" alt="Female Foto">';
+								echo '<img src="'.base_url().'assets/uploads/female2.jpg" alt="Female Foto">';
 							}
 						}
 					?>
