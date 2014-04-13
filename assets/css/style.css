@@ -7,6 +7,12 @@ body{
 	line-height: 1.3em;
 }
 
+h4{
+	margin-top: 2em;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+
 .wrapper .container{
 	width: 960px;
 	margin: auto;
@@ -70,7 +76,7 @@ body{
 		color: rgb(230,230,230);
 	}
 	.navbar a:hover{
-		color: #E85554;
+		color: rgb(50,50,50);
 	}
 	.navbar > ul > li{
 		display: inline;
@@ -97,7 +103,10 @@ body{
 			background-color: rgb(70,70,70);
 		}
 		.navbar ul ul li:first-child{
-			border-top: 2px solid #E34C26;
+			border-top: 2px solid rgb(50,50,50);
+		}
+		.navbar ul ul a:hover{
+			color: #E85554;
 		}
 
 footer{
@@ -166,7 +175,7 @@ footer p{
 	height: 40px;
 	margin: auto;
 }
-#tabs-1 label{
+.inputform label{
     float: left;
     width: 20%;
     text-align: right;
@@ -175,17 +184,6 @@ footer p{
     white-space: nowrap;
     overflow: hidden;
 }
-
-#tabs-1 label{
-    float: left;
-    width: 20%;
-    text-align: right;
-    margin-right: 0.5em;
-
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 #tabs-1 i{
     font-size: 0.8em;
 }
@@ -199,12 +197,7 @@ footer p{
 	color: rgb(120,120,120);
 }
 
-#tabs-2 h4{
-	margin-top: 2em;
-	margin-bottom: 1em;
-	font-weight: bold;
-}
-#tabs-3 section{
+.brands section{
 	display: inline-block;
 	width: 19%;
 	padding: 2px;
@@ -266,4 +259,9 @@ footer p{
 	margin-top: 2em;
 	text-align: center;
 	color: rgb(120,120,120);
+}
+#search h4{
+	margin-top: 2em;
+	margin-bottom: 0;
+	font-weight: bold;
 }

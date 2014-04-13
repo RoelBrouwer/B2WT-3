@@ -12,6 +12,7 @@ $this->load->helper(array('html', 'url'));
 		echo link_tag('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="<?php echo base_url(). 'assets/js/jquery-ui-1.10.4.custom.js'?>"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@ $this->load->helper(array('html', 'url'));
 			<li><a href="<?php echo base_url();?>">Home</a></li>
 			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
 			<li><a href="<?php echo base_url();?>matches">Matchen</a></li>
-			<li><a href="<?php echo base_url();?>likes">Overzichten</a>
+			<li><a>Overzichten</a>
 				<ul>
 				<li><a href="<?php echo base_url();?>likes/my_likes">Mijn likes</a></li>
 				<li><a href="<?php echo base_url();?>likes/liked_me">Wie liket mij?</a></li>

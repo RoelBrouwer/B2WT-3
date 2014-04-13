@@ -29,16 +29,7 @@
 		</section>
 		<ul>
 			<li><a href="<?php echo base_url();?>">Home</a></li>
-			<li><a href="<?php echo base_url();?>">Over</a></li>
-			<li><a href="<?php echo base_url();?>">Zoeken</a>
-				<ul>
-				<li>Geslacht</li>
-				<li>Minimale leeftijd</li>
-				<li>Maximale leeftijd</li>
-				<li>Persoonlijkheid</li>
-				<li>Merken</li>
-				</ul>
-			</li>
+			<li><a href="<?php echo base_url();?>search">Zoeken</a></li>
 			<li><a href="<?php echo base_url();?>auth">Inloggen</a></li>
 			<li><a href="<?php echo base_url();?>reg">Registreren</a></li>
 		</ul>
@@ -56,6 +47,7 @@
 		<li><a href="#tabs-4">Stap 4: Versturen</a></li>
 	  </ul>
 	  <div id="tabs-1">
+	  <div class="inputform">
 		<?php if(validation_errors() != false) { 
 		echo '<div class="error">'.validation_errors().'</div>';
 	 	}
@@ -76,7 +68,9 @@
 		<label> Minimumleeftijd: </label><?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />
 		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
 	  </div>
+	  </div>
 	  <div id="tabs-2">
+	  <div class="inputform">
 	    <h2>Persoonlijkheidstest</h2>
 		<?php foreach ($questions as $q):?>
 			<h4><?php echo $q['question_text'];?></h4>
@@ -86,8 +80,10 @@
 			<?php endforeach;
 		endforeach; ?>
 		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
+		</div>
 	  </div>
 	  <div id="tabs-3">
+	  <div class="brands">
 		<h2>Merkvoorkeuren:</h2>
 		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i><br />
 		<?php foreach ($brands as $b): 
@@ -95,6 +91,7 @@
 			echo '<label>'.$b['name'].'</label></section>';
 		endforeach; ?>
 		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
+	  </div>
 	  </div>
 	  <div id="tabs-4">
 		<?php echo form_submit('reg', 'Submit'); 

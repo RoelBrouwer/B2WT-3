@@ -1,6 +1,5 @@
-<?php 
-$this->load->helper(array('html', 'url'));
-?>
+<?php $this->load->helper('html'); $this->load->helper('url'); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +12,11 @@ $this->load->helper(array('html', 'url'));
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="<?php echo base_url(). 'assets/js/jquery-ui-1.10.4.custom.js'?>"></script>
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
 </head>
 
 <body>
@@ -24,16 +28,9 @@ $this->load->helper(array('html', 'url'));
 		</section>
 		<ul>
 			<li><a href="<?php echo base_url();?>">Home</a></li>
-			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
-			<li><a href="<?php echo base_url();?>matches">Matchen</a></li>
-			<li><a href="<?php echo base_url();?>likes">Overzichten</a>
-				<ul>
-				<li><a href="<?php echo base_url();?>likes/my_likes">Mijn likes</a></li>
-				<li><a href="<?php echo base_url();?>likes/liked_me">Wie liket mij?</a></li>
-				<li><a href="<?php echo base_url();?>likes/match">Matches</a></li>
-				</ul>
-			</li>
-			<li><a href="<?php echo base_url();?>auth/logout">Uitloggen </a><li>
+			<li><a href="<?php echo base_url();?>search">Zoeken</a></li>
+			<li><a href="<?php echo base_url();?>auth">Inloggen</a></li>
+			<li><a href="<?php echo base_url();?>reg">Registreren</a></li>
 		</ul>
 	</nav>
 	</div>

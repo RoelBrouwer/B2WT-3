@@ -69,6 +69,7 @@ class Reg extends CI_Controller {
 				$data['questions'] = $this->test_questions->get_questions();
 				$data['brands'] = $this->test_questions->get_brands();
 				$this->load->view('registration_form', $data);
+				$this->load->view('common/footer');
 			}
 			else
 			{
