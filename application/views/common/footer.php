@@ -1,3 +1,6 @@
+<?php 
+$this->load->helper(array('html', 'url'));
+?>
 <footer>
 	<div id="sitefooter">
 	<p>
@@ -5,9 +8,8 @@
 	</p>
 		<nav class='navbar'>
 		<ul>
-			<li><a href="http://www.students.science.uu.nl/~3976866/b2wt/sitemap.html">Sitemap</a></li>
-			<li><a href="http://www.students.science.uu.nl/~3976866/b2wt/contact.html">Contact</a></li>
-			<li><a href="http://www.students.science.uu.nl/~3976866/b2wt/disclaimer.html">Disclaimer</a></li>
+			<li><a href="<?php echo base_url();?>contact">Contact</a></li>
+			<li><a href="<?php echo base_url();?>disclaimer">Disclaimer</a></li>
 		</ul>
 		</nav>
 	</div>

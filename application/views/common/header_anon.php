@@ -22,7 +22,7 @@
 		</section>
 		<ul>
 			<li><a href="<?php echo base_url();?>">Home</a></li>
-			<li><a href="<?php echo base_url();?>">Over</a></li>
+			<li><a href="<?php echo base_url();?>about">Over</a></li>
 			<li><a href="<?php echo base_url();?>">Zoeken</a>
 				<ul>
 				<li>Geslacht</li>
