@@ -213,17 +213,18 @@ footer p{
 	margin-bottom: -5000px; /* any large number will do */
   	padding-bottom: 5000px; 
   	float:left;
-  	background-color: rgb(100,100,100);
+  	background-color: rgb(60,60,60);
   	color: rgb(200,200,200);
   	text-decoration: none;
 }
 .sidebar ul{
-	font-size: 20px;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 17px;
 	color: rgb(200,200,200);
 }
 .sidebar li{
-	height: 1.5em;
-	border-top: 1px solid rgb(30,30,30);
+	height: 1.7em;
 	padding: 10px 20px;
 }
 .sidebar a{
@@ -235,7 +236,7 @@ footer p{
 .profilecontent{
 	padding-left: 300px;
 }
-.profilecontent >div{
+.profilecontent > div{
 	border-bottom: 1px solid rgb(230,230,230);
 	padding-bottom: 1em;
 }
@@ -244,10 +245,10 @@ footer p{
 	max-height: 400px;
 }
 #profile-name{
-	background-color: rgb(50,50,50);
+	background-color: rgb(40,40,40);
 	margin-top: -5px;
 	width: 210px;
-	font-size: 30px;
+	font-size: 25px;
 	padding: 20px 20px;
 	line-height: 1.2em;
 }
