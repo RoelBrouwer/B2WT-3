@@ -1,25 +1,47 @@
 <?php $this->load->helper('form','url'); ?>
    	<div class="wrapper">
 	   	<div class="container">
-			<div id="profile-pic"></div>
+	   		<div class="sidebar">
+	   			<div id="profile-pic"><figure><img src="./assets/uploads/klasher_taru_2.jpg" alt="Profiel Foto"></figure></div>
+	   			<div id="profile-name"><p> <?php echo $firstname." ".$lastname ?> </p></div>
+	   			<ul>
+	   				<li><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></li>
+	   				<li><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a></li>
+	   				<li><a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account</a>
+		</li>
+
+	   			</ul>
+	   		</div>
+			
+			<div class="profilecontent">
 			<div id="userdata">
 				<h3>Gegevens</h3>
-				Gebruikersnaam: <?php echo $nickname ?> <br />
-				E-mail: <?php echo $email ?> <br />
-				Voornaam: <?php echo $firstname ?> <br />
-				Achternaam: <?php echo $lastname ?> <br />
-				Geboortedatum: <?php echo $birthdate ?> <br />
-				Geslacht: <?php echo $sex ?> <br /> 
-				Beschrijving: <?php echo $description ?> <br />
+				<ul>
+				<li>Gebruikersnaam:<?php echo $nickname ?></li>
+				<li>E-mail: <?php echo $email ?></li>
+				<li>Voornaam: <?php echo $firstname ?></li>
+				<li>Achternaam: <?php echo $lastname ?></li>
+				<li>Geboortedatum: <?php echo $birthdate ?></li>
+				<li>Geslacht: <?php echo $sex ?> </li>
+				<li>Beschrijving: <?php echo $description ?></li>
+				</ul>
+			</div>
+			<div id="userpref">
 				<h3>Voorkeuren</h3>
-				Geslacht: <?php echo $sexpref ?> <br />
-				Minimumleeftijd: <?php echo $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
-				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></div>
+				<ul>
+				<li>Geslacht: <?php echo $sexpref ?></li>
+				<li>Minimumleeftijd: <?php echo $minage ?> </li>
+				<li> Maximumleeftijd: <?php echo $maxage ?></li>
 			</div>
 			<div id="matching">
 				<h3>Matching</h3>
-				Persoonlijkheidstype: <?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> <br />
-				Persoonlijkheidsvoorkeur: <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> <br />
+				<ul>
+				<li>Persoonlijkheidstype: <?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> </li>
+				<br />
+				<li>Persoonlijkheidsvoorkeur: <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> </li>
+				</ul>
+
+
 				Merkvoorkeuren: <br />
 				<?php if (isset($brandpref))
 				{
@@ -30,11 +52,9 @@
 					echo "</ul>";
 				}
 				?>
-				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
+				<div id="likes">
+					Likes en dislikes -- TO DO.
+				</div>
 			</div>
-			<div id="likes">
-				Likes en dislikes -- TO DO.
 			</div>
-			<a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account.</a>
-		</div>
 	</div>

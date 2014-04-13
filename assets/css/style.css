@@ -216,3 +216,54 @@ footer p{
 	font-style: italic;
 	text-decoration: underline;
 }
+.sidebar{
+	width: 250px;
+	margin-bottom: -5000px; /* any large number will do */
+  	padding-bottom: 5000px; 
+  	float:left;
+  	background-color: rgb(100,100,100);
+  	color: rgb(200,200,200);
+  	text-decoration: none;
+}
+.sidebar ul{
+	font-size: 20px;
+	color: rgb(200,200,200);
+}
+.sidebar li{
+	height: 1.5em;
+	border-top: 1px solid rgb(30,30,30);
+	padding: 10px 20px;
+}
+.sidebar a{
+	color: rgb(200,200,200);
+}
+.sidebar a:hover{
+	color: #E85554;
+}
+.profilecontent{
+	padding-left: 300px;
+}
+.profilecontent >div{
+	border-bottom: 1px solid rgb(230,230,230);
+	padding-bottom: 1em;
+}
+#profile-pic figure img{
+	width: 250px;
+	max-height: 400px;
+}
+#profile-name{
+	background-color: rgb(50,50,50);
+	margin-top: -5px;
+	width: 210px;
+	font-size: 30px;
+	padding: 20px 20px;
+	line-height: 1.2em;
+}
+.profilecontent h3{
+	font-size: 30px;
+	font-weight: 600;
+	margin-bottom: 1em;
+	margin-top: 2em;
+	text-align: center;
+	color: rgb(120,120,120);
+}
