@@ -102,7 +102,6 @@ body{
 
 footer{
 	background-color: rgb(50,50,50);
-	width: 100%;
 	padding: 40px;
 }
 footer p{
@@ -198,4 +197,22 @@ footer p{
 	margin-top: 2em;
 	text-align: center;
 	color: rgb(120,120,120);
+}
+
+#tabs-2 h4{
+	margin-top: 2em;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+#tabs-3 section{
+	display: inline-block;
+	width: 19%;
+	padding: 2px;
+}
+.continue{
+	padding: 30px;
+}
+.continue a{
+	font-style: italic;
+	text-decoration: underline;
 }

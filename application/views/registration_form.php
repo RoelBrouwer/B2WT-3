@@ -9,7 +9,7 @@
 		echo link_tag('assets/css/reset.css');
 		echo link_tag('assets/css/style.css');
 		echo link_tag('assets/css/jquery-ui-1.10.4.custom.css');
-		echo link_tag('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+		echo link_tag('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="<?php echo base_url(). 'assets/js/jquery-ui-1.10.4.custom.js'?>"></script>
@@ -74,7 +74,7 @@
 		<h3>Ik ben op zoek naar</h3>
 		<label> Geslacht: </label><?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
 		<label> Minimumleeftijd: </label><?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />
-		<div id="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href=".container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-2">
 	    <h2>Persoonlijkheidstest</h2>
@@ -85,21 +85,21 @@
 				echo $answer['answer_text'];?><br />
 			<?php endforeach;
 		endforeach; ?>
-		<div id="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href=".container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-3">
 		<h2>Merkvoorkeuren:</h2>
 		<i>Selecteer hieronder een merk als het u aanspreekt, laat het gedeselecteerd als het u niet aanspreekt.</i><br />
 		<?php foreach ($brands as $b): 
-			echo form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
-			echo $b['name'];
+			echo '<section>'.form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
+			echo '<label>'.$b['name'].'</label></section>';
 		endforeach; ?>
-		<div id="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href=".container">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-4">
 		<?php echo form_submit('reg', 'Submit'); 
 		echo form_close(); ?>
-		<div id="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href=".container">Terug naar boven</a></div>
 	  </div>
 	</div>
 </div>
