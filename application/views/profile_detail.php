@@ -42,10 +42,10 @@
 			<div id="likes">
 				<?php if($usr_logged_in) { ?>
 				Likes en dislikes -- TO DO. <br />
-				<?php if ($like == 1 || $like == 3) {?>
-				<a href="<?php echo base_url();?>profile/likeuser/<?php echo $user_id?>">Like!</a>
+				<?php if ($like == 1 || $like == 2) {?>
+				<a href="<?php echo base_url();?>profile/likeuser/<?php echo $user_id?>">Like!</a> <br />
 				<?php } else { ?>
-				##Plaats al geliked-plaatje hier##
+				Je hebt deze persoon al geliked.<br />
 				<?php } 
 				if ($like == 4) { echo "<img src='". base_url() . "assets/images/likes/likes_4.png' alt='Jullie zijn een match!' width='42' height='42'>"; echo "Jullie zijn een match!"; }
 				elseif ($like == 3) { echo "<img src='". base_url() . "assets/images/likes/likes_3.png' alt='Jij liket ". $nickname ." maar ". $nickname ." jou niet' width='42' height='42'>"; echo "Jij liket ". $nickname ." maar ". $nickname ." jou niet."; }
@@ -55,6 +55,5 @@
 				<a href="<?php echo base_url();?>auth">Leer <?php echo $nickname ?> beter kennen...</a>
 				<?php } ?>
 			</div>
-			<a href="<?php echo base_url();?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account.</a>
 		</div>
 	</div>
