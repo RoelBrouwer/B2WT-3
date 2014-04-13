@@ -4,6 +4,7 @@ class Likes_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+		$this->load->model('user_profiles');
     }
 	
 	public function get_like($id)
@@ -37,11 +38,14 @@ class Likes_model extends CI_Model {
 		$this->db->where('nickname',  $this->session->userdata('nickname'));
 		$query = $this->db->get('users');
 		$data = array_shift(array_values($query->result_array()));
-		$like = array (
-			'user_id' => $data['user_id'],
-			'user_id_liked' => $id
-		);
-		$this->db->insert('likes',$like);
+		if($data['user_id'] != $id) {
+			$like = array (
+				'user_id' => $data['user_id'],
+				'user_id_liked' => $id
+			);
+			$this->db->insert('likes',$like);
+			$this->user_profiles->change_personality_pref($data['user_id'],$id);
+		}
 	}
 	
 }

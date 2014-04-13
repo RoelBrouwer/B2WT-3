@@ -5,6 +5,7 @@ class User_profiles extends CI_Model {
     {
         parent::__construct();
 		$this->load->helper('common_functions_helper');
+		$this->load->model('admin_model');
     }
     
     function get_random_user_profile()
@@ -246,6 +247,20 @@ class User_profiles extends CI_Model {
 	{
 		$this->load->model('likes_model');
 		return $this->likes_model->get_like($id); //Not implemented yet
+	}
+	
+	public function change_personality_pref($liking,$liked) 
+	{
+		$liking_pref = $this->get_personalitypref_by_id($liking);
+		$liked_pers = $this->get_personalitytype_by_id($liked);
+		$alpha = $this->admin_model->get_alpha();
+		$new_pref['E'] = ($alpha * $liking_pref['E']) + ((1 - $alpha) * $liked_pers['E']);
+		$new_pref['N'] = ($alpha * $liking_pref['N']) + ((1 - $alpha) * $liked_pers['N']);
+		$new_pref['T'] = ($alpha * $liking_pref['T']) + ((1 - $alpha) * $liked_pers['T']);
+		$new_pref['J'] = ($alpha * $liking_pref['J']) + ((1 - $alpha) * $liked_pers['J']);
+		$uss = $this->get_user_by_id($liking);
+		$this->db->where('personality_id', $uss['personalpref']);
+		$this->db->update('personalities', $new_pref);
 	}
 }	
 ?>
