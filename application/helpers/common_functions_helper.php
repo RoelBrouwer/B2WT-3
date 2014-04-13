@@ -53,7 +53,7 @@ if ( ! function_exists('sort_users'))
 		if ($a['rank'] == $b['rank']) {
 			return 0;
 		}
-		return ($a['rank'] < $b['rank']) ? 1 : -1;
+		return ($a['rank'] > $b['rank']) ? 1 : -1;
 
 
 	}

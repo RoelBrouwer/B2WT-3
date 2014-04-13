@@ -214,6 +214,20 @@ class User_profiles extends CI_Model {
 		return $query->result_array();
 	}
 	
+	public function get_users_matching_pref_anon($curr_user)
+	{
+		if ($curr_user['gender_pref'] != 'B')
+		{
+			$this->db->where('sex', $curr_user['gender_pref']);
+		}
+		$min = $this->get_date_from_age($curr_user['min_age']);
+		$max = $this->get_date_from_age($curr_user['max_age']);
+		$this->db->where('birthdate <=', $min);
+		$this->db->where('birthdate >=', $max);
+		$query = $this->db->get('users');
+		return $query->result_array();
+	}
+	
 	public function get_date_from_age($age)
 	{
 		$years = mktime(0,0,0,date("m"),date("d"),(date("Y")-$age));
@@ -241,6 +255,14 @@ class User_profiles extends CI_Model {
 		$query = $this->db->get('users');
 		$data = array_shift(array_values($query->result_array()));
 		return $data['admin'];
+	}
+	
+	public function get_brandname_by_id($id)
+	{
+		$this->db->where('brand_id', $id);
+		$query = $this->db->get('brands');
+		$data = array_shift(array_values($query->result_array()));
+		return $data['name'];
 	}
 	
 	public function get_like_status($id)

@@ -1,64 +1,23 @@
 <?php $this->load->helper('html'); $this->load->helper('url'); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>DataDate - Zoeken</title>
-	<?php 
-		echo link_tag('assets/css/reset.css');
-		echo link_tag('assets/css/style.css');
-		echo link_tag('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
-	?>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<script src="<?php echo base_url(). 'assets/js/jquery-ui-1.10.4.custom.js'?>"></script>
-	<script>
-		$(function() {
-			$( "#tabs" ).tabs();
-		});
-	</script>
-</head>
-
-<body>
-<header>
-	<div id="siteheader">
-	<nav class='navbar'>
-		<section id="logo">
-			<a href="<?php echo base_url();?>">DataDate</a>
-		</section>
-		<ul>
-			<li><a href="<?php echo base_url();?>">Home</a></li>
-			<li><a href="<?php echo base_url();?>">Over</a></li>
-			<li><a href="<?php echo base_url();?>">Zoeken</a>
-				<ul>
-				<li>Geslacht</li>
-				<li>Minimale leeftijd</li>
-				<li>Maximale leeftijd</li>
-				<li>Persoonlijkheid</li>
-				<li>Merken</li>
-				</ul>
-			</li>
-			<li><a href="<?php echo base_url();?>auth">Inloggen</a></li>
-			<li><a href="<?php echo base_url();?>reg">Registreren</a></li>
-		</ul>
-	</nav>
-	</div>
-</header>
 	<div class = "wrapper">
-	<div class="container">
-		<?php echo validation_errors(); ?>
-		<h1>Search</h1>
-		<?php echo form_open('search'); ?>
-		Geslacht: <?php echo form_input('username'); ?> <br />
-		Minimale leeftijd: <?php echo form_password('password'); ?> <br />
-		Maximale leeftijd
-		Persoonlijkheid
-		Merken
-		<?php echo form_submit('login', 'Log in!');
-		echo form_close(); ?>
-		Nog geen account? <a href='<?php echo base_url() . "reg" ?>'>Registreer!</a>
+		<div class="container">
+			<h2>Search</h2>
+			<?php echo validation_errors();
+			echo form_open('search'); ?>
+			<label> Geslacht: </label><?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
+			<label> Minimumleeftijd: </label><?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />
+			<strong>Persoonlijkheid:</strong> <br />
+			<i>De persoonlijkheid is een combinatie van vier waarden die aangeven hoe sterk iemand in de genoemde categorie valt. Elk van de waarden heeft een tegenpool (extravert -> introvert bijvoorbeeld). Vul hier vier percentages in voor de persoonlijkheidswaarden.</i><br />
+			<label> Extravert: </label><?php echo form_input(array('name' => 'extravert', 'maxlength' => '3', 'size' => '5', 'value' => set_value('extravert'))) ?> <label> Intuitive: </label><?php echo form_input(array('name' => 'intuitive', 'maxlength' => '3', 'size' => '5', 'value' => set_value('intuitive'))) ?> <label> Thinking: </label><?php echo form_input(array('name' => 'thinking', 'maxlength' => '3', 'size' => '5', 'value' => set_value('thinking'))) ?> <label> Judging: </label><?php echo form_input(array('name' => 'judging', 'maxlength' => '3', 'size' => '5', 'value' => set_value('judging'))) ?><br />
+			<strong>Merken:</strong> <br />
+			<i>We zoeken ook op basis van lifestyle. Selecteer daarvoor hieronder de merken die je aanspreken:</i><br />
+			<?php foreach ($brands as $b): 
+				echo '<section>'.form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
+				echo '<label>'.$b['name'].'</label></section>';
+			endforeach; ?>
+			<?php echo form_submit('search', 'Zoek!');
+			echo form_close(); ?>
+			<a href='<?php echo base_url() . "reg" ?>'>Registreer</a> om automatisch te zoeken!
+		</div>
 	</div>
-	</div>
-</body>
-</html>

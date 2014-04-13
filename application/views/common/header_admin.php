@@ -33,8 +33,8 @@ $this->load->helper(array('html', 'url'));
 				<li><a href="<?php echo base_url();?>likes/match">Matches</a></li>
 				</ul>
 			</li>
-			<li><a href="<?php echo base_url();?>admin"> Admin Omgeving </a><li>
-			<li><a href="<?php echo base_url();?>auth/logout"> Uitloggen </a><li>
+			<li><a href="<?php echo base_url();?>admin">Admin Omgeving </a><li>
+			<li><a href="<?php echo base_url();?>auth/logout">Uitloggen </a><li>
 		</ul>
 	</nav>
 	</div>
