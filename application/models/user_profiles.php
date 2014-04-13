@@ -216,6 +216,7 @@ class User_profiles extends CI_Model {
 		$this->db->where('birthdate <=', $min);
 		$this->db->where('birthdate >=', $max);
 		$this->db->where('user_id !=', $curr_user['user_id']);
+		$this->db->where("(sexpref = '" . $curr_user['sex'] . "' OR sexpref = 'B')");
 		$query = $this->db->get('users');
 		$result = $query->result_array();
 		$ret = array();
