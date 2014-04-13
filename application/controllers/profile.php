@@ -96,39 +96,129 @@ class Profile extends CI_Controller {
 			$data = $this->user_profiles->get_user_by_nickname();
 			if ($this->form_validation->run() == FALSE)
 			{
-				
-				$this->load->view('common/header');if($this->user_profiles->is_admin()){
-				$this->load->view('common/header_admin');
-				}
-				elseif ($this->session->userdata('logged_in'))
-				{
-					$this->load->view('common/header');
+				if($this->user_profiles->is_admin()){
+					$this->load->view('common/header_admin');
 				}
 				else
 				{
-					redirect('auth');
+					$this->load->view('common/header');
 				}
 				$this->load->view('change_profile', $data);
 				$this->load->view('common/footer');
 			}
 			else
 			{
-				if ($this->session->userdata('logged_in'))
-				{
-					if ($this->date_validation($this->input->post('birthdate'))) {
-						if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
-							$this->user_profiles->update_user($data);
-						}
+				if ($this->date_validation($this->input->post('birthdate'))) {
+					if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
+						$this->user_profiles->update_user($data);
 					}
-					redirect('profile');
 				}
-				else { redirect('auth'); }
+				redirect('profile');
 			}
 		}
 		else
 		{
 			redirect('auth');
 		}
+	}
+	
+	public function change_picture()
+	{
+		// if ($this->session->userdata('logged_in'))
+		// {
+			// $data = $this->user_profiles->get_user_by_nickname();
+			// if ($this->form_validation->run() == FALSE)
+			// {
+				// if($this->user_profiles->is_admin()){
+					// $this->load->view('common/header_admin');
+				// }
+				// else
+				// {
+					// $this->load->view('common/header');
+				// }
+				// $this->load->view('change_profile', $data);
+				// $this->load->view('common/footer');
+			// }
+			// else
+			// {
+				// if ($this->date_validation($this->input->post('birthdate'))) {
+					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
+						// $this->user_profiles->update_user($data);
+					// }
+				// }
+				// redirect('profile');
+			// }
+		// }
+		// else
+		// {
+			// redirect('auth');
+		// }
+	}
+	
+	public function add_picture()
+	{
+		// if ($this->session->userdata('logged_in'))
+		// {
+			// $data = $this->user_profiles->get_user_by_nickname();
+			// if ($this->form_validation->run() == FALSE)
+			// {
+				// if($this->user_profiles->is_admin()){
+					// $this->load->view('common/header_admin');
+				// }
+				// else
+				// {
+					// $this->load->view('common/header');
+				// }
+				// $this->load->view('change_profile', $data);
+				// $this->load->view('common/footer');
+			// }
+			// else
+			// {
+				// if ($this->date_validation($this->input->post('birthdate'))) {
+					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
+						// $this->user_profiles->update_user($data);
+					// }
+				// }
+				// redirect('profile');
+			// }
+		// }
+		// else
+		// {
+			// redirect('auth');
+		// }
+	}
+	
+	public function delete_picture()
+	{
+		// if ($this->session->userdata('logged_in'))
+		// {
+			// $data = $this->user_profiles->get_user_by_nickname();
+			// if ($this->form_validation->run() == FALSE)
+			// {
+				// if($this->user_profiles->is_admin()){
+					// $this->load->view('common/header_admin');
+				// }
+				// else
+				// {
+					// $this->load->view('common/header');
+				// }
+				// $this->load->view('change_profile', $data);
+				// $this->load->view('common/footer');
+			// }
+			// else
+			// {
+				// if ($this->date_validation($this->input->post('birthdate'))) {
+					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
+						// $this->user_profiles->update_user($data);
+					// }
+				// }
+				// redirect('profile');
+			// }
+		// }
+		// else
+		// {
+			// redirect('auth');
+		// }
 	}
 	
 	function date_validation($string)
