@@ -5,22 +5,20 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_profiles');
+		$data['profiles'] = $this->get_six_profiles();
 		if($this->user_profiles->is_admin()){
-			$data = array();
 			$this->load->view('common/header_admin');
 	    	$this->load->view('index', $data);
 			$this->load->view('common/footer');
 		}
 		elseif ($this->session->userdata('logged_in'))
 		{
-			$data = array();
 			$this->load->view('common/header');
 		    $this->load->view('index', $data);
 			$this->load->view('common/footer');
 		}
 		else
 		{
-			$data['profiles'] = $this->get_six_profiles();
 			$this->load->view('common/header_anon');
 			$this->load->view('index', $data);
 			$this->load->view('common/footer');
