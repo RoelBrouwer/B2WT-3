@@ -7,6 +7,12 @@
 	   			<ul>
 	   				<li><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></li>
 	   				<li><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a></li>
+					<?php if (isset($photo)) {?>
+	   				<li><a href="<?php echo base_url() ?>profile/change_picture">Wijzig profielfoto</a></li>
+	   				<li><a href="<?php echo base_url() ?>profile/delete_picture">Verwijder profielfoto</a></li>
+					<?php } else { ?>
+					<li><a href="<?php echo base_url() ?>profile/add_picture">Upload profielfoto</a></li>
+					<?php } ?>
 	   				<li><a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account</a>
 		</li>
 
@@ -36,13 +42,13 @@
 			<div id="matching">
 				<h3>Matching</h3>
 				<ul>
-				<li>Persoonlijkheidstype: <?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> </li>
+				<li><strong>Persoonlijkheidstype</strong> <br /><?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> </li>
 				<br />
-				<li>Persoonlijkheidsvoorkeur: <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> </li>
+				<li><strong>Persoonlijkheidsvoorkeur</strong> <br /> <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> </li>
 				</ul>
+				<br />
 
-
-				Merkvoorkeuren: <br />
+				<strong>Merkvoorkeuren</strong> <br />
 				<?php if (isset($brandpref))
 				{
 					echo "<ul>";
