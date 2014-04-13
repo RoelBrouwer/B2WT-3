@@ -32,7 +32,7 @@ class Admin extends CI_Controller {
 					$data['alpha'] = $this->admin_model->get_alpha();
 					$data['xfactor'] = $this->admin_model->get_xfactor();
 					$data['distance_measure'] = $this->admin_model->get_distance_measure();
-					$this->load->view('common/header');
+					$this->load->view('common/header_admin');
 					$this->load->view('admin_view', $data);
 					$this->load->view('common/footer');
 				}
