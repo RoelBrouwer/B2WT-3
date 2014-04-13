@@ -64,6 +64,7 @@ class Likes_model extends CI_Model {
 			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
 			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
 			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['photo_id']);
+			$usr['thumb'] = $this->user_profiles->get_thumb_by_id($usr['photo_id']);
 			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
 			array_push($ret, $usr);
 		}
@@ -85,6 +86,7 @@ class Likes_model extends CI_Model {
 			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
 			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
 			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['photo_id']);
+			$usr['thumb'] = $this->user_profiles->get_thumb_by_id($usr['photo_id']);
 			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
 			array_push($ret, $usr);
 		}
@@ -114,6 +116,7 @@ class Likes_model extends CI_Model {
 			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
 			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
 			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['photo_id']);
+			$usr['thumb'] = $this->user_profiles->get_thumb_by_id($usr['photo_id']);
 			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
 			array_push($ret, $usr);
 		}
