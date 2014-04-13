@@ -32,7 +32,8 @@
 				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
 			</div>
 			<div id="likes">
-				Likes en dislikes -- TO DO.
+				Likes en dislikes -- TO DO. <br />
+				Like-status: <?php echo $like; ?>(moet plaatje worden)
 			</div>
 			<a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account.</a>
 		</div>

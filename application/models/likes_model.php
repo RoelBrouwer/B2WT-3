@@ -16,7 +16,7 @@ class Likes_model extends CI_Model {
 		$query = $this->db->get('likes');
 		if ($query->num_rows() === 0) {
 			$melike = false;
-		} else { melike = true; }
+		} else { $melike = true; }
 		$this->db->where('user_id', $id);
 		$this->db->where('user_id_liked', $data['user_id']);
 		$query = $this->db->get('likes');
