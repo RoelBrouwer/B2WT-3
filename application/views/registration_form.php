@@ -51,7 +51,7 @@
 		<?php if(validation_errors() != false) { 
 		echo '<div class="error">'.validation_errors().'</div>';
 	 	}
-		echo form_open('reg'); ?>
+		echo form_open_multipart('reg'); ?>
 		<h2>Gegevens</h2>
 		<label> Gebruikersnaam: </label><?php echo form_input(array('name' => 'username', 'maxlength' => '25', 'size' => '30', 'value' => set_value('username'))) ?> <i>Kies een gebruikersnaam tussen de 3 en 30 alfanumerieke karakters (a-z, 0-9).</i>  <br />
 		<label> Wachtwoord: </label><?php echo form_password(array('name' => 'password', 'maxlength' => '25', 'size' => '30')) ?> <i>Kies een wachtwoord tussen de 5 en 255 karakters.</i> <br />
@@ -61,8 +61,8 @@
 		<label> Achternaam: </label><?php echo form_input(array('name' => 'last_name', 'maxlength' => '30', 'size' => '30', 'value' => set_value('last_name'))) ?> <br />
 		<label> Geboortedatum: </label><?php echo form_input(array('name' => 'birthdate', 'maxlength' => '10', 'size' => '12', 'value' => set_value('birthdate'))) ?> <i>Voer in jjjj-mm-dd formaat in.</i><br />
 		<label> Geslacht: </label> <?php echo form_radio(array('name' => 'gender', 'value' => 'M', 'checked' => set_radio('gender', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender', 'value' => 'V', 'checked' => set_radio('gender', 'V'))) ?> Vrouw <br />
-		<label> Foto: </label><?php echo form_open_multipart('reg/do_upload');?> <?php echo form_upload(array('name' => 'picture', 'maxlength' => '35', 'size' => '30')) ?> <i>Alleen afbeeldingsbestanden (*.jpg, *.png) zijn toegestaan.</i> <br /> 
-		<label> Beschrijving: </label><?php echo form_open_multipart('reg/do_upload');?> <?php echo form_textarea(array('name' => 'description', 'rows' => '7', 'cols' => '30', 'value' => set_value('description'))) ?> <i>Gebruik maximaal 500 karakters.</i><br />
+		<label> Beschrijving: </label><?php echo form_open_multipart('reg/do_upload');?> <?php echo form_textarea(array('name' => 'description', 'rows' => '7', 'cols' => '30', 'value' => set_value('description'))) ?> <i>Gebruik maximaal 500 karakters.</i><br /> <br /> 
+		<p><i>Na bevestiging van uw registratie kunt u ook nog een profielfoto uploaden!</i></p>
 		<h3>Ik ben op zoek naar</h3>
 		<label> Geslacht: </label><?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
 		<label> Minimumleeftijd: </label><?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />

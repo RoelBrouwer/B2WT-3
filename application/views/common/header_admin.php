@@ -26,7 +26,7 @@ $this->load->helper(array('html', 'url'));
 			<li><a href="<?php echo base_url();?>">Home</a></li>
 			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
 			<li><a href="<?php echo base_url();?>matches">Matchen</a></li>
-			<li><a>Overzichten</a>
+			<li><a href="<?php echo base_url();?>likes">Overzichten</a>
 				<ul>
 				<li><a href="<?php echo base_url();?>likes/my_likes">Mijn likes</a></li>
 				<li><a href="<?php echo base_url();?>likes/liked_me">Wie liket mij?</a></li>

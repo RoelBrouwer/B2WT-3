@@ -136,42 +136,5 @@ class Reg extends CI_Controller {
 	{
 		return ($max > $min);
 	}
-
-	function do_upload()
-	{
-		$config['upload_path'] = './assets/uploads';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '1000';
-		$config['max_width'] = '1000';
-		$config['max_height'] = '1000';
-		$this->load->library('upload', $config);
-
-		if ( ! $this->reg->do_upload())
-		{
-			// display errors
-			$error = array('error' => $this->reg->display_errors());
-			$this->load->view('', $error);
-		}
-		else
-		{
-			//Upload and Resize the image
-			$data = array('upload_data' => $this->upload->data());
-			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
-		}
-	}
-
-	function resize($path, $file)
-	{
-		$config['image_library']	= 	'gd2'; //or imagemagick
-		$config['source_image'] 	= 	$path;
-		$config['create_thumb']  	= 	TRUE;
-		$config['maintain_ratio']	=	TRUE;
-		$config['width']			=	150;
-		$config['height']			=	75;
-		$config['new_image']		=	'./assets/uploads/'.$file;
-
-		$this->load->library('image_lib', $config);
-		$this->image_lib->resize();
-	}
 }
 ?>
