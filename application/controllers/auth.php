@@ -30,17 +30,6 @@ class Auth extends CI_Controller {
 				'logged_in' => 1
 			);
 			$this->session->set_userdata($userdata);
-			$this->load->model('user_profiles');
-			if ($this->user_profiles->is_admin())
-			{
-				$this->session->sess_destroy();
-				$userdata = array(
-					'nickname' => $this->input->post('username'),
-					'logged_in' => 1,
-					'admin' => 1
-				);
-				$this->session->set_userdata($userdata);
-			}
 			redirect('');
 		}
 	}
@@ -63,7 +52,7 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('');
+		redirect('auth');
 	}
 	
 	/* Logout linkje:
