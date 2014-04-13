@@ -71,7 +71,21 @@ class Likes_model extends CI_Model {
 	
 	public function get_likes_mutual()
 	{
-	
+		$i_liked = $this->get_users_i_liked();
+		$mutual = array();
+		foreach ($i_liked as $like)
+		{
+			$like['user_id'];
+			$curr_user = $this->user_profiles->get_user_by_nickname();
+			$this->db->where('user_id_liked', $curr_user['user_id']);
+			$this->db->where('user_id', $like['user_id']);
+			$query = $this->db->get('likes');
+			if ($query->num_rows() == 1)
+			{
+				array_push($mutual, $like);
+			}
+		}
+		return $mutual;
 	}
 	
 }

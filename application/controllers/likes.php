@@ -61,6 +61,7 @@ class Likes extends CI_Controller {
 	}
 	
 	public function match() {
+		$data['users'] = $this->likes_model->get_likes_mutual();
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -72,7 +73,7 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_index');
+		$this->load->view('likes_index', $data);
 		$this->load->view('common/footer');
 	}
 	
