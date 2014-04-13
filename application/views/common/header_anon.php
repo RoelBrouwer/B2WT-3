@@ -23,15 +23,7 @@
 		<ul>
 			<li><a href="<?php echo base_url();?>">Home</a></li>
 			<li><a href="<?php echo base_url();?>about">Over</a></li>
-			<li><a href="<?php echo base_url();?>">Zoeken</a>
-				<ul>
-				<li>Geslacht</li>
-				<li>Minimale leeftijd</li>
-				<li>Maximale leeftijd</li>
-				<li>Persoonlijkheid</li>
-				<li>Merken</li>
-				</ul>
-			</li>
+			<li><a href="<?php echo base_url();?>search">Zoeken</a></li>
 			<li><a href="<?php echo base_url();?>auth">Inloggen</a></li>
 			<li><a href="<?php echo base_url();?>reg">Registreren</a></li>
 		</ul>
