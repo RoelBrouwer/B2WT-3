@@ -145,6 +145,7 @@ class Profile extends CI_Controller {
 	function user($id) //Profiel detail-pagina
 	{ //Je hoeft niet ingelogd te zijn om dit te mogen bekijken...
 		$user_data = $this->user_profiles->get_user_by_id($id);
+		$user_data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$this->load->view('common/header');
 		$this->load->view('profile_detail', $user_data);
 		$this->load->view('common/footer');
