@@ -11,66 +11,24 @@
         <h2>Profielen</h2>
         <button id="button">Click Me!</button>
         <div class="profielen">
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
-          <div class="profiel"><figure><img src="assets/images/profile/PF.jpg" alt="Profiel Foto"></figure>
-            <ul>
-            <li>Nickname</li>
-            <li>Geslacht</li>
-            <li>Leeftijd</li>
-            <li>Beschrijving</li>
-            <li>Persoonlijkheid</li>
-            <li>Merken</li>
-            </ul>
-          </div>
+          <?php foreach ($profiles as $p): 
+            echo '<div class="profiel"><figure><img src="#" alt="Profiel Foto"></figure><ul>';
+            echo '<li>'.$p['nickname'].'</li>';
+            echo '<li>'.$p['sex'].'</li>';
+            echo '<li>'.$p['birthdate'].'</li>';
+            echo '<li>'.$p['description'].'</li>';
+            echo '<li>'.$p['personality']['type'].'</li>';
+            echo '<li> Merken: </li>';
+            echo '<li><ul>';
+            $x = 0;
+            foreach($p['brandpref'] as $brand):
+              if($x < 4){
+              echo '<li>'.$brand['name'].'</li>';
+              $x++;
+              }
+            endforeach;
+            echo '</ul></li></ul></div>';
+          endforeach; ?>
         </div>
 		</div>
 

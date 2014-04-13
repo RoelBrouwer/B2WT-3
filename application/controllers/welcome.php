@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 		}
 		else
 		{
-			$data = $this->get_six_profiles();
+			$data['profiles'] = $this->get_six_profiles();
 			$this->load->view('common/header_anon');
 			$this->load->view('index', $data);
 			$this->load->view('common/footer');

@@ -128,7 +128,7 @@ footer p{
 }
 .profiel{
 	width: 320px;
-	height: 200px;
+	height: 225px;
 	background-color: red;
 	float: left;
 }
@@ -139,7 +139,7 @@ footer p{
 	overflow: hidden;
 	padding-left: 20px;
 }
-.profiel ul li:first-child{
+.profiel > ul > li:first-child{
 	font-weight: 600;
 	letter-spacing: 3px;
 	color: rgb(100,100,100);
