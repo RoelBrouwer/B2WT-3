@@ -48,5 +48,31 @@ class Likes_model extends CI_Model {
 		}
 	}
 	
+	public function get_users_liked_me()
+	{
+		$curr_user = $this->user_profiles->get_user_by_nickname();
+		//$this->db->select('user_id');
+		$this->db->where('user_id_liked', $curr_user['user_id']);
+		$this->db->from('likes');
+		$this->db->join('users', 'likes.user_id = users.user_id');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	
+	public function get_users_i_liked()
+	{
+		$curr_user = $this->user_profiles->get_user_by_nickname();
+		$this->db->where('likes.user_id', $curr_user['user_id']);
+		$this->db->from('likes');
+		$this->db->join('users', 'likes.user_id_liked = users.user_id');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	
+	public function get_likes_mutual()
+	{
+	
+	}
+	
 }
 	

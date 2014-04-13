@@ -7,6 +7,7 @@ class Likes extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url','common_functions_helper'));
 		$this->load->model('user_profiles');
+		$this->load->model('likes_model');
 	}
 
 	public function index() {
@@ -19,13 +20,14 @@ class Likes extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('common/header_anon');
+			redirect('auth');
 		}
 		$this->load->view('likes_index');
 		$this->load->view('common/footer');
 	}
 	
 	public function my_likes() {
+		$data['users'] = $this->likes_model->get_users_i_liked();
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -35,13 +37,14 @@ class Likes extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('common/header_anon');
+			redirect('auth');
 		}
-		$this->load->view('likes_index');
+		$this->load->view('likes_index', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function liked_me() {
+		$data['users'] = $this->likes_model->get_users_liked_me();
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -51,9 +54,9 @@ class Likes extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('common/header_anon');
+			redirect('auth');
 		}
-		$this->load->view('likes_index');
+		$this->load->view('likes_index', $data);
 		$this->load->view('common/footer');
 	}
 	
@@ -67,7 +70,7 @@ class Likes extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('common/header_anon');
+			redirect('auth');
 		}
 		$this->load->view('likes_index');
 		$this->load->view('common/footer');

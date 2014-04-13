@@ -6,6 +6,9 @@
 			<h3><a href="<?php echo base_url(); ?>likes/liked_me">Wie liket mij?</a></h3>
 			--Tekst over mijn likes-- <a href="<?php echo base_url(); ?>likes/liked_me">Ga naar wie liket mij?</a>
 			<h3><a href="<?php echo base_url(); ?>likes/match">Matches</a></h3>
-			--Tekst over mijn likes-- <a href="<?php echo base_url(); ?>likes/match">Ga naar matches</a>
+			--Tekst over mijn likes-- <a href="<?php echo base_url(); ?>likes/match">Ga naar matches</a><br />
+			
+			DEBUG:
+			<?php echo print_r($users); ?>
 		</div>
 	</div>
