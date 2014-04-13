@@ -41,6 +41,7 @@ class Search extends CI_Controller {
 			}
 			else
 			{
+				$data['usr_logged_in'] = $this->session->userdata('logged_in');
 				$data['user'] = $this->_matched_users();
 				$this->load->view('common/header_anon');
 				$this->load->view('display_matches', $data);

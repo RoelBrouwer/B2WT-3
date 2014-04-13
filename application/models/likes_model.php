@@ -56,7 +56,18 @@ class Likes_model extends CI_Model {
 		$this->db->from('likes');
 		$this->db->join('users', 'likes.user_id = users.user_id');
 		$query = $this->db->get();
-		return $query->result_array();
+		$result = $query->result_array();
+		$ret = array();
+		foreach ($result as $usr)
+		{
+			$usr['personality'] = get_personality_string($this->user_profiles->get_personalitytype_by_id($usr['user_id']));
+			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
+			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
+			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['user_id']);
+			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
+			array_push($ret, $usr);
+		}
+		return $ret;
 	}
 	
 	public function get_users_i_liked()
@@ -66,7 +77,18 @@ class Likes_model extends CI_Model {
 		$this->db->from('likes');
 		$this->db->join('users', 'likes.user_id_liked = users.user_id');
 		$query = $this->db->get();
-		return $query->result_array();
+		$result = $query->result_array();
+		$ret = array();
+		foreach ($result as $usr)
+		{
+			$usr['personality'] = get_personality_string($this->user_profiles->get_personalitytype_by_id($usr['user_id']));
+			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
+			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
+			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['user_id']);
+			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
+			array_push($ret, $usr);
+		}
+		return $ret;
 	}
 	
 	public function get_likes_mutual()
@@ -85,7 +107,17 @@ class Likes_model extends CI_Model {
 				array_push($mutual, $like);
 			}
 		}
-		return $mutual;
+		$ret = array();
+		foreach ($mutual as $usr)
+		{
+			$usr['personality'] = get_personality_string($this->user_profiles->get_personalitytype_by_id($usr['user_id']));
+			$usr['perspref'] = get_personality_string($this->user_profiles->get_personalitypref_by_id($usr['user_id']));
+			$usr['brandpref'] = $this->user_profiles->get_brandpref_by_id($usr['user_id']);
+			$usr['photo'] = $this->user_profiles->get_photo_by_id($usr['user_id']);
+			$usr['like'] = $this->user_profiles->get_like_status($usr['user_id']);
+			array_push($ret, $usr);
+		}
+		return $ret;
 	}
 	
 }

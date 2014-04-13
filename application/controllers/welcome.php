@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->model('user_profiles');
 		$data['profiles'] = $this->get_six_profiles();
+		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 	    	$this->load->view('index', $data);

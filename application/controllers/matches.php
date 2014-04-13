@@ -15,6 +15,7 @@ class Matches extends CI_Controller {
 	{
 		if($this->user_profiles->is_admin()){
 			$data['user'] = $this->_matched_users();
+			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header_admin');
 	    	$this->load->view('display_matches', $data);
 			$this->load->view('common/footer');
@@ -22,6 +23,7 @@ class Matches extends CI_Controller {
 		elseif ($this->session->userdata('logged_in'))
 		{
 			$data['user'] = $this->_matched_users();
+			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header');
 		    $this->load->view('display_matches', $data);
 			$this->load->view('common/footer');
