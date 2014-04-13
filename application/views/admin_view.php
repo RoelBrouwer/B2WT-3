@@ -1,6 +1,7 @@
 <?php $this->load->helper('form','url'); ?>
    	<div class="wrapper">
 	   	<div class="container">
+			<h2>Admin Omgeving</h2>
 			<?php echo validation_errors();
 			echo form_open('admin'); ?>
 			Verander alpha, de leerparameter: <?php echo form_input(array('name' => 'alpha', 'maxlength' => '8', 'size' => '8', 'value' => $alpha)) ?> <br />
