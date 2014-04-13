@@ -46,9 +46,12 @@
 				<a href="<?php echo base_url();?>profile/likeuser/<?php echo $user_id?>">Like!</a>
 				<?php } else { ?>
 				##Plaats al geliked-plaatje hier##
-				<?php } ?>
-				Like-status: <?php echo $like; ?>(moet plaatje worden)
-				<?php } else { ?>
+				<?php } 
+				if ($like == 4) { echo "<img src='". base_url() . "assets/images/likes/likes_4.png' alt='Jullie zijn een match!' width='42' height='42'>"; echo "Jullie zijn een match!"; }
+				elseif ($like == 3) { echo "<img src='". base_url() . "assets/images/likes/likes_3.png' alt='Jij liket ". $nickname ." maar ". $nickname ." jou niet' width='42' height='42'>"; echo "Jij liket ". $nickname ." maar ". $nickname ." jou niet."; }
+				elseif ($like == 2) { echo "<img src='". base_url() . "assets/images/likes/likes_2.png' alt='". $nickname ." liket jou, maar jij ". $nickname ." niet' width='42' height='42'>"; echo $nickname ." liket jou, maar jij ". $nickname ." niet."; }
+				else { echo "<img src='". base_url() . "assets/images/likes/likes_1.png' alt='Jullie hebben elkaar niet geliked' width='42' height='42'>"; echo "Jullie hebben elkaar niet geliked."; }
+				} else { ?>
 				<a href="<?php echo base_url();?>auth">Leer <?php echo $nickname ?> beter kennen...</a>
 				<?php } ?>
 			</div>
