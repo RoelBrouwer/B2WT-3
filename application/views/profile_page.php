@@ -2,7 +2,7 @@
    	<div class="wrapper">
 	   	<div class="container">
 	   		<div class="sidebar">
-	   			<div id="profile-pic"><figure><img src="./assets/uploads/klasher_taru_2.jpg" alt="Profiel Foto"></figure></div>
+	   			<div id="profile-pic"><figure><img src="<? echo base_url()?>assets/uploads/Klasher_Taru_2.jpg" alt="Profiel Foto"></figure></div>
 	   			<div id="profile-name"><p> <?php echo $firstname." ".$lastname ?> </p></div>
 	   			<ul>
 	   				<li><a href="<?php echo base_url() ?>profile/change_profile">Wijzig gegevens</a></li>
@@ -17,7 +17,7 @@
 			<div id="userdata">
 				<h3>Gegevens</h3>
 				<ul>
-				<li>Gebruikersnaam:<?php echo $nickname ?></li>
+				<li>Gebruikersnaam: <?php echo $nickname ?></li>
 				<li>E-mail: <?php echo $email ?></li>
 				<li>Voornaam: <?php echo $firstname ?></li>
 				<li>Achternaam: <?php echo $lastname ?></li>
@@ -53,7 +53,7 @@
 				}
 				?>
 				<div id="likes">
-					Likes en dislikes -- TO DO.
+					
 				</div>
 			</div>
 			</div>
