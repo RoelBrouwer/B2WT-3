@@ -7,7 +7,6 @@
 					U heeft <?php echo count($user) ?> matches.
 					<?php foreach ($user as $usr):
 						$p = $usr['user'];?>
-							GEGEVENS <br />
 							<?php 
 					            echo '<div class="profiel"><figure><img src="#" alt="Profiel Foto"></figure><ul>';
 					            echo '<li>'.$p['nickname'].'</li>';
