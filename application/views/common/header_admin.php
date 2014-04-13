@@ -26,6 +26,7 @@ $this->load->helper(array('html', 'url'));
 			<li><a href="<?php echo base_url();?>profile">Profiel</a></li>
 			<li><a href="<?php echo base_url();?>">Over</a></li>
 			<li><a href="<?php echo base_url();?>matches">Matchen</a></li>
+			<li><a href="<?php echo base_url();?>admin"> Admin Omgeving </a><li>
 			<li><a href="<?php echo base_url();?>auth/logout"> Uitloggen </a><li>
 		</ul>
 	</nav>

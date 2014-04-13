@@ -4,26 +4,32 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('logged_in'))
+		$this->load->model('user_profiles');
+		if($this->user_profiles->is_admin()){
+			$data = array();
+			$this->load->view('common/header_admin');
+	    	$this->load->view('index', $data);
+			$this->load->view('common/footer');
+		}
+		elseif ($this->session->userdata('logged_in'))
 		{
-		$data = array();
-		$this->load->view('common/header');
-	    $this->load->view('index', $data);
-		$this->load->view('common/footer');
+			$data = array();
+			$this->load->view('common/header');
+		    $this->load->view('index', $data);
+			$this->load->view('common/footer');
 		}
 		else
 		{
-		$data = $this->get_six_profiles();
-		$this->load->view('common/header_anon');
-		$this->load->view('index', $data);
-		$this->load->view('common/footer');
+			$data = $this->get_six_profiles();
+			$this->load->view('common/header_anon');
+			$this->load->view('index', $data);
+			$this->load->view('common/footer');
 		}
 		
 	}
 	
 	public function get_six_profiles()
 	{
-		$this->load->model('user_profiles');
 		$user1 = $this->user_profiles->get_random_user_profile();
 		$user2 = $this->user_profiles->get_random_user_profile();
 		$user3 = $this->user_profiles->get_random_user_profile();
