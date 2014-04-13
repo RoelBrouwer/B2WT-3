@@ -9,7 +9,7 @@
 	   				<li><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a></li>
 					<?php if (isset($photo)) {?>
 	   				<li><a href="<?php echo base_url() ?>profile/change_picture">Wijzig profielfoto</a></li>
-	   				<li><a href="<?php echo base_url() ?>profile/delete_picture">Verwijder profielfoto</a></li>
+	   				<li><a href="<?php echo base_url() ?>profile/delete_picture" onclick="return confirm('Weet u zeker dat u uw profielfoto wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder profielfoto</a></li>
 					<?php } else { ?>
 					<li><a href="<?php echo base_url() ?>profile/add_picture">Upload profielfoto</a></li>
 					<?php } ?>
