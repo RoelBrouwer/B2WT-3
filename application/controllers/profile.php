@@ -5,7 +5,7 @@ class Profile extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(array('form', 'url','common_functions_helper'));
+		$this->load->helper(array('form', 'url','common_functions_helper', 'file'));
 		$this->load->library('form_validation');
 		$this->load->model('user_profiles');
 		
@@ -124,104 +124,53 @@ class Profile extends CI_Controller {
 	
 	public function change_picture()
 	{
-		// if ($this->session->userdata('logged_in'))
-		// {
-			// $data = $this->user_profiles->get_user_by_nickname();
-			// if ($this->form_validation->run() == FALSE)
-			// {
-				// if($this->user_profiles->is_admin()){
-					// $this->load->view('common/header_admin');
-				// }
-				// else
-				// {
-					// $this->load->view('common/header');
-				// }
-				// $this->load->view('change_profile', $data);
-				// $this->load->view('common/footer');
-			// }
-			// else
-			// {
-				// if ($this->date_validation($this->input->post('birthdate'))) {
-					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
-						// $this->user_profiles->update_user($data);
-					// }
-				// }
-				// redirect('profile');
-			// }
-		// }
-		// else
-		// {
-			// redirect('auth');
-		// }
+		if($this->user_profiles->is_admin()){
+			$this->load->view('common/header_admin');
+		}
+		elseif ($this->session->userdata('logged_in'))
+		{
+			$this->load->view('common/header');
+		}
+		else
+		{
+			redirect('auth');
+		}
+		$this->load->view('upload_form', array('error'=>'', 'var' => 2));
+		$this->load->view('common/footer');
 	}
 	
 	public function add_picture()
 	{
-		$this->load->view('common/header');
+		if($this->user_profiles->is_admin()){
+			$this->load->view('common/header_admin');
+		}
+		elseif ($this->session->userdata('logged_in'))
+		{
+			$this->load->view('common/header');
+		}
+		else
+		{
+			redirect('auth');
+		}
 		$this->load->view('upload_form', array('error'=>'', 'var' => 1));
 		$this->load->view('common/footer');
-		// if ($this->session->userdata('logged_in'))
-		// {
-			// $data = $this->user_profiles->get_user_by_nickname();
-			// if ($this->form_validation->run() == FALSE)
-			// {
-				// if($this->user_profiles->is_admin()){
-					// $this->load->view('common/header_admin');
-				// }
-				// else
-				// {
-					// $this->load->view('common/header');
-				// }
-				// $this->load->view('change_profile', $data);
-				// $this->load->view('common/footer');
-			// }
-			// else
-			// {
-				// if ($this->date_validation($this->input->post('birthdate'))) {
-					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
-						// $this->user_profiles->update_user($data);
-					// }
-				// }
-				// redirect('profile');
-			// }
-		// }
-		// else
-		// {
-			// redirect('auth');
-		// }
 	}
 	
 	public function delete_picture()
 	{
-		// if ($this->session->userdata('logged_in'))
-		// {
-			// $data = $this->user_profiles->get_user_by_nickname();
-			// if ($this->form_validation->run() == FALSE)
-			// {
-				// if($this->user_profiles->is_admin()){
-					// $this->load->view('common/header_admin');
-				// }
-				// else
-				// {
-					// $this->load->view('common/header');
-				// }
-				// $this->load->view('change_profile', $data);
-				// $this->load->view('common/footer');
-			// }
-			// else
-			// {
-				// if ($this->date_validation($this->input->post('birthdate'))) {
-					// if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
-						// $this->user_profiles->update_user($data);
-					// }
-				// }
-				// redirect('profile');
-			// }
-		// }
-		// else
-		// {
-			// redirect('auth');
-		// }
+		if (!$this->session->userdata('logged_in'))
+		{
+			redirect('auth');
+		}
+		else
+		{
+			$old_path = $this->user_profiles->delete_picture();
+			$path = 'assets/uploads/' . $old_path;
+			$path2 = 'assets/uploads/thumb_' . $old_path;
+			unlink($path);
+			unlink($path2);
+			redirect('profile');
+		}
 	}
 	
 	function do_upload($mode)
@@ -253,14 +202,25 @@ class Profile extends CI_Controller {
 			//Upload and Resize the image
 			$data = array('upload_data' => $this->upload->data());
 			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
-			$images = array('picture' => $data['upload_data']['file_name'], 'thumb' => "thumb_" . $info['upload_data']['file_name']);
+			$images = array('picture' => $data['upload_data']['file_name'], 'thumb' => "thumb_" . $data['upload_data']['file_name']);
 			if ($mode == 1)
 			{
-				$this->user_profiles->add_picture($images);
+				if(!$this->user_profiles->add_picture($images))
+				{
+					$path = 'assets/uploads/' . $images['picture'];
+					$path2 = 'assets/uploads/' . $images['thumb'];
+					unlink($path);
+					unlink($path2);
+					redirect('profile/add_picture');
+				}
 			}
 			elseif ($mode == 2)
 			{
-				//Ga updaten en oude afbeelding verwijderen
+				$old_path = $this->user_profiles->update_picture($images);
+				$path = 'assets/uploads/' . $old_path;
+				$path2 = 'assets/uploads/thumb_' . $old_path;
+				unlink($path);
+				unlink($path2);
 			}
 			redirect('profile');
 		}

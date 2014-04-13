@@ -345,19 +345,35 @@ class User_profiles extends CI_Model {
 		$query = $this->db->get('photos');
 		$ph_id = array_shift(array_values($query->result_array()));
 		
-		$this->db->set('photo_id', $ph_id['photo_id'];, FALSE);
+		$this->db->set('photo_id', $ph_id['photo_id'], FALSE);
 		$this->db->where('user_id', $curr_user['user_id']);
-		$this->db->update('users');
+		$query = $this->db->update('users');
+		return $query;
 	}
 	
 	public function update_picture($images)
 	{
-		//return $old_path;
+		$curr_user = $this->get_user_by_nickname();
+		$old_path = $this->get_photo_by_id($curr_user['photo_id']);
+		
+		$changes['file'] = $images['picture'];
+		$changes['thumb'] = $images['thumb'];
+		
+		$this->db->where('photo_id', $curr_user['photo_id']);
+		$this->db->update('photos', $changes);
+		
+		return $old_path;
 	}
 	
-	public function delete_picture($images)
+	public function delete_picture()
 	{
-		//return $old_path;
+		$curr_user = $this->get_user_by_nickname();
+		$old_path = $this->get_photo_by_id($curr_user['photo_id']);
+		
+		$this->db->where('photo_id', $curr_user['photo_id']);
+		$this->db->delete('photos');
+		
+		return $old_path;
 	}
 }	
 ?>
