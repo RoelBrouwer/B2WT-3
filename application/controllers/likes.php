@@ -28,7 +28,7 @@ class Likes extends CI_Controller {
 	
 	public function my_likes() {
 		$data['users'] = $this->likes_model->get_users_i_liked();
-		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
+		$data['text'] = "<h2>Mijn likes</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt. ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -46,7 +46,7 @@ class Likes extends CI_Controller {
 	
 	public function liked_me() {
 		$data['users'] = $this->likes_model->get_users_liked_me();
-		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
+		$data['text'] = "<h2>Wie liket mij?</h2> Hieronder vind je een overzicht van alle gebruikers die jou ge-liked hebben. ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -64,7 +64,7 @@ class Likes extends CI_Controller {
 	
 	public function match() {
 		$data['users'] = $this->likes_model->get_likes_mutual();
-		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
+		$data['text'] = "<h2>Matches</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt en die jou ook ge-liked hebben: gebruikers waarmee de likes matchen!";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
