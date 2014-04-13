@@ -118,26 +118,22 @@ class Search extends CI_Controller {
 	
 	public function _normalize_brands_list($brands)
 	{
-		echo print_r($brands);
 		$ret = array();
 		foreach ($brands as $b)
 		{
 			array_push($ret, $b['name']);
 		}
-		echo print_r($ret);
 		return $ret;
 	}
 	
 	public function _normalize_input_brands($brands)
 	{
-		echo print_r($brands);
 		$ret = array();
 		foreach ($brands as $b)
 		{
 			$n = $this->user_profiles->get_brandname_by_id($b);
 			array_push($ret, $n);
 		}
-		echo print_r($ret);
 		return $ret;
 	}
 }
