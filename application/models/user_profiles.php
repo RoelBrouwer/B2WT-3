@@ -40,6 +40,9 @@ class User_profiles extends CI_Model {
 		$data['personality'] = get_personality_string($this->get_personalitytype_by_id($id));
 		$data['perspref'] = get_personality_string($this->get_personalitypref_by_id($id));
 		$data['brandpref'] = $this->get_brandpref_by_id($id);
+		if ($this->session->userdata('logged_in')){
+			$data['like'] = $this->get_like_status($id);
+		}
 		return $data;
 	}
 	
@@ -237,6 +240,12 @@ class User_profiles extends CI_Model {
 		$query = $this->db->get('users');
 		$data = array_shift(array_values($query->result_array()));
 		return $data['admin'];
+	}
+	
+	public function get_like_status($id)
+	{
+		$this->load->model('likes_model');
+		return $this->likes_model->get_like($id); //Not implemented yet
 	}
 }	
 ?>
