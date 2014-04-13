@@ -1,5 +1,6 @@
+	<div class="wrapper">
 	<div class="container">
-		<h1>Upload Post Image</h1>
+		<h2>Upload profielfoto</h1>
 		
 		<div class="row">
 			<div class="span8">
@@ -10,7 +11,8 @@
 				</div>
 				<?php endif ?>
 				
-				<?php echo form_open_multipart('upl/do_upload');?>
+				<?php if (isset($var)) { $v = $var; } else { $v = ''; }
+				echo form_open_multipart('profile/do_upload/'.$v);?>
 					<?php 
 					$data_form = array(
 						'name' => 'userfile'
@@ -23,4 +25,5 @@
 			</div>
 			
 		</div>
+	</div>
 	</div>

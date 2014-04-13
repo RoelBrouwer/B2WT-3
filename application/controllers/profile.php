@@ -157,6 +157,9 @@ class Profile extends CI_Controller {
 	
 	public function add_picture()
 	{
+		$this->load->view('common/header');
+		$this->load->view('upload_form', array('error'=>'', 'var' => 1));
+		$this->load->view('common/footer');
 		// if ($this->session->userdata('logged_in'))
 		// {
 			// $data = $this->user_profiles->get_user_by_nickname();
@@ -219,6 +222,62 @@ class Profile extends CI_Controller {
 		// {
 			// redirect('auth');
 		// }
+	}
+	
+	function do_upload($mode)
+	{
+		//mode 1 is nieuwe foto, mode 2 is foto veranderen
+		$config['upload_path'] = './assets/uploads';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '10000';
+		$config['max_width']  = '2000';
+		$config['max_height']  = '800';
+
+		$this->load->library('upload', $config);
+		// if doesn't upload
+		if ( ! $this->upload->do_upload())
+		{
+			// display errors
+			$error = array('error' => $this->upload->display_errors());
+			
+			if ($this->user_profiles->is_admin()) {
+				$this->load->view('common/header_admin');
+			} else {
+				$this->load->view('common/header');
+			}
+			$this->load->view('upload_form', $error);
+			$this->load->view('common/footer');
+		}
+		else
+		{
+			//Upload and Resize the image
+			$data = array('upload_data' => $this->upload->data());
+			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']);
+			$images = array('picture' => $data['upload_data']['file_name'], 'thumb' => "thumb_" . $info['upload_data']['file_name']);
+			if ($mode == 1)
+			{
+				//Ga inserten
+			}
+			elseif ($mode == 2)
+			{
+				//Ga updaten en oude afbeelding verwijderen
+			}
+			redirect('profile');
+		}
+	}
+
+	function resize($path, $file)
+	{
+		$config['image_library']	= 	'gd2'; //or imagemagick
+		$config['source_image'] 	= 	$path;
+		$config['create_thumb']  	= 	FALSE;
+		$config['maintain_ratio']	=	TRUE;
+		$config['width']			=	150;
+		$config['height']			=	75;
+		$config['new_image']		=	'./assets/uploads/thumb_'.$file;
+
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
 	}
 	
 	function date_validation($string)
