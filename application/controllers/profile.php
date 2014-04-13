@@ -256,7 +256,7 @@ class Profile extends CI_Controller {
 			$images = array('picture' => $data['upload_data']['file_name'], 'thumb' => "thumb_" . $info['upload_data']['file_name']);
 			if ($mode == 1)
 			{
-				//Ga inserten
+				$this->user_profiles->add_picture($images);
 			}
 			elseif ($mode == 2)
 			{
@@ -272,8 +272,8 @@ class Profile extends CI_Controller {
 		$config['source_image'] 	= 	$path;
 		$config['create_thumb']  	= 	FALSE;
 		$config['maintain_ratio']	=	TRUE;
-		$config['width']			=	150;
-		$config['height']			=	75;
+		$config['width']			=	100;
+		$config['height']			=	200;
 		$config['new_image']		=	'./assets/uploads/thumb_'.$file;
 
 		$this->load->library('image_lib', $config);

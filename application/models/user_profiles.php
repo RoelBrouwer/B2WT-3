@@ -330,5 +330,34 @@ class User_profiles extends CI_Model {
 		$this->db->where('personality_id', $uss['personalpref']);
 		$this->db->update('personalities', $new_pref);
 	}
+	
+	public function add_picture($images)
+	{
+		$curr_user = $this->get_user_by_nickname();
+		$pic = array (
+			'file' => $images['picture'],
+			'thumb' => $images['thumb']
+		);
+		$this->db->insert('photos',$pic);
+		
+		$this->db->select('photo_id');
+		$this->db->where('file', $images['picture']);
+		$query = $this->db->get('photos');
+		$ph_id = array_shift(array_values($query->result_array()));
+		
+		$this->db->set('photo_id', $ph_id['photo_id'];, FALSE);
+		$this->db->where('user_id', $curr_user['user_id']);
+		$this->db->update('users');
+	}
+	
+	public function update_picture($images)
+	{
+		//return $old_path;
+	}
+	
+	public function delete_picture($images)
+	{
+		//return $old_path;
+	}
 }	
 ?>
