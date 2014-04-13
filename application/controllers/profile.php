@@ -59,26 +59,33 @@ class Profile extends CI_Controller {
 	
 	public function change_brands()
 	{
-		if ($this->session->userdata('logged_in'))
+		if ($this->form_validation->run() == FALSE)
 		{
-			if ($this->form_validation->run() == FALSE)
+			if($this->user_profiles->is_admin()){
+				$this->load->view('common/header_admin');
+			}
+			elseif ($this->session->userdata('logged_in'))
 			{
-				$this->load->model('test_questions');
-				$data = $this->user_profiles->get_user_by_nickname();
-				$data['brands'] = $this->test_questions->get_brands();
 				$this->load->view('common/header');
-				$this->load->view('change_brands', $data);
-				$this->load->view('common/footer');
 			}
 			else
+			{
+				redirect('auth');
+			}
+			$this->load->model('test_questions');
+			$data = $this->user_profiles->get_user_by_nickname();
+			$data['brands'] = $this->test_questions->get_brands();
+			$this->load->view('change_brands', $data);
+			$this->load->view('common/footer');
+		}
+		else
+		{
+			if ($this->session->userdata('logged_in'))
 			{
 				$this->user_profiles->update_brandspref();
 				redirect('profile');
 			}
-		}
-		else
-		{
-			redirect('auth');
+			else { redirect('auth'); }
 		}
 	}
 	
@@ -89,18 +96,33 @@ class Profile extends CI_Controller {
 			$data = $this->user_profiles->get_user_by_nickname();
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->load->view('common/header');
+				
+				$this->load->view('common/header');if($this->user_profiles->is_admin()){
+				$this->load->view('common/header_admin');
+				}
+				elseif ($this->session->userdata('logged_in'))
+				{
+					$this->load->view('common/header');
+				}
+				else
+				{
+					redirect('auth');
+				}
 				$this->load->view('change_profile', $data);
 				$this->load->view('common/footer');
 			}
 			else
 			{
-				if ($this->date_validation($this->input->post('birthdate'))) {
-					if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
-						$this->user_profiles->update_user($data);
+				if ($this->session->userdata('logged_in'))
+				{
+					if ($this->date_validation($this->input->post('birthdate'))) {
+						if ($this->check_ages($this->input->post('max_age'),$this->input->post('min_age'))) {
+							$this->user_profiles->update_user($data);
+						}
 					}
+					redirect('profile');
 				}
-				redirect('profile');
+				else { redirect('auth'); }
 			}
 		}
 		else
