@@ -324,7 +324,15 @@ class Profile extends CI_Controller {
 				redirect('profile');
 			}
 		}
-		$this->load->view('common/header');
+		if($this->user_profiles->is_admin()){
+			$this->load->view('common/header_admin');
+		}
+		elseif ($this->session->userdata('logged_in')) {
+			$this->load->view('common/header');
+		}
+		else {
+		$this->load->view('common/header_anon');
+		}
 		$this->load->view('profile_detail', $user_data);
 		$this->load->view('common/footer');
 	}
