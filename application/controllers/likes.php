@@ -28,6 +28,7 @@ class Likes extends CI_Controller {
 	
 	public function my_likes() {
 		$data['users'] = $this->likes_model->get_users_i_liked();
+		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -39,12 +40,13 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_index', $data);
+		$this->load->view('likes_page', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function liked_me() {
 		$data['users'] = $this->likes_model->get_users_liked_me();
+		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -56,12 +58,13 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_index', $data);
+		$this->load->view('likes_page', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function match() {
 		$data['users'] = $this->likes_model->get_likes_mutual();
+		$data['text'] = "blabla, bla, blabla <strong> jeej</strong> ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -73,7 +76,7 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_index', $data);
+		$this->load->view('likes_page', $data);
 		$this->load->view('common/footer');
 	}
 	
