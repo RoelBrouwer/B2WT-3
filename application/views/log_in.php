@@ -15,7 +15,7 @@
 		}?>
 	<div id="login">
 	<?php echo form_open('auth'); ?>
-	<label>Gebruikersnaam: </label><?php echo form_input('username'); ?> <br />
+	<label>E-mailadres: </label><?php echo form_input('email'); ?> <br />
 	<label>Wachtwoord: </label><?php echo form_password('password'); ?> <br />
 	<?php echo form_submit('login', 'Log in!');
 	echo form_close(); ?>

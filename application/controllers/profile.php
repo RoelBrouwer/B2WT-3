@@ -50,6 +50,7 @@ class Profile extends CI_Controller {
 			$this->load->view('common/header');
 			$this->load->view('profile_page', $data);
 			$this->load->view('common/footer');
+		}
 		else
 		{
 			redirect('auth');

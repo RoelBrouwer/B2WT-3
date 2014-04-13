@@ -8,8 +8,9 @@ class Login extends CI_Model {
     
     function able_login()
     {
-		$this->db->where('nickname', strtolower($this->input->post('username')));
-		$this->db->where('password',  md5($this->input->post('password')));
+		//$this->db->where('nickname', strtolower($this->input->post('username')));
+		$this->db->where('email', $this->input->post('email'));
+		$this->db->where('password', md5($this->input->post('password')));
         $query = $this->db->get('users');
 		$confirmed = $query->row();
 		if (($query->num_rows() == 1) && ($confirmed->confirmed == 1))
@@ -21,6 +22,14 @@ class Login extends CI_Model {
 			return false;
 		}
     }
+	
+	function find_nick($email)
+	{
+		$this->db->where('email', $this->input->post('email'));
+		$query = $this->db->get('users');
+		$data = array_shift(array_values($query->result_array()));
+		return $data['nickname'];
+	}
 	
 	public function add_temp_user($key)
 	{

@@ -7,11 +7,13 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
+		$this->load->model('login');
 		
 		$this->form_validation->set_message('required','U bent vergeten een %s in te voeren.');
 		$this->form_validation->set_message('alpha_numeric','Ongeldige gebruikersnaam/wachtwoord combinatie.');
 		
-		$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|alpha_numeric|xss_clean|callback_validate_username');
+		$this->form_validation->set_rules('email', 'e-mailadres', 'trim|required|callback_validate_username');
+		//$this->form_validation->set_rules('username', 'gebruikersnaam', 'trim|required|alpha_numeric|xss_clean|callback_validate_username');
 		$this->form_validation->set_rules('password', 'wachtwoord', 'trim|required|md5');
 	}
 
@@ -26,7 +28,7 @@ class Auth extends CI_Controller {
 		else
 		{
 			$userdata = array(
-				'nickname' => $this->input->post('username'),
+				'nickname' => $this->login->find_nick($this->input->post('email')),
 				'logged_in' => 1
 			);
 			$this->session->set_userdata($userdata);
@@ -36,7 +38,6 @@ class Auth extends CI_Controller {
 	
 	public function validate_username()
 	{
-		$this->load->model('login');
 		
 		if ($this->login->able_login())
 		{
