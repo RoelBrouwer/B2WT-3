@@ -7,28 +7,40 @@
 				<?php } else { ?>
 				Show placeholder
 				<?php } ?>
+			<div class="profilecontent">
 			<div id="userdata">
 				<h3>Gegevens</h3>
-				Gebruikersnaam: <?php echo $nickname ?> <br />
+				<ul>
+				<li>Gebruikersnaam: <?php echo $nickname ?></li>
 				<?php if($usr_logged_in) {
 					if ($like == 4) {?>
-				E-mail: <?php echo $email ?> <br />
-				Voornaam: <?php echo $firstname ?> <br />
-				Achternaam: <?php echo $lastname ?> <br />
+				<li>E-mail: <?php echo $email ?></li>
+				<li>Voornaam: <?php echo $firstname ?></li>
+				<li>Achternaam: <?php echo $lastname ?></li>
 				<?php } 
 				}?>
-				Geboortedatum: <?php echo $birthdate ?> <br />
-				Geslacht: <?php echo $sex ?> <br /> 
-				Beschrijving: <?php echo $description ?> <br />
+				<li>Geboortedatum: <?php echo $birthdate ?></li>
+				<li>Geslacht: <?php echo $sex ?> </li>
+				<li>Beschrijving: <?php echo $description ?></li>
+				</ul>
+			</div>
+			<div id="userpref">
 				<h3>Voorkeuren</h3>
-				Geslacht: <?php echo $sexpref ?> <br />
-				Minimumleeftijd: <?php echo $minage ?> Maximumleeftijd: <?php echo $maxage ?> <br />
+				<ul>
+				<li>Geslacht: <?php echo $sexpref ?></li>
+				<li>Minimumleeftijd: <?php echo $minage ?> </li>
+				<li> Maximumleeftijd: <?php echo $maxage ?></li>
 			</div>
 			<div id="matching">
 				<h3>Matching</h3>
-				Persoonlijkheidstype: <?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> <br />
-				Persoonlijkheidsvoorkeur: <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> <br />
-				Merkvoorkeuren: <br />
+				<ul>
+				<li><strong>Persoonlijkheidstype</strong> <br /><?php echo $personality['type'] . ": <br />". $personality['percentage'] ?> </li>
+				<br />
+				<li><strong>Persoonlijkheidsvoorkeur</strong> <br /> <?php echo $perspref['type'] . ": <br />". $perspref['percentage'] ?> </li>
+				</ul>
+				<br />
+
+				<strong>Merkvoorkeuren</strong> <br />
 				<?php if (isset($brandpref))
 				{
 					echo "<ul>";

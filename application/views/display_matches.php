@@ -4,7 +4,7 @@
 	   		<h2> Matches </h2>
 			<?php if (isset($user)){
 				if(count($user) !== 0){?>
-					U heeft <?php echo count($user) ?> matches.
+					<p>U heeft <?php echo count($user) ?> matches.</p>
 					<?php foreach ($user as $usr):
 						$p = $usr['user'];?>
 							<?php 
