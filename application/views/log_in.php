@@ -12,7 +12,7 @@
 	<h2>Login</h2>
 	<?php if(validation_errors() != false) { 
 		echo '<div class="error">'.validation_errors().'</div>';
-		}?>
+	}?>
 	<div id="login">
 	<?php echo form_open('auth'); ?>
 	<label>E-mailadres: </label><?php echo form_input('email'); ?> <br />

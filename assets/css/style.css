@@ -167,4 +167,35 @@ footer p{
 	height: 40px;
 	margin: auto;
 }
+#tabs-1 label{
+    float: left;
+    width: 20%;
+    text-align: right;
+    margin-right: 0.5em;
 
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#tabs-1 label{
+    float: left;
+    width: 20%;
+    text-align: right;
+    margin-right: 0.5em;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#tabs-1 i{
+    font-size: 0.8em;
+}
+
+#tabs-1 h3{
+	font-size: 25px;
+	font-weight: 600;
+	margin-bottom: 1em;
+	margin-top: 2em;
+	text-align: center;
+	color: rgb(120,120,120);
+}
