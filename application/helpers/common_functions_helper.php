@@ -49,7 +49,12 @@ if ( ! function_exists('get_personality_string'))
 }
 if ( ! function_exists('sort_users'))
 {
-	function sort_users($a, $b) {
-		return $b['rank'] - $a['rank'];
+	function sort_users($a, $b) {		
+		if ($a['rank'] == $b['rank']) {
+			return 0;
+		}
+		return ($a['rank'] < $b['rank']) ? 1 : -1;
+
+
 	}
 }
