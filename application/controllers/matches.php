@@ -13,11 +13,17 @@ class Matches extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('logged_in'))
+		if($this->user_profiles->is_admin()){
+			$data['user'] = $this->_matched_users();
+			$this->load->view('common/header_admin');
+	    	$this->load->view('display_matches', $data);
+			$this->load->view('common/footer');
+		}
+		elseif ($this->session->userdata('logged_in'))
 		{
 			$data['user'] = $this->_matched_users();
 			$this->load->view('common/header');
-			$this->load->view('display_matches', $data);
+		    $this->load->view('display_matches', $data);
 			$this->load->view('common/footer');
 		}
 		else

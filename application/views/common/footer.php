@@ -9,6 +9,7 @@ $this->load->helper(array('html', 'url'));
 		<nav class='navbar'>
 		<ul>
 			<li><a href="<?php echo base_url();?>contact">Contact</a></li>
+			<li><a href="<?php echo base_url();?>about">Over</a></li>
 			<li><a href="<?php echo base_url();?>disclaimer">Disclaimer</a></li>
 		</ul>
 		</nav>
