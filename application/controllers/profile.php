@@ -36,14 +36,20 @@ class Profile extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('logged_in'))
+		if($this->user_profiles->is_admin()){
+			$this->load->helper('common_functions_helper');
+			$data = $this->user_profiles->get_user_by_nickname();
+			$this->load->view('common/header_admin');
+			$this->load->view('profile_page', $data);
+			$this->load->view('common/footer');
+		}
+		elseif ($this->session->userdata('logged_in'))
 		{
 			$this->load->helper('common_functions_helper');
 			$data = $this->user_profiles->get_user_by_nickname();
 			$this->load->view('common/header');
 			$this->load->view('profile_page', $data);
 			$this->load->view('common/footer');
-		}
 		else
 		{
 			redirect('auth');
