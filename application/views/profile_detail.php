@@ -38,13 +38,12 @@
 					echo "</ul>";
 				}
 				?>
-				<div id="changebutton"><a href="<?php echo base_url() ?>profile/change_brands">Wijzig merkvoorkeuren</a>
 			</div>
 			<div id="likes">
 				<?php if($usr_logged_in) { ?>
 				Likes en dislikes -- TO DO. <br />
 				<?php if ($like == 1 || $like == 3) {?>
-				##Plaats like-button hier##
+				<a href="<?php echo base_url();?>profile/likeuser/<?php echo $user_id?>">Like!</a>
 				<?php } else { ?>
 				##Plaats al geliked-plaatje hier##
 				<?php } ?>

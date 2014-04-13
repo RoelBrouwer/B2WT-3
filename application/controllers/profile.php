@@ -146,9 +146,23 @@ class Profile extends CI_Controller {
 	{ //Je hoeft niet ingelogd te zijn om dit te mogen bekijken...
 		$user_data = $this->user_profiles->get_user_by_id($id);
 		$user_data['usr_logged_in'] = $this->session->userdata('logged_in');
+		if ($this->session->userdata('logged_in'))
+		{
+			if ($user_data['nickname'] == $this->session->userdata('nickname'))
+			{
+				redirect('profile');
+			}
+		}
 		$this->load->view('common/header');
 		$this->load->view('profile_detail', $user_data);
 		$this->load->view('common/footer');
+	}
+	
+	function likeuser($id)
+	{
+		$this->load->model('likes_model');
+		$this->likes_model->add_like($id);
+		redirect('profile/user/'.$id);
 	}
 }
 ?>
