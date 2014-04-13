@@ -19,20 +19,27 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->form_validation->run() == FALSE)
+		if ($this->session->userdata('logged_in'))
 		{
-			$this->load->view('common/header_anon');
-			$this->load->view('log_in');
-			$this->load->view('common/footer');
+			redirect('');
 		}
 		else
 		{
-			$userdata = array(
-				'nickname' => $this->login->find_nick($this->input->post('email')),
-				'logged_in' => 1
-			);
-			$this->session->set_userdata($userdata);
-			redirect('');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('common/header_anon');
+				$this->load->view('log_in');
+				$this->load->view('common/footer');
+			}
+			else
+			{
+				$userdata = array(
+					'nickname' => $this->login->find_nick($this->input->post('email')),
+					'logged_in' => 1
+				);
+				$this->session->set_userdata($userdata);
+				redirect('');
+			}
 		}
 	}
 	
