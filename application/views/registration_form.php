@@ -74,7 +74,7 @@
 		<h3>Ik ben op zoek naar</h3>
 		<label> Geslacht: </label><?php echo form_radio(array('name' => 'gender_pref', 'value' => 'M', 'checked' => set_radio('gender_pref', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'V', 'checked' => set_radio('gender_pref', 'V'))) ?> Vrouw <?php echo form_radio(array('name' => 'gender_pref', 'value' => 'B', 'checked' => set_radio('gender_pref', 'B'))) ?> Beide <br />
 		<label> Minimumleeftijd: </label><?php echo form_input(array('name' => 'min_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('min_age'))) ?> Maximumleeftijd: <?php echo form_input(array('name' => 'max_age', 'maxlength' => '3', 'size' => '5', 'value' => set_value('max_age'))) ?> <br />
-		<div class="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-2">
 	    <h2>Persoonlijkheidstest</h2>
@@ -85,7 +85,7 @@
 				echo $answer['answer_text'];?><br />
 			<?php endforeach;
 		endforeach; ?>
-		<div class="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-3">
 		<h2>Merkvoorkeuren:</h2>
@@ -94,12 +94,11 @@
 			echo '<section>'.form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => set_checkbox('brandpref', $b['brand_id'])));
 			echo '<label>'.$b['name'].'</label></section>';
 		endforeach; ?>
-		<div class="continue"><a href=".container">Terug naar boven</a></div>
+		<div class="continue"><a href="#tabs">Terug naar boven</a></div>
 	  </div>
 	  <div id="tabs-4">
 		<?php echo form_submit('reg', 'Submit'); 
 		echo form_close(); ?>
-		<div class="continue"><a href=".container">Terug naar boven</a></div>
 	  </div>
 	</div>
 </div>
