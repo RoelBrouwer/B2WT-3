@@ -205,7 +205,7 @@ class Profile extends CI_Controller {
 			$images = array('picture' => $data['upload_data']['file_name'], 'thumb' => "thumb_" . $data['upload_data']['file_name']);
 			if ($mode == 1)
 			{
-				if(!$this->user_profiles->add_picture($images))
+				if(!($this->user_profiles->add_picture($images)))
 				{
 					$path = 'assets/uploads/' . $images['picture'];
 					$path2 = 'assets/uploads/' . $images['thumb'];
