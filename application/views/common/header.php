@@ -9,7 +9,7 @@ $this->load->helper(array('html', 'url'));
 	<?php 
 		echo link_tag('assets/css/reset.css');
 		echo link_tag('assets/css/style.css');
-		echo link_tag('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+		echo link_tag('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 </head>
