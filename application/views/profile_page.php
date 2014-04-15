@@ -13,9 +13,7 @@
 					<?php } else { ?>
 					<li><a href="<?php echo base_url() ?>profile/add_picture">Upload profielfoto</a></li>
 					<?php } ?>
-	   				<li><a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account</a>
-		</li>
-
+	   				<li><a href="<? echo base_url()?>profile/deregister" onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan gemaakt worden.');">Verwijder account</a></li>
 	   			</ul>
 	   		</div>
 			
@@ -58,9 +56,7 @@
 					echo "</ul>";
 				}
 				?>
-				<div id="likes">
-					
-				</div>
 			</div>
+			<div class="likes"></div>
 			</div>
 	</div>

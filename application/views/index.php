@@ -12,7 +12,7 @@
         <button id="button">Click Me!</button>
         <div class="profielen">
           <?php foreach ($profiles as $p): 
-            echo '<div class="profiel"><figure><img src="#" alt="Profiel Foto"></figure><ul>';
+            echo '<div class="profiel"><figure><img src="'.base_url().'assets/uploads/female2.jpg" alt="Profiel Foto" width="100"></figure><ul>';
             echo '<li>'.$p['nickname'].'</li>';
             echo '<li>'.$p['sex'].'</li>';
             echo '<li>'.$p['birthdate'].'</li>';
