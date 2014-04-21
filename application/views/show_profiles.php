@@ -1,6 +1,6 @@
 <?php foreach ($profiles as $p): 
             echo '<div class="profiel"><figure><img src="'.base_url().'assets/uploads/';
-            if(isset($p['photo'])) { echo 'thumb_'.$p['photo']; } 
+            if(isset($p['photo']) && $usr_logged_in) { echo 'thumb_'.$p['photo']; } 
             else { 
               if ($p['sex'] == 'M') { echo "male.jpg"; } 
               else { echo "female2.jpg";}     } 

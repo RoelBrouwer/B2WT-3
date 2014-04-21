@@ -50,6 +50,7 @@ class Welcome extends CI_Controller {
 
 	public function ajax_profiles()
 	{
+		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$data['profiles'] = $this->get_six_profiles();
 		$this->load->view('show_profiles', $data);
 	}
