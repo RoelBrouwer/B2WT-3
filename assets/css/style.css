@@ -216,8 +216,8 @@ box-shadow:         1px 0px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .sidebar{
 	width: 250px;
-	margin-bottom: -5000px; /* any large number will do */
-  	padding-bottom: 5000px; 
+	/* margin-bottom: -5000px; /* any large number will do */
+  	/* padding-bottom: 5000px; */
   	float:left;
   	background-color: rgb(60,60,60);
   	color: rgb(200,200,200);

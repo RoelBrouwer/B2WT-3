@@ -4,7 +4,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model('user_profiles');
+		
 		$data['profiles'] = $this->get_six_profiles();
 		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		if($this->user_profiles->is_admin()){
@@ -29,6 +29,7 @@ class Welcome extends CI_Controller {
 	
 	public function get_six_profiles()
 	{
+		$this->load->model('user_profiles');
 		$user1 = $this->user_profiles->get_random_user_profile();
 		$user2 = $this->user_profiles->get_random_user_profile();
 		$user3 = $this->user_profiles->get_random_user_profile();
@@ -45,5 +46,11 @@ class Welcome extends CI_Controller {
 			'person6' => $user6
 		);
 		return $six;
+	}
+
+	public function ajax_profiles()
+	{
+		$data['profiles'] = $this->get_six_profiles();
+		$this->load->view('show_profiles', $data);
 	}
 }
