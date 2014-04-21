@@ -15,7 +15,7 @@
 						}
 					?>
 	   			</figure></div>
-	   			<div id="profile-name"><p> <?php if($usr_logged_in){echo $firstname." ".$lastname;} else{echo $nickname;}?> </p></div>
+	   			<div id="profile-name"><p> <?php if($usr_logged_in && $like == 4){echo $firstname." ".$lastname;} else{echo $nickname;}?> </p></div>
 	   			<ul>
 	   				<?php if($usr_logged_in) {
 					if ($like == 4){
