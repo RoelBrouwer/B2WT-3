@@ -1,11 +1,11 @@
 <?php foreach ($profiles as $p): 
-            echo '<div class="profiel"><figure><img src="'.base_url().'assets/uploads/';
+            echo '<div class="profiel"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
             if(isset($p['photo']) && $usr_logged_in) { echo 'thumb_'.$p['photo']; } 
             else { 
               if ($p['sex'] == 'M') { echo "male.jpg"; } 
               else { echo "female2.jpg";}     } 
-            echo '" alt="Profiel Foto" width="100"></figure><ul>';
-            echo '<li>'.$p['nickname'].'</li>';
+            echo '" alt="Profiel Foto" width="100"></figure></a><ul>';
+            echo '<li><a href="'.base_url().'profile/user/'.$p['user_id'].'">'.$p['nickname'].'</a></li>';
             echo '<li>'.$p['sex'].'</li>';
             echo '<li>'.$p['birthdate'].'</li>';
             echo '<li>'.$p['description'].'</li>';

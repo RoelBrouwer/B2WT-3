@@ -155,10 +155,11 @@ footer p{
 	overflow: hidden;
 	padding-left: 20px;
 }
-.profiel > ul > li:first-child{
+.profiel > ul > li > a{
 	font-weight: 600;
-	letter-spacing: 3px;
-	color: rgb(100,100,100);
+	font-size: 1.2em;
+	letter-spacing: 2px;
+	color: rgb(60,60,60);
 }
 
 #login{
