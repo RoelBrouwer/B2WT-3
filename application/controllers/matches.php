@@ -17,7 +17,7 @@ class Matches extends CI_Controller {
 			$data['user'] = $this->_matched_users();
 			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header_admin');
-	    	$this->load->view('display_matches', $data);
+	    	$this->load->view('matches_page', $data);
 			$this->load->view('common/footer');
 		}
 		elseif ($this->session->userdata('logged_in'))
@@ -25,13 +25,19 @@ class Matches extends CI_Controller {
 			$data['user'] = $this->_matched_users();
 			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header');
-		    $this->load->view('display_matches', $data);
+		    $this->load->view('matches_page', $data);
 			$this->load->view('common/footer');
 		}
 		else
 		{
 			redirect('auth');
 		}
+	}
+
+	public function ajax_matches()
+	{
+		$data['user'] = $this->_matched_users();
+		$this->load->view('show_matches', $data);
 	}
 	
 	public function _matched_users()

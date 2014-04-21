@@ -9,10 +9,16 @@
         </p>
 
         <h2>Profielen</h2>
-        <button id="button">Click Me!</button>
+        <button id="profile_button">Laad nieuwe profielen!</button>
         <div class="profielen">
-          <?php foreach ($profiles as $p): 
-            echo '<div class="profiel"><figure><img src="'.base_url().'assets/uploads/female2.jpg" alt="Profiel Foto" width="100"></figure><ul>';
+          <?php 
+            foreach ($profiles as $p): 
+            echo '<div class="profiel"><figure><img src="'.base_url().'assets/uploads/';
+            if(isset($p['photo']) && $usr_logged_in) { echo 'thumb_'.$p['photo']; } 
+            else { 
+              if ($p['sex'] == 'M') { echo "male.jpg"; } 
+              else { echo "female2.jpg";}     } 
+            echo '" alt="Profiel Foto" width="100"></figure><ul>';
             echo '<li>'.$p['nickname'].'</li>';
             echo '<li>'.$p['sex'].'</li>';
             echo '<li>'.$p['birthdate'].'</li>';
@@ -35,7 +41,7 @@
     <script> 
     // using JQUERY's ready method to know when all dom elements are rendered
     $(document).ready(function() {
-      $("#button").click(function () {
+      $("#profile_button").click(function () {
         $(".profiel figure, .profiel ul").remove();
         var base = '<?php echo base_url();?>';
         $.ajax({
