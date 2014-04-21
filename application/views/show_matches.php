@@ -5,7 +5,7 @@
 	<?php foreach ($user as $usr):
 		$p = $usr['user'];
 	    echo '<div class="profiel"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
-    	if(isset($p['photo']) && $usr_logged_in) { echo 'thumb_'.$p['photo']; } 
+    	if(isset($p['photo'])) { echo 'thumb_'.$p['photo']; } 
         else { 
         	if ($p['sex'] == 'M') { echo "male.jpg"; } 
         	else { echo "female2.jpg";}     } 

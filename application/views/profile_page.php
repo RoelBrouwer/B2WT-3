@@ -21,13 +21,13 @@
 			<div id="userdata">
 				<h3>Gegevens</h3>
 				<ul>
-				<li>Gebruikersnaam: <?php echo $nickname ?></li>
-				<li>E-mail: <?php echo $email ?></li>
-				<li>Voornaam: <?php echo $firstname ?></li>
-				<li>Achternaam: <?php echo $lastname ?></li>
-				<li>Geboortedatum: <?php echo $birthdate ?></li>
-				<li>Geslacht: <?php echo $sex ?> </li>
-				<li>Beschrijving: <?php echo $description ?></li>
+				<li><strong>Gebruikersnaam:</strong> <?php echo $nickname ?></li>
+				<li><strong>E-mail: </strong><?php echo $email ?></li>
+				<li><strong>Voornaam:</strong> <?php echo $firstname ?></li>
+				<li><strong>Achternaam:</strong> <?php echo $lastname ?></li>
+				<li><strong>Geboortedatum:</strong> <?php echo $birthdate ?></li>
+				<li><strong>Geslacht:</strong> <?php echo $sex ?> </li>
+				<li><strong>Beschrijving:</strong> <?php echo $description ?></li>
 				</ul>
 			</div>
 			<div id="userpref">
@@ -57,6 +57,5 @@
 				}
 				?>
 			</div>
-			<div class="likes"></div>
 			</div>
 	</div>
