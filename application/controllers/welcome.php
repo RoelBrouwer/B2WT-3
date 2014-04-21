@@ -4,7 +4,6 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		
 		$data['profiles'] = $this->get_six_profiles();
 		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		if($this->user_profiles->is_admin()){
@@ -30,12 +29,21 @@ class Welcome extends CI_Controller {
 	public function get_six_profiles()
 	{
 		$this->load->model('user_profiles');
-		$user1 = $this->user_profiles->get_random_user_profile();
-		$user2 = $this->make_sure_unique(array($user1['user_id']));
-		$user3 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id']));
-		$user4 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id']));
-		$user5 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id']));
-		$user6 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id'], $user5['user_id']));
+		if ($this->session->userdata('logged_in'))
+		{
+			$userf = $this->user_profiles->get_user_by_nickname();
+			$own = $userf['user_id'];
+		}
+		else
+		{
+			$own = 'doesntmatter';
+		}
+		$user1 = $this->make_sure_unique(array($own));
+		$user2 = $this->make_sure_unique(array($own, $user1['user_id']));
+		$user3 = $this->make_sure_unique(array($own, $user1['user_id'], $user2['user_id']));
+		$user4 = $this->make_sure_unique(array($own, $user1['user_id'], $user2['user_id'], $user3['user_id']));
+		$user5 = $this->make_sure_unique(array($own, $user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id']));
+		$user6 = $this->make_sure_unique(array($own, $user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id'], $user5['user_id']));
 		$six = array(
 			'person1' => $user1,
 			'person2' => $user2,
