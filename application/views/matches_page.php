@@ -18,9 +18,9 @@
       var base = '<?php echo base_url();?>';
       $.ajax({
         'url' : base + 'matches/ajax_matches',
-        'type' : 'POST', //the way you want to send data to your URL
-        'success' : function(data){ //probably this request will return anything, it'll be put in var "data"\
-          var container = $('.profielen'); //jquery selector (get element by id)
+        'type' : 'POST',
+        'success' : function(data){
+          var container = $('.profielen');
           if(data){
               container.html(data);
           }
