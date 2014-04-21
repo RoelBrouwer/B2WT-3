@@ -31,12 +31,11 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->model('user_profiles');
 		$user1 = $this->user_profiles->get_random_user_profile();
-		$user2 = $this->user_profiles->get_random_user_profile();
-		$user3 = $this->user_profiles->get_random_user_profile();
-		$user4 = $this->user_profiles->get_random_user_profile();
-		$user5 = $this->user_profiles->get_random_user_profile();
-		$user6 = $this->user_profiles->get_random_user_profile();
-		//Hier later nog de juiste foto erin stoppen, de persoonlijkheid erbij halen en de merkvoorkeuren pakken.
+		$user2 = $this->make_sure_unique(array($user1['user_id']));
+		$user3 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id']));
+		$user4 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id']));
+		$user5 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id']));
+		$user6 = $this->make_sure_unique(array($user1['user_id'], $user2['user_id'], $user3['user_id'], $user4['user_id'], $user5['user_id']));
 		$six = array(
 			'person1' => $user1,
 			'person2' => $user2,
@@ -46,6 +45,16 @@ class Welcome extends CI_Controller {
 			'person6' => $user6
 		);
 		return $six;
+	}
+	
+	public function make_sure_unique($ids)
+	{
+		$temp_profile = $this->user_profiles->get_random_user_profile();
+		while (in_array($temp_profile['user_id'], $ids))
+		{
+			$temp_profile = $this->user_profiles->get_random_user_profile();
+		}
+		return $temp_profile;
 	}
 
 	public function ajax_profiles()
