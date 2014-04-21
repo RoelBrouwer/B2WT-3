@@ -225,6 +225,7 @@ footer p{
   	background-color: rgb(60,60,60);
   	color: rgb(200,200,200);
   	text-decoration: none;
+
 }
 .sidebar ul{
 	padding-top: 10px;
@@ -233,8 +234,7 @@ footer p{
 	color: rgb(200,200,200);
 }
 .sidebar li{
-	height: 1.7em;
-	padding: 10px 20px;
+	padding: 15px 20px;
 }
 .sidebar a{
 	color: rgb(200,200,200);
