@@ -55,5 +55,15 @@ per controller bestaan, en in een enkel geval het omgekeerde
 (about_view).
 
 ++++++Gebruikers++++++
+--Administrator:
+E-mail: jaronisgek@live.nl
+Wachtwoord: wachtwoord
+
+--Gebruikers
+E-mail:
+Wachtwoord:
+
+E-mail:
+Wachtwoord:
 
 +++++++++SQL++++++++++
