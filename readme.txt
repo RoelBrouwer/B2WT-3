@@ -69,6 +69,7 @@ E-mail: admin2@outlook.com
 Wachtwoord: admin
 
 +++++++++SQL++++++++++
+-- ER hierbij is te vinden in ER.pdf --
 CREATE TABLE "algorithm" (
 	distance_measure INTEGER NOT NULL,
 	xfactor REAL NOT NULL,
