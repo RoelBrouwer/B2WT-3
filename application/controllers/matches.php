@@ -115,6 +115,10 @@ class Matches extends CI_Controller {
 	public function _get_right_page($array, $pgnr)
 	{
 		$length = count($array);
+		if ((($pgnr - 1) * 6) > $length)
+		{
+			return null;
+		}
 		if (($length - ($pgnr * 6)) >= 0)
 		{
 			//Geef precies zes profielen terug

@@ -16,6 +16,7 @@
 	<script> 
     // using JQUERY's ready method to know when all dom elements are rendered
     $(document).ready(function() {
+	  var page = 1;
       getMatches();
       $("#previous").click(function () {
         if (page == 1) {

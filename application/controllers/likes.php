@@ -77,25 +77,57 @@ class Likes extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 
-	public function ajax_likedme()
+	public function ajax_likedme($pg)
 	{
-		$data['profiles'] = $this->likes_model->get_users_liked_me();
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_users_liked_me(), $pg);
 		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$this->load->view('show_profiles', $data);
 	}
 
-	public function ajax_mylikes()
+	public function ajax_mylikes($pg)
 	{
-		$data['profiles'] = $this->likes_model->get_users_i_liked();
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_users_i_liked(), $pg);
 		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$this->load->view('show_profiles', $data);
 	}
 
-	public function ajax_mutallikes()
+	public function ajax_mutallikes($pg)
 	{
 		$data['usr_logged_in'] = $this->session->userdata('logged_in');
-		$data['profiles'] = $this->likes_model->get_likes_mutual();
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_likes_mutual(), $pg);
 		$this->load->view('show_profiles', $data);
+	}
+	
+	public function _get_right_page($array, $pgnr)
+	{
+		$length = count($array);
+		if (((($pgnr - 1) * 6) > $length) || $pgnr < 1)
+		{
+			return null;
+		}
+		if (($length - ($pgnr * 6)) >= 0)
+		{
+			//Geef precies zes profielen terug
+			$resultscount = 6;
+		}
+		else
+		{
+			$resultscount = ($length % 6);
+		}
+		$resultarray = array();
+		if ($resultscount > 0)
+		{
+			for ($i = 0; $i < $resultscount; $i++)
+			{
+				$norm = 6 * ($pgnr - 1);
+				array_push($resultarray, $array[($norm + $i)]);
+			}
+			return $resultarray;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 }
