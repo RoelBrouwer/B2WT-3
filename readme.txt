@@ -62,11 +62,11 @@ E-mail: jaronisgek@live.nl
 Wachtwoord: wachtwoord
 
 --Gebruikers
-E-mail:
-Wachtwoord:
+E-mail: R.J.J.Brouwer@students.uu.nl
+Wachtwoord: wachtwoord
 
-E-mail:
-Wachtwoord:
+E-mail: admin2@outlook.com
+Wachtwoord: admin
 
 +++++++++SQL++++++++++
 CREATE TABLE "algorithm" (
