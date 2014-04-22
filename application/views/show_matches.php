@@ -1,9 +1,15 @@
 <?php 
 	if (isset($user)){
 	$amount = count($user);
-		if($amount !== 0) {?>
-		<p>U heeft <?php echo $amount ?> matches.</p>
-		<?php foreach ($user as $usr):
+		if($amount !== 0){
+		$counter = 1.0; ?>		
+		<?php 
+			echo '<ul>';
+			for($i = 1; $i <= (ceil($amount/6)); ++$i){
+				echo '<li><a href="#tabs-'.$i.'">'.$i.'</a></li>';
+			}
+			echo '</ul><div id="tabs-1">';
+			foreach ($user as $usr):
 			$p = $usr['user'];
 		    echo '<div class="profiel"><div class = "profiel_foto"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
 	    	if(isset($p['photo'])) { echo 'thumb_'.$p['photo']; } 
@@ -38,7 +44,12 @@
 				    }
 				endforeach;
 		        echo '</ul></li></ul></div>';
+		        if ($counter % 6 == 0){
+		        	echo '</div><div id="tabs-'.(floor($counter/6)+1).'">';
+		        }
+		        ++$counter;
 		    endforeach; 
+		    echo '</div>';
 		} else { echo "<p> U heeft geen matches. Probeer eens om uw voorkeuren te verruimen.</p>"; }
 	} else { echo "<p>U heeft geen matches. Probeer eens om uw voorkeuren te verruimen.</p>";}
 ?>

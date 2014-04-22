@@ -2,8 +2,9 @@
    	<div class="wrapper">
 	   	<div class="container">
 	   		<h2> Matches </h2>
-	   		<div class="profielen">
-        	</div>
+	   		<div id="tabs">
+          
+        </div>
 		</div>
 	</div>
 
@@ -20,7 +21,7 @@
         'url' : base + 'matches/ajax_matches',
         'type' : 'POST',
         'success' : function(data){
-          var container = $('.profielen');
+          var container = $('#tabs');
           if(data){
               container.html(data);
           }
