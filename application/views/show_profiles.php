@@ -1,4 +1,6 @@
-<?php foreach ($profiles as $p): 
+<?php 
+if (isset($profiles)){
+foreach ($profiles as $p): 
   echo '<div class="profiel"><div class = "profiel_foto"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
         if(isset($p['photo']) && $usr_logged_in) { echo 'thumb_'.$p['photo']; } 
           else { 
@@ -34,3 +36,8 @@
         endforeach;
             echo '</ul></li></ul></div>';
         endforeach; 
+}
+else
+{
+echo "Er zijn geen profielen gevonden.";
+} ?>

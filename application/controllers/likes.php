@@ -28,6 +28,7 @@ class Likes extends CI_Controller {
 	
 	public function my_likes() {
 		$data['text'] = "<h2>Mijn likes</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt. ";
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_users_i_liked(), 1);
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -45,6 +46,7 @@ class Likes extends CI_Controller {
 	
 	public function liked_me() {
 		$data['text'] = "<h2>Wie liket mij?</h2> Hieronder vind je een overzicht van alle gebruikers die jou ge-liked hebben. ";
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_users_liked_me(), 1);
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -62,6 +64,7 @@ class Likes extends CI_Controller {
 	
 	public function match() {
 		$data['text'] = "<h2>Matches</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt en die jou ook ge-liked hebben: gebruikers waarmee de likes matchen!";
+		$data['profiles'] = $this->_get_right_page($this->likes_model->get_likes_mutual(), 1);
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
 		}
@@ -101,7 +104,7 @@ class Likes extends CI_Controller {
 	public function _get_right_page($array, $pgnr)
 	{
 		$length = count($array);
-		if (((($pgnr - 1) * 6) > $length) || $pgnr < 1)
+		if (((($pgnr - 1) * 6) > $length))
 		{
 			return null;
 		}
