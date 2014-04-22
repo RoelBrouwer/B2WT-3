@@ -27,8 +27,6 @@ class Likes extends CI_Controller {
 	}
 	
 	public function my_likes() {
-		$data['users'] = $this->likes_model->get_users_i_liked();
-		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$data['text'] = "<h2>Mijn likes</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt. ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
@@ -41,13 +39,11 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_page', $data);
+		$this->load->view('mylikes_page', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function liked_me() {
-		$data['users'] = $this->likes_model->get_users_liked_me();
-		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$data['text'] = "<h2>Wie liket mij?</h2> Hieronder vind je een overzicht van alle gebruikers die jou ge-liked hebben. ";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
@@ -60,13 +56,11 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_page', $data);
+		$this->load->view('likedme_page', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function match() {
-		$data['users'] = $this->likes_model->get_likes_mutual();
-		$data['usr_logged_in'] = $this->session->userdata('logged_in');
 		$data['text'] = "<h2>Matches</h2> Hieronder vind je een overzicht van alle gebruikers die je ge-liked hebt en die jou ook ge-liked hebben: gebruikers waarmee de likes matchen!";
 		if($this->user_profiles->is_admin()){
 			$this->load->view('common/header_admin');
@@ -79,8 +73,29 @@ class Likes extends CI_Controller {
 		{
 			redirect('auth');
 		}
-		$this->load->view('likes_page', $data);
+		$this->load->view('mutuallikes_page', $data);
 		$this->load->view('common/footer');
+	}
+
+	public function ajax_likedme()
+	{
+		$data['profiles'] = $this->likes_model->get_users_liked_me();
+		$data['usr_logged_in'] = $this->session->userdata('logged_in');
+		$this->load->view('show_profiles', $data);
+	}
+
+	public function ajax_mylikes()
+	{
+		$data['profiles'] = $this->likes_model->get_users_i_liked();
+		$data['usr_logged_in'] = $this->session->userdata('logged_in');
+		$this->load->view('show_profiles', $data);
+	}
+
+	public function ajax_mutallikes()
+	{
+		$data['usr_logged_in'] = $this->session->userdata('logged_in');
+		$data['profiles'] = $this->likes_model->get_likes_mutual();
+		$this->load->view('show_profiles', $data);
 	}
 	
 }

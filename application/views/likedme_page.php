@@ -12,14 +12,14 @@
 	<script> 
     // using JQUERY's ready method to know when all dom elements are rendered
     $(document).ready(function() {
-      getMatches();
+		getMatches();
     });
 
     function getMatches(){
       $(".profiel figure, .profiel ul").remove();
       var base = '<?php echo base_url();?>';
       $.ajax({
-        'url' : base + 'matches/ajax_matches',
+        'url' : base + 'likes/ajax_likedme',
         'type' : 'POST',
         'success' : function(data){
           var container = $('.profielen');

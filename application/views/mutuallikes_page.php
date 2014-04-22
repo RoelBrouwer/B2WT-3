@@ -19,7 +19,7 @@
       $(".profiel figure, .profiel ul").remove();
       var base = '<?php echo base_url();?>';
       $.ajax({
-        'url' : base + 'matches/ajax_matches',
+        'url' : base + 'likes/ajax_mutuallikes',
         'type' : 'POST',
         'success' : function(data){
           var container = $('.profielen');
