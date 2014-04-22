@@ -9,10 +9,11 @@
 		echo link_tag('assets/css/reset.css');
 		echo link_tag('assets/css/style.css');
 		echo link_tag('assets/css/jquery-ui-1.10.4.custom.css');
-		echo link_tag('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+		echo link_tag('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="<?php echo base_url(). 'assets/js/jquery-ui-1.10.4.custom.js'?>"></script>
+	<script src="<?php echo base_url(). 'assets/js/validation.js'?>"></script>
 	<script>
 		$(function() {
 			$( "#tabs" ).tabs();
@@ -60,7 +61,7 @@
 		<label> Voornaam: </label><?php echo form_input(array('name' => 'first_name', 'maxlength' => '20', 'size' => '30', 'value' => set_value('first_name'))) ?> <br />
 		<label> Achternaam: </label><?php echo form_input(array('name' => 'last_name', 'maxlength' => '30', 'size' => '30', 'value' => set_value('last_name'))) ?> <br />
 		<label> Geboortedatum: </label><?php echo form_input(array('name' => 'birthdate', 'maxlength' => '10', 'size' => '12', 'value' => set_value('birthdate'))) ?> <i>Voer in jjjj-mm-dd formaat in.</i><br />
-		<label> Geslacht: </label> <?php echo form_radio(array('name' => 'gender', 'value' => 'M', 'checked' => set_radio('gender', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender', 'value' => 'V', 'checked' => set_radio('gender', 'V'))) ?> Vrouw <br />
+		<label> Geslacht: </label> <?php echo form_radio(array('name' => 'gender', 'value' => 'M', 'maxlength' => '500', 'checked' => set_radio('gender', 'M'))) ?> Man <?php echo form_radio(array('name' => 'gender', 'value' => 'V', 'checked' => set_radio('gender', 'V'))) ?> Vrouw <br />
 		<label> Beschrijving: </label><?php echo form_open_multipart('reg/do_upload');?> <?php echo form_textarea(array('name' => 'description', 'rows' => '7', 'cols' => '30', 'value' => set_value('description'))) ?> <i>Gebruik maximaal 500 karakters.</i><br /> <br /> 
 		<p><i>Na bevestiging van uw registratie kunt u ook nog een profielfoto uploaden!</i></p>
 		<h3>Ik ben op zoek naar</h3>
@@ -100,6 +101,5 @@
 	</div>
 </div>
 </div>
-
 </body>
 </html>

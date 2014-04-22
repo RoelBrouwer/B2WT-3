@@ -1,6 +1,7 @@
 <?php $this->load->helper('form','url'); ?>
    	<div class="wrapper">
 	   	<div class="container">
+	   	<div class="brands">
 			<?php echo validation_errors();
 			echo form_open('profile/change_brands'); ?>
 			<h2>Merkvoorkeuren</h2>
@@ -10,10 +11,12 @@
 				foreach($brandpref as $br):
 					if ($br['name']==$b['name']){$check = true;}
 				endforeach;
-				echo form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => $check));
-				echo $b['name'];
+
+				echo '<section>'.form_checkbox(array('name' => 'brandpref[]', 'value' => $b['brand_id'], 'checked' => $check));
+				echo '<label>'.$b['name'].'</label></section>';
 			endforeach; ?> <br />
 			<?php echo form_submit('change_brands', 'Wijzig'); 
 			echo form_close(); ?>
 		</div>
+	</div>
 	</div>
