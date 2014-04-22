@@ -21,7 +21,7 @@ class User_profiles extends CI_Model {
 		$user['photo'] = $this->get_photo_by_id($user['photo_id']);
 		$user['thumb'] = $this->get_thumb_by_id($user['photo_id']);
 		if ($this->session->userdata('logged_in')){
-			$data['user'] = $this->get_like_status($user['user_id']);
+			$user['like'] = $this->get_like_status($user['user_id']);
 		}
 		return $user;
 	}
