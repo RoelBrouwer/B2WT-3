@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php $this->load->helper('form', 'url'); ?>
-<head>
-	<meta charset="utf-8">
-	<title>DataDate - Inloggen</title>
-</head>
-<body>
+
 	<div class = "wrapper">
 	<div class="container">
 	
@@ -23,5 +16,3 @@
 	</div>
 	</div>
 	</div>
-</body>
-</html>
