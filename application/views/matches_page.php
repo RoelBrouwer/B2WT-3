@@ -16,8 +16,9 @@
     function getMatches(){
       $(".profiel figure, .profiel ul").remove();
       var base = '<?php echo base_url();?>';
+	  var page = 1;
       $.ajax({
-        'url' : base + 'matches/ajax_matches',
+        'url' : base + 'matches/ajax_matches/' + page,
         'type' : 'POST',
         'success' : function(data){
           var container = $('.profielen');

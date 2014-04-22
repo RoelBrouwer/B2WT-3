@@ -14,7 +14,7 @@ class Matches extends CI_Controller {
 	public function index()
 	{
 		if($this->user_profiles->is_admin()){
-			$data['user'] = $this->_matched_users();
+			$data['user'] = $this->_matched_users(1);
 			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header_admin');
 	    	$this->load->view('matches_page', $data);
@@ -22,7 +22,7 @@ class Matches extends CI_Controller {
 		}
 		elseif ($this->session->userdata('logged_in'))
 		{
-			$data['user'] = $this->_matched_users();
+			$data['user'] = $this->_matched_users(1);
 			$data['usr_logged_in'] = $this->session->userdata('logged_in');
 			$this->load->view('common/header');
 		    $this->load->view('matches_page', $data);
@@ -34,18 +34,19 @@ class Matches extends CI_Controller {
 		}
 	}
 
-	public function ajax_matches()
+	public function ajax_matches($pagenumber)
 	{
-		$data['user'] = $this->_matched_users();
+		$data['user'] = $this->_matched_users($pagenumber);
 		$this->load->view('show_matches', $data);
 	}
 	
-	public function _matched_users()
+	public function _matched_users($pgnr)
 	{
 		$matches1 = $this->user_profiles->get_users_matching_pref(); //Get the users that match the pref
 		$matches2 = $this->_assign_ranking($matches1);
 		usort($matches2, "sort_users");
-		return $matches2;
+		$matches3 = $this->_get_right_page($matches2, $pgnr);
+		return $matches3;
 	}
 	
 	public function _assign_ranking($users)
@@ -109,6 +110,34 @@ class Matches extends CI_Controller {
 			array_push($ret, $b['name']);
 		}
 		return $ret;
+	}
+	
+	public function _get_right_page($array, $pgnr)
+	{
+		$length = count($array);
+		if (($length - ($pgnr * 6)) >= 0)
+		{
+			//Geef precies zes profielen terug
+			$resultscount = 6;
+		}
+		else
+		{
+			$resultscount = ($length % 6);
+		}
+		$resultarray = array();
+		if ($resultscount > 0)
+		{
+			for ($i = 0; $i < $resultscount; $i++)
+			{
+				$norm = 6 * ($pgnr - 1);
+				array_push($resultarray, $array[($norm + $i)]);
+			}
+			return $resultarray;
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 }
