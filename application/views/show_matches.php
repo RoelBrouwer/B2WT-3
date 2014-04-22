@@ -2,7 +2,6 @@
 	if (isset($user)){
 	$amount = count($user);
 		if($amount !== 0) {?>
-		<p>U heeft <?php echo $amount ?> matches.</p>
 		<?php foreach ($user as $usr):
 			$p = $usr['user'];
 		    echo '<div class="profiel"><div class = "profiel_foto"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';

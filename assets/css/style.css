@@ -273,3 +273,7 @@ footer p{
 	margin-bottom: 0;
 	font-weight: bold;
 }
+.buttons{
+	width: 960px;
+	display: block;
+}
