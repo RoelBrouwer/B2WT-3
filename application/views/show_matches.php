@@ -1,11 +1,13 @@
 <?php 
 	if (isset($user)){
 	$amount = count($user);
-		if($amount !== 0) {?>
+		if($amount !== 0){
+		$counter = 1; ?>
 		<p>U heeft <?php echo $amount ?> matches.</p>
 		<?php foreach ($user as $usr):
+
 			$p = $usr['user'];
-		    echo '<div class="profiel"><div class = "profiel_foto"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
+		    echo '<div class="profiel '.(ceil($counter/6.0)).'" ><div class = "profiel_foto"><a href="'.base_url().'profile/user/'.$p['user_id'].'"><figure><img src="'.base_url().'assets/uploads/';
 	    	if(isset($p['photo'])) { echo 'thumb_'.$p['photo']; } 
 	        else { 
 	        	if ($p['sex'] == 'M') { echo "male.jpg"; } 
@@ -38,6 +40,7 @@
 				    }
 				endforeach;
 		        echo '</ul></li></ul></div>';
+		        ++$counter;
 		    endforeach; 
 		} else { echo "<p> U heeft geen matches. Probeer eens om uw voorkeuren te verruimen.</p>"; }
 	} else { echo "<p>U heeft geen matches. Probeer eens om uw voorkeuren te verruimen.</p>";}

@@ -11,6 +11,7 @@
     // using JQUERY's ready method to know when all dom elements are rendered
     $(document).ready(function() {
       getMatches();
+
     });
 
     function getMatches(){
