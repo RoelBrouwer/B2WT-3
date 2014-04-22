@@ -18,6 +18,8 @@ Safari             (mobiel)          iOS 7.0.6
 Safari             7.0.2             OSX 10.9.2
 
 +++++++Extra's++++++++
+- Geregistreerd account wordt pas geactiveerd na bevestiging
+  via de e-mail.
 
 +++++Toelichting++++++
 Alle pagina's die voor een gebruiker toegankelijk zijn binnen
@@ -67,3 +69,69 @@ E-mail:
 Wachtwoord:
 
 +++++++++SQL++++++++++
+CREATE TABLE "algorithm" (
+	distance_measure INTEGER NOT NULL,
+	xfactor REAL NOT NULL,
+	alfa REAL NOT NULL,
+	algorithm_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL);
+
+CREATE TABLE "answers" (
+	question_tag TEXT NOT NULL REFERENCES "questions" (question_tag) ON DELETE CASCADE ON UPDATE CASCADE, 
+	answer_text TEXT NOT NULL, 
+	answer_tag TEXT NOT NULL);
+
+CREATE TABLE "brandpref" (
+	user_id INTEGER NOT NULL REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	brand_id INTEGER NOT NULL REFERENCES brands(brand_id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE "brands" (
+	brand_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+	name TEXT NOT NULL
+	);
+
+CREATE TABLE "dislikes" (
+	user_id INTEGER REFERENCES "users" (user_id) ON DELETE CASCADE ON UPDATE CASCADE, 
+	user_id_disliked INTEGER REFERENCES "users" (user_id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE "likes" (
+	user_id INTEGER REFERENCES "users" (user_id) ON DELETE CASCADE ON UPDATE CASCADE, 
+	user_id_liked INTEGER REFERENCES "users" (user_id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE "personalities" (
+	personality_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	E REAL NOT NULL,
+	N REAL NOT NULL,
+	T REAL NOT NULL,
+	J REAL NOT NULL);
+
+CREATE TABLE "photos" (
+	photo_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	file TEXT NOT NULL,
+	thumb TEXT NOT NULL);
+
+CREATE TABLE "questions" (
+	question_tag TEXT PRIMARY KEY NOT NULL UNIQUE, 
+	question_text TEXT NOT NULL UNIQUE, 
+	type TEXT NOT NULL);
+
+CREATE TABLE "users" (
+	user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	nickname TEXT NOT NULL,
+	firstname TEXT NOT NULL,
+	lastname TEXT NOT NULL,
+	email TEXT NOT NULL,
+	password TEXT NOT NULL,
+	photo_id INTEGER REFERENCES photos(photo_id) ON DELETE SET NULL ON UPDATE CASCADE,
+	sex TEXT NOT NULL,
+	birthdate DATE NOT NULL,
+	sexpref TEXT NOT NULL, 
+	description TEXT,
+	personality_id INTEGER REFERENCES personalities(personality_id)ON DELETE SET NULL ON UPDATE CASCADE,
+	personalpref INTEGER REFERENCES personalities(personality_id)ON DELETE SET NULL ON UPDATE CASCADE,
+	minage INTEGER, 
+	maxage INTEGER,
+	admin BOOLEAN NOT NULL,
+	regdate DATE NOT NULL,
+	confirmed BOOLEAN NOT NULL,
+	key TEXT UNIQUE
+);
